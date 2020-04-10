@@ -1,37 +1,37 @@
 #include "cub.h"
 
-void	fill_sp(t_cub *cub)
+void fill_sp(t_cub *cub)
 {
 	int i;
 	int j;
 	int len;
 	char *s;
-	
+
 	len = 0;
 	j = -1;
-	while(++j < cub->parse.nbline)
+	while (++j < cub->parse.nbline)
 	{
 		i = -1;
 		len = ft_strlen(cub->parse.map[j]);
 		s = ft_strdup(cub->parse.map[j]);
 		cub->parse.map[j] = (char *)malloc(sizeof(char) * cub->parse.strlen + 1);
-		if(!cub->parse.map[j])
-			return((void)NULL);
-		while(++i < cub->parse.strlen)
+		if (!cub->parse.map[j])
+			return ((void)NULL);
+		while (++i < cub->parse.strlen)
 			cub->parse.map[j][i] = ' ';
 		cub->parse.map[j][i] = '\0';
 		i = -1;
-		while(++i < len)
+		while (++i < len)
 			cub->parse.map[j][i] = s[i];
 	}
 	//show_map(*cub);
 }
 
-int	find_in(char c, char *str)
+int find_in(char c, char *str)
 {
 	int i;
-
-	i = 0;
+	I
+		i = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
@@ -41,20 +41,20 @@ int	find_in(char c, char *str)
 	return 0;
 }
 
-void	show_map(t_cub cub)
+void show_map(t_cub cub)
 {
 	int x;
 
 	x = 0;
-	while(x < cub.parse.nbline)
+	while (x < cub.parse.nbline)
 	{
 		printf("%d - ", x + 1);
-		printf("%s\n",cub.parse.map[x]);
+		printf("%s\n", cub.parse.map[x]);
 		x++;
 	}
 }
 
-int		parsing_map(t_cub *cub, char *line)
+int parsing_map(t_cub *cub, char *line)
 {
 	int size_map;
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
@@ -70,7 +70,7 @@ int check_map(t_cub cub)
 	y = 1;
 	i = 0;
 	first_line_check(cub);
-	while(y < cub.parse.nbline - 1)
+	while (y < cub.parse.nbline - 1)
 	{
 		line_check(cub, y);
 		y++;

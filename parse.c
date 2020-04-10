@@ -8,22 +8,21 @@
 
 // tsarafia je tenais a te dire que tu est vraimet un exemple au quotidien, tu me donne la cefor tous les jours. Reste tel quel. Ne bouge pas.
 
-void	ft_start(t_cub *cub)
+void ft_start(t_cub *cub)
 {
 	cub->parse.i = 0;
 	cub->parse.strlen = 0;
 	cub->parse.nbline = 0;
 }
 
-
-void	ft_error(char *str)
+void ft_error(char *str)
 {
 	write(1, "Error\n", 6);
 	write(1, str, ft_strlen(str));
 	exit(0);
 }
 
-int		parsing_line(t_cub *cub, char *str)
+int parsing_line(t_cub *cub, char *str)
 {
 	int i;
 
@@ -41,7 +40,7 @@ int		parsing_line(t_cub *cub, char *str)
 	return 1;
 }
 
-int		parsing(t_cub *cub, char *line)
+int parsing(t_cub *cub, char *line)
 {
 	int i;
 
@@ -62,7 +61,7 @@ int		parsing(t_cub *cub, char *line)
 		return parsing_floor(cub, line);
 	else if (line[0] == 'C')
 		return parsing_ceiling(cub, line);
-	else if ((line[0] == ' ' || line[0] == '1'|| line[0] == '0' || line[0] == '\n')) //&& (!ft_strrchr(line, 'R') && !ft_strrchr(line, 'C') && !ft_strrchr(line, 'F')))
+	else if ((line[0] == ' ' || line[0] == '1' || line[0] == '0' || line[0] == '\n')) //&& (!ft_strrchr(line, 'R') && !ft_strrchr(line, 'C') && !ft_strrchr(line, 'F')))
 		return parsing_map(cub, line);
 
 	return 1;
@@ -111,6 +110,4 @@ int main(int ac, char **av)
 
 	// system("leaks a.out");
 	return 0;
-
 }
-
