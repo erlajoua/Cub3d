@@ -3,6 +3,8 @@
 #include "parsing_texture.c"
 #include "parsing_rgb.c"
 #include "parsing_map.c"
+#include "parsing_map2.c"
+#include "parsing_map3.c"
 
 // tsarafia je tenais a te dire que tu est vraimet un exemple au quotidien, tu me donne la cefor tous les jours. Reste tel quel. Ne bouge pas.
 
@@ -68,7 +70,6 @@ int		parsing(t_cub *cub, char *line)
 
 //parsing ce sera toujours le meme ordre mais il peut y avoir des espaces et des \n
 
-
 int main(int ac, char **av)
 {
 	char *line;
@@ -101,17 +102,6 @@ int main(int ac, char **av)
 	check_map(cub);
 	printf("Map valide!\n\n");
 	show_map(cub);
-	int k = 0;
-
-	int m = 0;
-	// while (k < cub.parse.nbline)
-	// {
-
-	// 	printf("%d - ", m);
-	// 	printf("%s\n", cub.parse.map[k]);
-	// 	m++;
-	// 	k++;
-	// }
 
 	// printf("\nres_x : |%s| res_y : |%s| south : |%s| north : |%s| east : |%s| weast |%s|\n", cub.parse.res_x, cub.parse.res_y, cub.parse.south, cub.parse.north, cub.parse.east, cub.parse.west);
 	// printf("FLOOR | R : %d - G : %d - B : %d\n", cub.parse.floor_rgb[0], cub.parse.floor_rgb[1], cub.parse.floor_rgb[2]);
@@ -123,16 +113,4 @@ int main(int ac, char **av)
 	return 0;
 
 }
-
-
-// |
-// 	map_raw = ft_strdup("");
-// 	line;
-// 	map_raw = ft_strjoin(map_raw, line);
-// 	map_raw = ft_strjoin(map_raw, "\n");
-// |
-/*
-   strcuture de char
-
-*/
 
