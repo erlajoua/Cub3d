@@ -6,8 +6,6 @@
 #include "parsing_map2.c"
 #include "parsing_map3.c"
 
-// tsarafia je tenais a te dire que tu est vraimet un exemple au quotidien, tu me donne la cefor tous les jours. Reste tel quel. Ne bouge pas.
-
 void ft_start(t_cub *cub)
 {
 	cub->parse.i = 0;
