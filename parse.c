@@ -4,7 +4,6 @@
 #include "parsing_texture.c"
 #include "parsing_map1.c"
 #include "parsing_map2.c"
-#include "parsing_map3.c"
 
 void ft_start(t_cub *cub)
 {

@@ -70,14 +70,11 @@ void	show_map(t_cub cub);
 int		parsing_map(t_cub *cub, char *line);
 int 	check_map(t_cub cub);
 //parsing_map2.c
-int	check_two(t_cub cub, int i, int j);
-int check_zr(t_cub cub, int i, int j);
-int check_sp(t_cub cub, int i, int j);
-int check_one(t_cub cub, int i, int j);
-//parsing_map3.c
+int		check_around(t_cub cub, int j, int i, char *s);
 void	line_check(t_cub cub, int j);
 void	first_line_check(t_cub cub);
 void	last_line_check(t_cub cub);
+
 
 
 

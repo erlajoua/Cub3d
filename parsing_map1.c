@@ -30,8 +30,7 @@ void fill_sp(t_cub *cub)
 int find_in(char c, char *str)
 {
 	int i;
-	I
-		i = 0;
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
