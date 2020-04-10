@@ -59,6 +59,7 @@ void	first_line_check(t_cub cub)
 			ft_error("First line ne contient pas que des espaces ou des 1\n");
 	}
 }
+
 void	last_line_check(t_cub cub)
 {
 	int i;
