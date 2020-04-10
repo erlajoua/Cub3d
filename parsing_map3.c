@@ -43,6 +43,7 @@ void	line_check(t_cub cub, int j)
 		i++;
 	}
 }
+
 void	first_line_check(t_cub cub)
 {
 	int i;
