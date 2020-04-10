@@ -99,6 +99,7 @@ int main(int ac, char **av)
 
 	fill_zero(&cub);
 	check_map(cub);
+	printf("Map valide!\n\n");
 	show_map(cub);
 	int k = 0;
 

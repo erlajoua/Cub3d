@@ -52,8 +52,8 @@ void	fill_zero(t_cub *cub)
 		}
 		j++;
 	}
-	show_map(*cub);
-	printf("\n");
+	//show_map(*cub);
+	//printf("\n");
 }
 
 int	find_in(char c, char *str)
@@ -220,7 +220,6 @@ void	line_check(t_cub cub, int j)
 	int i;
 
 	i = 0;
-	printf("Voici le caractère : %c\n",cub.parse.map[j][0]);
 	while(cub.parse.map[j][i])
 	{
 		char *s;
@@ -228,7 +227,6 @@ void	line_check(t_cub cub, int j)
 		s = ft_strdup(" 1");
 		if(i == 0 && find_in(cub.parse.map[j][0], s) == 0)
 		{
-			printf("test passe \n");
 			ft_error("Mauvais debut de chaine\n");
 		}
 		if(cub.parse.map[j][i] == ' ')
