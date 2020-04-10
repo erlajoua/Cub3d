@@ -60,7 +60,6 @@ int parsing(t_cub *cub, char *line)
 		return parsing_ceiling(cub, line);
 	else if ((line[0] == ' ' || line[0] == '1' || line[0] == '0' || line[0] == '\n')) //&& (!ft_strrchr(line, 'R') && !ft_strrchr(line, 'C') && !ft_strrchr(line, 'F')))
 		return parsing_map(cub, line);
-
 	return 1;
 }
 
@@ -80,11 +79,8 @@ int main(int ac, char **av)
 	i = 0;
 	t_cub cub;
 	ft_start(&cub);
-
 	while ((ret = get_next_line(fd, &str)) > 0)
-	{
 		parsing_line(&cub, str);
-	}
 	close(fd);
 	ret = 0;
 	fd = open(av[1], O_RDONLY);

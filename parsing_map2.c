@@ -36,9 +36,7 @@ void first_line_check(t_cub cub)
 	while (cub.parse.map[0][i])
 	{
 		if (cub.parse.map[0][i] == '1' || cub.parse.map[0][i] == ' ')
-		{
 			i++;
-		}
 		else
 			ft_error("First line ne contient pas que des espaces ou des 1\n");
 	}
@@ -52,13 +50,9 @@ void last_line_check(t_cub cub)
 	while (cub.parse.map[cub.parse.nbline - 1][i])
 	{
 		if (cub.parse.map[cub.parse.nbline - 1][i] == '1' || cub.parse.map[cub.parse.nbline - 1][i] == ' ')
-		{
 			i++;
-		}
 		else
-		{
 			ft_error("Last line ne contient pas que des espaces ou des 1\n");
-		}
 	}
 }
 
