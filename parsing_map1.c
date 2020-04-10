@@ -1,6 +1,6 @@
 #include "cub.h"
 
-void	fill_zero(t_cub *cub)
+void	fill_sp(t_cub *cub)
 {
 	int i;
 	int j;

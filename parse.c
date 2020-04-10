@@ -1,8 +1,8 @@
 #include "cub.h"
 #include "parsing_res.c"
-#include "parsing_texture.c"
 #include "parsing_rgb.c"
-#include "parsing_map.c"
+#include "parsing_texture.c"
+#include "parsing_map1.c"
 #include "parsing_map2.c"
 #include "parsing_map3.c"
 
@@ -98,7 +98,7 @@ int main(int ac, char **av)
 		parsing(&cub, line);
 	}
 
-	fill_zero(&cub);
+	fill_sp(&cub);
 	check_map(cub);
 	printf("Map valide!\n\n");
 	show_map(cub);
