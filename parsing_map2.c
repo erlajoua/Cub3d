@@ -17,13 +17,8 @@ void line_check(t_cub cub, int j)
 				ft_error("Map Error : Check_One\n");
 		if ((cub.parse.map[j][i] == '0')
 			|| (cub.parse.map[j][i] == '2')
-<<<<<<< HEAD
 			|| ((cub.parse.map[j][i] == 'N' || cub.parse.map[j][i] == 'S'
 			|| cub.parse.map[j][i] == 'E' || cub.parse.map[j][i] == 'W')))
-=======
-			|| (cub.parse.map[j][i] == 'N' || cub.parse.map[j][i] == 'S'
-			|| cub.parse.map[j][i] == 'E' || cub.parse.map[j][i] == 'W'))
->>>>>>> bc12216dc469bd584c94b740ffefef1a2e0c8fa6
 			if (!check_around(cub, j, i, "012NSEW"))
 				ft_error("Map, invalid : 0,2, or NSEW\n");
 		i++;
@@ -64,21 +59,21 @@ int		check_around(t_cub cub, int j, int i, char *s)
 {
 	if (i == 0)
 	{
-		if (find_in(cub.parse.map[j][i + 1], s) && find_in(cub.parse.map[j - 1][i], s) 
+		if (find_in(cub.parse.map[j][i + 1], s) && find_in(cub.parse.map[j - 1][i], s)
 		&& find_in(cub.parse.map[j + 1][i], s))
-			return 1;
+			return (1);
 	}
 	if (i == cub.parse.strlen - 1)
 	{
 		if (find_in(cub.parse.map[j][i - 1], s) && find_in(cub.parse.map[j - 1][i], s)
 		&& find_in(cub.parse.map[j + 1][i], s))
-			return 1;
+			return (1);
 	}
 	else
 	{
-		if (find_in(cub.parse.map[j][i - 1], s) && find_in(cub.parse.map[j][i + 1], s) 
+		if (find_in(cub.parse.map[j][i - 1], s) && find_in(cub.parse.map[j][i + 1], s)
 		&& find_in(cub.parse.map[j - 1][i], s) && find_in(cub.parse.map[j + 1][i], s))
-			return 1;
+			return (1);
 	}
-	return 0;
+	return (0);
 }
