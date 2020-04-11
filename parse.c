@@ -91,8 +91,6 @@ int main(int ac, char **av)
 	}
 
 	fill_sp(&cub);
-	if(cub.parse.side == '0')
-		ft_error("no side found");
 	check_map(cub);
 	printf("Map valide!\n\n");
 	show_map(cub);
