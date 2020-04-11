@@ -55,19 +55,34 @@ void show_map(t_cub cub)
 
 int parsing_map(t_cub *cub, char *line)
 {
-	int size_map;
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (cub->parse.side == '0')
+		{
+			if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+					cub->parse.side = line[i];
+		}
+		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+			ft_error("double side\n");
+		if (!find_in(line[i], " 012NSEW")) // + NSEW
+			ft_error("invalid character\n\n\n");
+		i++;
+	}
+
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
 	return (1);
 }
 
 int check_map(t_cub cub)
 {
-	int x;
 	int y;
-	int i;
 
 	y = 1;
-	i = 0;
+	if(cub.parse.side == '0')
+        ft_error("no side found");
 	first_line_check(cub);
 	while (y < cub.parse.nbline - 1)
 	{
@@ -75,5 +90,6 @@ int check_map(t_cub cub)
 		y++;
 	}
 	last_line_check(cub);
+
 	return 0;
 }
