@@ -93,8 +93,8 @@ int main(int ac, char **av)
 
 	fill_sp(&cub);
 	check_map(&cub);
-	printf("Map valide!\n\n");
-	printf("Le joueur commencera en direction de %c aux cordonnees [%d,%d]\n",cub.parse.side, cub.parse.pos[0], cub.parse.pos[1]);
+	printf("Map valide!\n");
+	printf("Le joueur commencera en direction de %c aux cordonnees [%d,%d]\n\n",cub.parse.side, cub.parse.pos[0], cub.parse.pos[1]);
 	show_map(&cub);
 
 	// printf("\nres_x : |%s| res_y : |%s| south : |%s| north : |%s| east : |%s| weast |%s|\n", cub.parse.res_x, cub.parse.res_y, cub.parse.south, cub.parse.north, cub.parse.east, cub.parse.west);
