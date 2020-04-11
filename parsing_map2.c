@@ -7,20 +7,30 @@ void line_check(t_cub cub, int j)
 	i = 0;
 	while (cub.parse.map[j][i])
 	{
-		if (i == 0 && find_in(cub.parse.map[j][0], s) == 0)
+		if (i == 0 && find_in(cub.parse.map[j][0], " 1") == 0)
 			ft_error("Mauvais debut de chaine\n");
 		if (cub.parse.map[j][i] == ' ')
 			if (!check_around(cub, j, i, " 1"))
 				ft_error("Map Error : Check_Space\n");
 		if (cub.parse.map[j][i] == '1')
-			if (!check_around(cub, j, i, " 012"))
+			if (!check_around(cub, j, i, " 012NSEW"))
 				ft_error("Map Error : Check_One\n");
-		if (cub.parse.map[j][i] == '0')
+		if ((cub.parse.map[j][i] == '0')
+			|| (cub.parse.map[j][i] == '2')
+			|| (cub.parse.map[j][i] == 'N' || cub.parse.map[j][i] == 'S'
+			|| cub.parse.map[j][i] == 'E' || cub.parse.map[j][i] == 'W'))
 			if (!check_around(cub, j, i, "012"))
-				ft_error("Map Error : Check_Zr\n");
-		if (cub.parse.map[j][i] == '2')
-			if (!check_around(cub, j, i, "012"))
-				ft_error("Map Error : Check_Two\n");
+				ft_error("Map, invalid : 0,2, or NSEW\n");
+
+		// if (cub.parse.map[j][i] == '0')
+		// 	if (!check_around(cub, j, i, "012"))
+		// 		ft_error("Map Error : Check_Zr\n");
+		// if (cub.parse.map[j][i] == '2')
+		// 	if (!check_around(cub, j, i, "012"))
+		// 		ft_error("Map Error : Check_Two\n");
+		// if (cub.parse.map[j][i] == 'N' || cub.parse.map[j][i] == 'S' || cub.parse.map[j][i] == 'E' || cub.parse.map[j][i] == 'W')
+		// 	if (!check_around(cub, j, i, "012"))
+		// 		ft_error("Map Error : Check_Space\n");
 		i++;
 	}
 }
@@ -52,6 +62,8 @@ void last_line_check(t_cub cub)
 			ft_error("Last line ne contient pas que des espaces ou des 1\n");
 	}
 }
+
+
 
 int		check_around(t_cub cub, int j, int i, char *s)
 {
