@@ -36,9 +36,8 @@ struct		s_parse
 	int i;
 	int strlen;
 	int nbline;
-	int pos[2];
 	char side;
-
+	int pos[2];
 };
 typedef	struct	s_parse	t_parse;
 
@@ -52,7 +51,7 @@ typedef struct	s_cub t_cub;
 //parsing_res.c
 void	parsing_res_x(t_cub *cub, char *line);
 void	parsing_res_y(t_cub *cub, char *line);
-int		parsing_res(t_cub *cub, char *line);
+int parsing_res(t_cub *cub, char *line);
 //parsing_rgb.c
 int		parsing_floor(t_cub *cub, char *line);
 int		parsing_ceiling(t_cub *cub, char *line);
@@ -69,14 +68,14 @@ int		parsing(t_cub *cub, char *line);
 //parsing_map1.c
 void	fill_sp(t_cub *cub);
 int		find_in(char c, char *str);
-void	show_map(t_cub cub);
+void	show_map(t_cub *cub);
 int		parsing_map(t_cub *cub, char *line);
-int 	check_map(t_cub cub);
+int 	check_map(t_cub *cub);
 //parsing_map2.c
-int		check_around(t_cub cub, int j, int i, char *s);
-void	line_check(t_cub cub, int j);
-void	first_line_check(t_cub cub);
-void	last_line_check(t_cub cub);
+int		check_around(t_cub *cub, int j, int i, char *s);
+void	line_check(t_cub *cub, int j);
+void	first_line_check(t_cub *cub);
+void	last_line_check(t_cub *cub);
 
 
 
