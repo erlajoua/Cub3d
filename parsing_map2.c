@@ -19,7 +19,7 @@ void line_check(t_cub cub, int j)
 			|| (cub.parse.map[j][i] == '2')
 			|| (cub.parse.map[j][i] == 'N' || cub.parse.map[j][i] == 'S'
 			|| cub.parse.map[j][i] == 'E' || cub.parse.map[j][i] == 'W'))
-			if (!check_around(cub, j, i, "012"))
+			if (!check_around(cub, j, i, "012NSEW"))
 				ft_error("Map, invalid : 0,2, or NSEW\n");
 
 		// if (cub.parse.map[j][i] == '0')
