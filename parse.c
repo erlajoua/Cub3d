@@ -11,6 +11,8 @@ void ft_start(t_cub *cub)
 	cub->parse.strlen = 0;
 	cub->parse.nbline = 0;
 	cub->parse.side = '0';
+	cub->parse.pos[0] = 0;
+	cub->parse.pos[1] = 0;
 }
 
 void ft_error(char *str)
@@ -94,6 +96,8 @@ int main(int ac, char **av)
 	check_map(cub);
 	printf("Map valide!\n");
 	printf("Le joueur commencera en directon du : %c\n\n",cub.parse.side);
+
+	printf("cub.parse.pos[0] = %d - cub.parse.pos[1] = %d\n", cub.parse.pos[0], cub.parse.pos[1]);
 
 	show_map(cub);
 

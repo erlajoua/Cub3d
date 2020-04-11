@@ -57,6 +57,13 @@ void last_line_check(t_cub cub)
 
 int		check_around(t_cub cub, int j, int i, char *s)
 {
+	if (cub.parse.map[j][i] == cub.parse.side)
+	{
+		printf("\nj : %d | i : %d - %c\n", j, i, cub.parse.side);
+		printf("cocuocxix\n");
+		cub.parse.pos[0] = j;
+		cub.parse.pos[1] = i;
+	}
 	if (i == 0)
 	{
 		if (find_in(cub.parse.map[j][i + 1], s) && find_in(cub.parse.map[j - 1][i], s)

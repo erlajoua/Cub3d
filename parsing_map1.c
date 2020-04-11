@@ -71,7 +71,6 @@ int parsing_map(t_cub *cub, char *line)
 			ft_error("invalid character\n\n\n");
 		i++;
 	}
-
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
 	return (1);
 }
