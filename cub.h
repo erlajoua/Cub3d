@@ -36,6 +36,9 @@ struct		s_parse
 	int i;
 	int strlen;
 	int nbline;
+	int pos[2];
+	char side;
+
 };
 typedef	struct	s_parse	t_parse;
 
@@ -49,7 +52,7 @@ typedef struct	s_cub t_cub;
 //parsing_res.c
 void	parsing_res_x(t_cub *cub, char *line);
 void	parsing_res_y(t_cub *cub, char *line);
-int parsing_res(t_cub *cub, char *line);
+int		parsing_res(t_cub *cub, char *line);
 //parsing_rgb.c
 int		parsing_floor(t_cub *cub, char *line);
 int		parsing_ceiling(t_cub *cub, char *line);
