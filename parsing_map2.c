@@ -7,9 +7,8 @@ void line_check(t_cub cub, int j)
 	i = 0;
 	while (cub.parse.map[j][i])
 	{
-		char *s;
-
-		s = ft_strdup(" 1");
+		if (i == 0 && find_in(cub.parse.map[j][0], s) == 0)
+			ft_error("Mauvais debut de chaine\n");
 		if (cub.parse.map[j][i] == ' ')
 			if (!check_around(cub, j, i, " 1"))
 				ft_error("Map Error : Check_Space\n");
