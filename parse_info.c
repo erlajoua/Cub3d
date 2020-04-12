@@ -34,21 +34,24 @@ int parsing_informations(t_cub *cub, char *line)
 int parsing_line(t_cub *cub, char *str)
 {
     //Flag 0 pas map trouvé Flag 1 c'est map trouvé Flag 2 map finie
-	int i;
+	int k;
+    int j;
 
-	i = 0;
+	k = 0;
+    j = 0;
     if (str[0] == 0 && cub->parse.flag != 0)
         cub->parse.flag = 2;
 	if ((str[0] == ' ' || str[0] == '1' || str[0] == '0') && cub->parse.flag != 2)
 	{
         cub->parse.flag = 1;
 		cub->parse.nbline++;
-		while (str[i])
-			i++;
+		while (str[k])
+			k++;
 		if (cub->parse.strlen == 0)
-			cub->parse.strlen = i;
-		if (cub->parse.strlen && i > cub->parse.strlen)
-			cub->parse.strlen = i;
+			cub->parse.strlen = k;
+		if (cub->parse.strlen && k > cub->parse.strlen)
+			cub->parse.strlen = k;
+        j++;
 	}
-	return 1;
+	return (j);
 }

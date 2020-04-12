@@ -53,7 +53,7 @@ void show_map(t_cub *cub)
 	}
 }
 
-int parsing_map(t_cub *cub, char *line)
+void parsing_map(t_cub *cub, char *line)
 {
 	int i;
 
@@ -72,7 +72,6 @@ int parsing_map(t_cub *cub, char *line)
 		i++;
 	}
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
-	return (1);
 }
 
 int check_map(t_cub *cub)

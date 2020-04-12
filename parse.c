@@ -34,37 +34,47 @@ int main(int ac, char **av)
 	int rdbytes;
 	int ret;
 	int i;
+	int j;
 	char *str;
+	char *another;
 
 	ret = 0;
 	i = 0;
+	j = 0;
 	t_cub cub;
 	ft_start(&cub);
 	fd = open(av[1], O_RDONLY);
+	i = 0;
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
 		parsing_informations(&cub, str);
 	}
 	close(fd);
+
 	ret = 0;
 	fd = open(av[1], O_RDONLY);
+	i = 0;
 	while ((ret = get_next_line(fd, &str)) > 0 && cub.parse.flag != 2)
 	{
     	parsing_line(&cub, str);
 	}
-  	close(fd);
+	while ((ret = get_next_line(fd, &str)) > 0)
+	{
+    	parsing_line(&cub, str);
+	}
+	close(fd);
 	ret = 0;
 	fd = open(av[1], O_RDONLY);
+	i = 0;
   	cub.parse.map = (char **)malloc(sizeof(char *) * cub.parse.nbline + 1);
-  	while ((ret = get_next_line(fd, &line)) > 0 && i < cub.parse.nbline)
+	while ((ret = get_next_line(fd, &str)) > 0 && i < cub.parse.nbline)
 	{
-		if(line[0] == ' ' || line[0] == '1' || line[0] == '0')
+		if(find_in(str[0], " 1"))
 		{
-    		parsing_map(&cub, line);
+    		parsing_map(&cub, str);
 			i++;
 		}
- 	}
-	close(fd);
+	}
 	fill_sp(&cub);
 	check_map(&cub);
 	show_parsed(&cub);

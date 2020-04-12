@@ -72,7 +72,7 @@ int parsing(t_cub *cub, char *line);
 void fill_sp(t_cub *cub);
 int find_in(char c, char *str);
 void show_map(t_cub *cub);
-int parsing_map(t_cub *cub, char *line);
+void parsing_map(t_cub *cub, char *line);
 int check_map(t_cub *cub);
 //parsing_map2.c
 int check_around(t_cub *cub, int j, int i, char *s);
