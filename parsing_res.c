@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub.h"
 
-void	parsing_res_x(t_cub *cub, char *line)
+void parsing_res_x(t_cub *cub, char *line)
 {
 	int start;
 	int i;
@@ -42,7 +41,7 @@ void	parsing_res_x(t_cub *cub, char *line)
 	cub->parse.res_x[start] = '\0';
 }
 
-void	parsing_res_y(t_cub *cub, char *line)
+void parsing_res_y(t_cub *cub, char *line)
 {
 	int start;
 	int i;

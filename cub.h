@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 
 #ifndef CUB_H
-# define CUB_H
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-# include "gnl/get_next_line.h"
-# define BUFFER_SIZE 2048
+#define CUB_H
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "libft/libft.h"
+#include "gnl/get_next_line.h"
+#define BUFFER_SIZE 2048
 
-struct		s_parse
+struct s_parse
 {
 	char *res_x;
 	char *res_y;
@@ -38,47 +38,46 @@ struct		s_parse
 	int nbline;
 	int pos[2];
 	char side;
-
+	int flag;
 };
-typedef	struct	s_parse	t_parse;
+typedef struct s_parse t_parse;
 
-
-struct		s_cub
+struct s_cub
 {
 	t_parse parse;
 };
-typedef struct	s_cub t_cub;
+typedef struct s_cub t_cub;
 
+//parse_info.c
+int 	parsing_informations(t_cub *cub, char *line);
+void    show_parsed(t_cub *cub);
 //parsing_res.c
-void	parsing_res_x(t_cub *cub, char *line);
-void	parsing_res_y(t_cub *cub, char *line);
-int		parsing_res(t_cub *cub, char *line);
+void parsing_res_x(t_cub *cub, char *line);
+void parsing_res_y(t_cub *cub, char *line);
+int parsing_res(t_cub *cub, char *line);
 //parsing_rgb.c
-int		parsing_floor(t_cub *cub, char *line);
-int		parsing_ceiling(t_cub *cub, char *line);
+int parsing_floor(t_cub *cub, char *line);
+int parsing_ceiling(t_cub *cub, char *line);
 //parsing_texture.c
-int		parsing_north(t_cub *cub, char *line);
-int		parsing_west(t_cub *cub, char *line);
-int		parsing_east(t_cub *cub, char *line);
-int		parsing_south(t_cub *cub, char *line);
+int parsing_north(t_cub *cub, char *line);
+int parsing_west(t_cub *cub, char *line);
+int parsing_east(t_cub *cub, char *line);
+int parsing_south(t_cub *cub, char *line);
 //parse.c
-void	ft_start(t_cub *cub);
-void	ft_error(char *str);
-int		parsing_line(t_cub *cub, char *str);
-int		parsing(t_cub *cub, char *line);
+void ft_start(t_cub *cub);
+void ft_error(char *str);
+int parsing_line(t_cub *cub, char *str);
+int parsing(t_cub *cub, char *line);
 //parsing_map1.c
-void	fill_sp(t_cub *cub);
-int		find_in(char c, char *str);
-void	show_map(t_cub *cub);
-int		parsing_map(t_cub *cub, char *line);
-int 	check_map(t_cub *cub);
+void fill_sp(t_cub *cub);
+int find_in(char c, char *str);
+void show_map(t_cub *cub);
+int parsing_map(t_cub *cub, char *line);
+int check_map(t_cub *cub);
 //parsing_map2.c
-int		check_around(t_cub *cub, int j, int i, char *s);
-void	line_check(t_cub *cub, int j);
-void	first_line_check(t_cub *cub);
-void	last_line_check(t_cub *cub);
-
-
-
+int check_around(t_cub *cub, int j, int i, char *s);
+void line_check(t_cub *cub, int j);
+void first_line_check(t_cub *cub);
+void last_line_check(t_cub *cub);
 
 #endif
