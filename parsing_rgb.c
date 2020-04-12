@@ -2,7 +2,6 @@
 
 int parsing_floor(t_cub *cub, char *line)
 {
-
 	line++;
 	cub->parse.floor_rgb[0] = ft_atoi(line);
 	while (!ft_isdigit(*line))
@@ -20,7 +19,6 @@ int parsing_floor(t_cub *cub, char *line)
 
 int parsing_ceiling(t_cub *cub, char *line)
 {
-
 	line++;
 	cub->parse.ceiling_rgb[0] = ft_atoi(line);
 	while (!ft_isdigit(*line))

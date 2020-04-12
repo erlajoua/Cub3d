@@ -24,9 +24,6 @@ void ft_error(char *str)
 	exit(0);
 }
 
-// parsing ce sera toujours le meme ordre mais il peut y avoir des espaces et
-// des \n
-
 int main(int ac, char **av)
 {
 	char *line;
@@ -56,22 +53,22 @@ int main(int ac, char **av)
 	i = 0;
 	while ((ret = get_next_line(fd, &str)) > 0 && cub.parse.flag != 2)
 	{
-    	parsing_line(&cub, str);
+		parsing_line(&cub, str);
 	}
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
-    	parsing_line(&cub, str);
+		parsing_line(&cub, str);
 	}
 	close(fd);
 	ret = 0;
 	fd = open(av[1], O_RDONLY);
 	i = 0;
-  	cub.parse.map = (char **)malloc(sizeof(char *) * cub.parse.nbline + 1);
+	cub.parse.map = (char **)malloc(sizeof(char *) * cub.parse.nbline + 1);
 	while ((ret = get_next_line(fd, &str)) > 0 && i < cub.parse.nbline)
 	{
-		if(find_in(str[0], " 1"))
+		if (find_in(str[0], " 1"))
 		{
-    		parsing_map(&cub, str);
+			parsing_map(&cub, str);
 			i++;
 		}
 	}

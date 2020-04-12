@@ -33,7 +33,6 @@ int parsing_informations(t_cub *cub, char *line)
 
 int parsing_line(t_cub *cub, char *str)
 {
-    //Flag 0 pas map trouvé Flag 1 c'est map trouvé Flag 2 map finie
 	int k;
     int j;
 

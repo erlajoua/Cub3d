@@ -63,7 +63,7 @@ void parsing_map(t_cub *cub, char *line)
 		if (cub->parse.side == '0')
 		{
 			if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-					cub->parse.side = line[i];
+				cub->parse.side = line[i];
 		}
 		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 			ft_error("Map invalid : There's more than one spawn created...\n");
@@ -79,8 +79,8 @@ int check_map(t_cub *cub)
 	int y;
 
 	y = 1;
-	if(cub->parse.side == '0')
-        ft_error("Map invalid : No side found...\n");
+	if (cub->parse.side == '0')
+		ft_error("Map invalid : No side found...\n");
 	first_line_check(cub);
 	while (y < cub->parse.nbline - 1)
 	{

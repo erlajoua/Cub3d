@@ -49,8 +49,9 @@ struct s_cub
 typedef struct s_cub t_cub;
 
 //parse_info.c
-int 	parsing_informations(t_cub *cub, char *line);
-void    show_parsed(t_cub *cub);
+int parsing_informations(t_cub *cub, char *line);
+void show_parsed(t_cub *cub);
+int parsing_line(t_cub *cub, char *str);
 //parsing_res.c
 void parsing_res_x(t_cub *cub, char *line);
 void parsing_res_y(t_cub *cub, char *line);
@@ -66,8 +67,6 @@ int parsing_south(t_cub *cub, char *line);
 //parse.c
 void ft_start(t_cub *cub);
 void ft_error(char *str);
-int parsing_line(t_cub *cub, char *str);
-int parsing(t_cub *cub, char *line);
 //parsing_map1.c
 void fill_sp(t_cub *cub);
 int find_in(char c, char *str);
