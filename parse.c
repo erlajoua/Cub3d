@@ -78,6 +78,6 @@ int main(int ac, char **av)
 	printf("Map valide, affichage...!\n\n");
 	show_map(&cub);
 	printf("\n");
-	// system("leaks a.out");
+	//system("leaks a.out");
 	return 0;
 }
