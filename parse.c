@@ -11,6 +11,8 @@ void ft_start(t_cub *cub)
 	cub->parse.strlen = 0;
 	cub->parse.nbline = 0;
 	cub->parse.side = '0';
+	cub->parse.pos[0] = 0;
+	cub->parse.pos[1] = 0;
 }
 
 void ft_error(char *str)
@@ -40,28 +42,28 @@ int parsing_line(t_cub *cub, char *str)
 
 int parsing(t_cub *cub, char *line)
 {
-    int i;
+	int i;
 
-    i = 0;
-    if (line[0] == 'R')
-        return parsing_res(cub, line);
-    else if (line[0] == 'N' && line[1] == 'O')
-        return parsing_north(cub, line);
-    else if (line[0] == 'S' && line[1] == 'O')
-        return parsing_south(cub, line);
-    else if (line[0] == 'W' && line[1] == 'E')
-        return parsing_west(cub, line);
-    else if (line[0] == 'E' && line[1] == 'A')
-        return parsing_east(cub, line);
-    else if (line[0] == 'S')
-        return parsing_south(cub, line);
-    else if (line[0] == 'F')
-        return parsing_floor(cub, line);
-    else if (line[0] == 'C')
-        return parsing_ceiling(cub, line);
-    else if ((line[0] == ' ' || line[0] == '1' || line[0] == '0'))
-        return parsing_map(cub, line);
-    return 1;
+	i = 0;
+	if (line[0] == 'R')
+		return parsing_res(cub, line);
+	else if (line[0] == 'N' && line[1] == 'O')
+		return parsing_north(cub, line);
+	else if (line[0] == 'S' && line[1] == 'O')
+		return parsing_south(cub, line);
+	else if (line[0] == 'W' && line[1] == 'E')
+		return parsing_west(cub, line);
+	else if (line[0] == 'E' && line[1] == 'A')
+		return parsing_east(cub, line);
+	else if (line[0] == 'S')
+		return parsing_south(cub, line);
+	else if (line[0] == 'F')
+		return parsing_floor(cub, line);
+	else if (line[0] == 'C')
+		return parsing_ceiling(cub, line);
+	else if ((line[0] == ' ' || line[0] == '1' || line[0] == '0' || line[0] == '\n')) //&& (!ft_strrchr(line, 'R') && !ft_strrchr(line, 'C') && !ft_strrchr(line, 'F')))
+		return parsing_map(cub, line);
+	return 1;
 }
 
 //parsing ce sera toujours le meme ordre mais il peut y avoir des espaces et des \n
@@ -90,12 +92,15 @@ int main(int ac, char **av)
 	{
 		parsing(&cub, line);
 	}
-
 	fill_sp(&cub);
 	check_map(&cub);
 	printf("Map valide!\n");
-	printf("Le joueur commencera en direction de %c aux cordonnees [%d,%d]\n\n",cub.parse.side, cub.parse.pos[0], cub.parse.pos[1]);
+	printf("Le joueur commencera en directon du : %c\n\n",cub.parse.side);
+
+	// printf("FINAL cub.parse.pos[0] = %d - cub.parse.pos[1] = %d\n", cub.parse.pos[0], cub.parse.pos[1]);
+
 	show_map(&cub);
+
 
 	// printf("\nres_x : |%s| res_y : |%s| south : |%s| north : |%s| east : |%s| weast |%s|\n", cub.parse.res_x, cub.parse.res_y, cub.parse.south, cub.parse.north, cub.parse.east, cub.parse.west);
 	// printf("FLOOR | R : %d - G : %d - B : %d\n", cub.parse.floor_rgb[0], cub.parse.floor_rgb[1], cub.parse.floor_rgb[2]);
