@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
+#include "minilibx-linux/mlx.h"
 #define BUFFER_SIZE 2048
 
 struct s_parse
