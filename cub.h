@@ -18,7 +18,10 @@
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
 #include "minilibx-linux/mlx.h"
+#include "minilibx-linux/mlx_int.h"
 #define BUFFER_SIZE 2048
+#define WIN_WIDTH 800
+#define WIN_HEIGHT 600
 
 struct s_parse
 {
@@ -48,6 +51,13 @@ struct s_cub
 	t_parse parse;
 };
 typedef struct s_cub t_cub;
+
+struct s_mlx
+{
+	void *init;
+	void *window;
+};
+typedef struct s_mlx t_mlx;
 
 //parse_info.c
 int parsing_informations(t_cub *cub, char *line);
