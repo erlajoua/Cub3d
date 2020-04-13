@@ -7,6 +7,7 @@ void line_check(t_cub *cub, int j)
 	i = 0;
 	while (cub->parse.map[j][i])
 	{
+		// printf("(%c)\n", cub->parse.map[j][0]);
 		if (i == 0 && find_in(cub->parse.map[j][0], " 1") == 0)
 			ft_error("Map invalid : by checking the first line's character...\n");
 		if (cub->parse.map[j][i] == ' ')

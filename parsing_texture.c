@@ -34,3 +34,12 @@ int parsing_south(t_cub *cub, char *line)
 		ft_error("parsing fail");
 	return 1;
 }
+
+int parsing_sprite(t_cub *cub, char *line)
+{
+	while (*line != '.')
+		line++;
+	if (!(cub->parse.sprite = ft_strdup(line)))
+		ft_error("parsing fail");
+	return 1;
+}

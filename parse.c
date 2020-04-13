@@ -66,13 +66,15 @@ int main(int ac, char **av)
 	cub.parse.map = (char **)malloc(sizeof(char *) * cub.parse.nbline + 1);
 	while ((ret = get_next_line(fd, &str)) > 0 && i < cub.parse.nbline)
 	{
-		if (find_in(str[0], " 1"))
+		if (find_in(str[0], " 012"))
 		{
 			parsing_map(&cub, str);
 			i++;
 		}
 	}
+	// printf("(coucou)\n");
 	fill_sp(&cub);
+	// printf("(coucou)\n");
 	check_map(&cub);
 	show_parsed(&cub);
 	printf("Map valide, affichage...!\n\n");
