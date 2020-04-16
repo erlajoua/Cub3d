@@ -18,7 +18,6 @@
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
 #include "minilibx-linux/mlx.h"
-#include "minilibx-linux/mlx_int.h"
 #define BUFFER_SIZE 2048
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
@@ -52,10 +51,21 @@ struct s_cub
 };
 typedef struct s_cub t_cub;
 
+struct s_img
+{
+	void	*img_ptr;
+	int 	bpp;
+	int 	size_l;
+	int	*data;
+	int	endian;
+};
+typedef struct s_img t_img;
+
 struct s_mlx
 {
-	void *init;
-	void *window;
+	void	*mlx_ptr;
+	void	*win;
+	t_img	img;
 };
 typedef struct s_mlx t_mlx;
 
