@@ -1,57 +1,170 @@
 #include "cub.h"
+#define WIN_H 800
+#define WIN_W 600
+#define mapWidth 24
+#define mapHeight 24
 
-int	main(void)
+int map[mapWidth][mapHeight]=
 {
-	t_mlx	mlx; //Here I first create my struct that will contains all the "MLX stuff"
-	int		count_w;
-	int		count_h;
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,1,0,1,0,1,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,1,0,0,0,1,0,0,0,1},
+  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,1,0,1,0,1,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,0,0,0,5,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+};
 
-	count_h = -1;
-	//First you need to call mlx_init and store its return value.
-	mlx.mlx_ptr = mlx_init();
-	//Now do the same with mlx_new_window
-	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "A simple example");
-	//One more time with mlx_new_image
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	/*
-	 Now the important part :
-	 mlx_get_data_addr will return a char* that is 4 times the (width * height) of your image.
-	 Why so ? Let me explain : This char* will represent your image, pixel by pixel,
-	 and the values of this array are the colors. That's why the array is 4 times bigger :
-	 you need 4 char to code the color of each pixels (one for Red, Green and Blue) and one for the alpha.
-	 But... it's not very convenient, right ? So here is my little trick : you cast
-	 mlx_get_data_addr as an int* and store it in an int*.
-	 This way, the array will have the exact same size as your window, and each index
-	 will represent one complete color of a pixel !
-	*/
-	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,
-		&mlx.img.endian);
-	/*
-	 Now just a little example : here is a loop that will draw each pixels that
-	 have an odd width in white and the ones that have an even width in black.
-	*/
-	while (++count_h < WIN_HEIGHT)
+int main(void)
+{
+	//Initialisation position et direction du joueur
+	double posX = 22, posY = 12;
+	double dirX = -1, dirY = 0;
+	double planeX = 0, planeY = 0.66;
+
+	//Initialisation variables FPS
+	double time = 0;
+	double oldTime = 0;
+
+	//Creer la window
+	while (1)
 	{
-		count_w = -1;
-		while (++count_w < WIN_WIDTH)
+		printf("test\n");
+		int x = 0;
+		double w = 10;
+		while (x <= (int)w)
 		{
-			if (count_w % 10)
-				/*
-				 As you can see here instead of using the mlx_put_pixel function
-				 I just assign a color to each pixel one by one in the image,
-				 and the image will be printed in one time at the end of the loop.
-				 Now one thing to understand here is that you're working on a 1-dimensional
-				 array, while your window is (obviously) 2-dimensional.
-				 So, instead of having data[height][width] here you'll have the following
-				 formula : [current height * max width + current width] (as you can see below)
-				*/
-				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0xFFFFFF;
+			//calculate ray position and direction
+			double cameraX = 2 * x / w - 1;
+			//printf("cameraX : %lf\n", cameraX);
+			double rayDirX = dirX + planeX * cameraX;
+			double rayDirY = dirY + planeY * cameraX;
+			printf("rayDirX : %lf | rayDirY : %f\n", rayDirX, rayDirY);
+
+			int mapX = (int)posX;
+			int mapY = (int)posY;
+			//printf("posX  : %d | posY : %d\n\n", mapX, mapY);
+
+			double sideDistX;
+      		double sideDistY;
+
+			double deltaDistX = abs(1 / rayDirX);
+      		double deltaDistY = abs(1 / rayDirY);
+      		double perpWallDist;
+
+			int stepX;
+      		int stepY;
+
+			int hit = 0;
+			int side;
+			if (rayDirX < 0)
+			{
+				stepX = -1;
+				sideDistX = (posX - mapX) * deltaDistX;
+				//printf("IF : sideDistX : %lf\n", sideDistX);
+			}
 			else
-				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0;
+			{
+				stepX = 1;
+				sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+				//printf("ELSE : sideDistX : %lf\n", sideDistX);
+			}
+			if (rayDirY < 0)
+			{
+				stepY = -1;
+				sideDistY = (posY - mapY) * deltaDistY;
+				//printf("IF : sideDistY : %lf\n", sideDistX);
+			}
+			else
+			{
+				stepY = 1;
+				sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+				//printf("ELSE : sideDistY : %lf\n", sideDistX);
+			}
+			while (hit == 0)
+			{
+				//jump to next map square, OR in x-direction, OR in y-direction
+				if (sideDistX < sideDistY)
+				{
+					sideDistX += deltaDistX;
+					mapX += stepX;
+					side = 0;
+					//printf("Vers la droite || gauche \n");
+				}
+				else
+				{
+					sideDistY += deltaDistY;
+					mapY += stepY;
+					side = 1;
+					//printf("Vers le haut || bas\n");
+				}
+				//Check if ray has hit a wall
+				//printf("map[mapX][mapY] : %d\n", map[mapX][mapY]);
+				if (map[mapX][mapY] > 0)
+					hit = 1;
+			} 
+			if (side == 0) 
+				perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;
+      		else
+			  	perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;
+			//printf("Value perpWallDist : %lf\n", perpWallDist);
+
+			int lineHeight = (int)(WIN_H / perpWallDist);
+			//printf("lineHeight : %d\n", lineHeight);
+			int drawStart = -lineHeight / 2 + WIN_H / 2;
+			if(drawStart < 0)
+				drawStart = 0;
+			int drawEnd = lineHeight / 2 + WIN_H / 2;
+			if(drawEnd >= WIN_H)
+				drawEnd = WIN_H - 1;
+			//choose wall color
+			int color;
+			switch(map[mapX][mapY])
+			{
+				case 1:  color = 0xFF0000;  break; //red
+				case 2:  color = 0x2FFF00;  break; //green
+				case 3:  color = 0x0079F2;   break; //blue
+				case 4:  color = 0xFFFFFF;  break; //white
+				default: color = 0xF8FC00; break; //yellow
+			}
+
+			//give x and y sides different brightness
+			if (side == 1)
+			{
+				color = color / 2;
+			}
+
+			//draw the pixels of the stripe as a vertical line
+			//verLine(x, drawStart, drawEnd, color);
+			x++;
 		}
+		oldTime = time;
+		//time = getTicks();
+		double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds
+		/*printf("%lf", (1.0 / frameTime)); //FPS counter
+		redraw();
+		cls();
+		*/
+		double moveSpeed = frameTime * 5.0;
+    	double rotSpeed = frameTime * 3.0;
+		getchar();
 	}
-	//Now you just have to print the image using mlx_put_image_to_window !
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
-	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }
