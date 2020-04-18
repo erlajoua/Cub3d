@@ -1,4 +1,5 @@
 #include "cub.h"
+#include <math.h>
 #define WIN_H 800
 #define WIN_W 600
 #define mapWidth 24
@@ -35,7 +36,7 @@ int map[mapWidth][mapHeight]=
 int main(void)
 {
 	//Initialisation position et direction du joueur
-	double posX = 22.5, posY = 12.8;
+	double posX = 22, posY = 12;
 	double dirX = -1, dirY = 0;
 	double planeX = 0, planeY = 0.66;
 
@@ -65,8 +66,10 @@ int main(void)
 			double sideDistX;
       		double sideDistY;
 
-			double deltaDistX = abs(1 / rayDirX);
-      		double deltaDistY = abs(1 / rayDirY);
+			// double deltaDistX = fabs(1 / rayDirX);
+      		// double deltaDistY = fabs(1 / rayDirY);
+      		double deltaDistX = (rayDirY == 0) ? 0 : ((rayDirX == 0) ? 1 : fabs(1 / rayDirX));
+      		double deltaDistY = (rayDirX == 0) ? 0 : ((rayDirY == 0) ? 1 : fabs(1 / rayDirY));
 
       		// printf("deltaDistX (%lf) \n deltaDistY (%lf)\n", deltaDistX, deltaDistY);
       		double perpWallDist;
