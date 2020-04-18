@@ -35,7 +35,7 @@ int map[mapWidth][mapHeight]=
 int main(void)
 {
 	//Initialisation position et direction du joueur
-	double posX = 22, posY = 12;
+	double posX = 22.5, posY = 12.8;
 	double dirX = -1, dirY = 0;
 	double planeX = 0, planeY = 0.66;
 
@@ -53,20 +53,22 @@ int main(void)
 		{
 			//calculate ray position and direction
 			double cameraX = 2 * x / w - 1;
-			//printf("cameraX : %lf\n", cameraX);
+			// printf("cameraX : %lf\n", cameraX);
 			double rayDirX = dirX + planeX * cameraX;
 			double rayDirY = dirY + planeY * cameraX;
-			printf("rayDirX : %lf | rayDirY : %f\n", rayDirX, rayDirY);
+			// printf("rayDirX : %lf | rayDirY : %f\n", rayDirX, rayDirY);
 
 			int mapX = (int)posX;
 			int mapY = (int)posY;
-			//printf("posX  : %d | posY : %d\n\n", mapX, mapY);
+			// printf("posX  : %d | posY : %d\n\n", mapX, mapY);
 
 			double sideDistX;
       		double sideDistY;
 
 			double deltaDistX = abs(1 / rayDirX);
       		double deltaDistY = abs(1 / rayDirY);
+
+      		// printf("deltaDistX (%lf) \n deltaDistY (%lf)\n", deltaDistX, deltaDistY);
       		double perpWallDist;
 
 			int stepX;
@@ -78,25 +80,25 @@ int main(void)
 			{
 				stepX = -1;
 				sideDistX = (posX - mapX) * deltaDistX;
-				//printf("IF : sideDistX : %lf\n", sideDistX);
+				printf("IF : sideDistX : %lf\n", sideDistX);
 			}
 			else
 			{
 				stepX = 1;
 				sideDistX = (mapX + 1.0 - posX) * deltaDistX;
-				//printf("ELSE : sideDistX : %lf\n", sideDistX);
+				printf("ELSE : sideDistX : %lf\n", sideDistX);
 			}
 			if (rayDirY < 0)
 			{
 				stepY = -1;
 				sideDistY = (posY - mapY) * deltaDistY;
-				//printf("IF : sideDistY : %lf\n", sideDistX);
+				printf("IF : sideDistY : %lf\n", sideDistY);
 			}
 			else
 			{
 				stepY = 1;
 				sideDistY = (mapY + 1.0 - posY) * deltaDistY;
-				//printf("ELSE : sideDistY : %lf\n", sideDistX);
+				printf("ELSE : sideDistY : %lf\n", sideDistY);
 			}
 			while (hit == 0)
 			{
@@ -119,8 +121,8 @@ int main(void)
 				//printf("map[mapX][mapY] : %d\n", map[mapX][mapY]);
 				if (map[mapX][mapY] > 0)
 					hit = 1;
-			} 
-			if (side == 0) 
+			}
+			if (side == 0)
 				perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;
       		else
 			  	perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;

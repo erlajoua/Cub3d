@@ -18,6 +18,7 @@
 #include "libft/libft.h"
 #include "gnl/get_next_line.h"
 #include "minilibx-linux/mlx.h"
+#include <math.h>
 #define BUFFER_SIZE 2048
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
