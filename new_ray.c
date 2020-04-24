@@ -157,13 +157,8 @@ int main(void)
 		count_h = -1;
 		while (++count_h < screenHeight)
 		{
-			if(drawEnd > drawStart)
-			{
-				mlx.img.data[count_w + count_h * drawStart] = 0x03B6FC;
-			}
-			//X position + 4 * Line size * Y position
-			//mlx.img.data[count_h * screenWidth + count_w] = 0;
-			drawStart++;
+			if(count_h == 300 && count_w == 300)
+				mlx.img.data[count_h * count_w] = 0x00FF00;
 		}
 	}
 	/*mlx.img.data[drawStart * x] = 0xFFFFFF;
