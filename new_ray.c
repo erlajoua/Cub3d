@@ -1,4 +1,3 @@
-
 #define screenWidth 640
 #define screenHeight 480
 #define mapWidth 24
@@ -11,11 +10,11 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+  {1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
+  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1},
+  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -23,19 +22,19 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
 int main(void)
 {
-  double posX = 22, posY = 12;  //x and y start position
+  double posX = 12, posY = 22;  //x and y start position
   double dirX = -1, dirY = 0; //initial direction vector
   double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
 
@@ -48,6 +47,7 @@ int main(void)
   mlx.win = mlx_new_window(mlx.mlx_ptr, screenWidth, screenHeight, "Thomas!");
   mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
   mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
+  mlx_clear_window(mlx.mlx_ptr, mlx.win);
   // while(!done())
   //{
   int x = 0;
@@ -134,6 +134,9 @@ int main(void)
 	if(drawEnd >= screenHeight)
 	  drawEnd = screenHeight - 1;
 
+	//int drawStart = 0;
+	//int drawEnd = 350;
+
 	//choose wall color
 	int color;
 	switch(worldMap[mapX][mapY])
@@ -148,21 +151,28 @@ int main(void)
 	{
 	  color = color / 2;
 	}
-	int count_w = -1;
-	int count_h = -1;
-	if(x <= 10)
+	int count_w = 0;
+	int count_h = 0;
+	if(x <= screenWidth)
 		printf("DRAWSTART : |%d| && DRAWEND : |%d|\n",drawStart, drawEnd);
-	while (++count_w < screenWidth)
+	//printf("X : |%d| &&  : |%d|\n",drawStart, drawEnd);
+	while (count_w < screenWidth)
 	{
-		count_h = -1;
-		while (++count_h < screenHeight)
+		count_h = 0;
+		while (count_h < screenHeight)
 		{
-			if(count_h == 300 && count_w == 300)
-				mlx.img.data[count_h * count_w] = 0x00FF00;
+			if(count_h >= drawStart && count_h <= drawEnd)
+			{
+				mlx.img.data[screenHeight * count_w + count_h] = 0x00FF00;
+			}
+			else
+			{
+				mlx.img.data[screenHeight * count_w + count_h] = 0xFFFFFF;
+			}
+			count_h++;
 		}
+		count_w++;
 	}
-	/*mlx.img.data[drawStart * x] = 0xFFFFFF;
-		mlx.img.data[drawEnd * x] = 0x00FF00;*/
 	//draw the pixels of the stripe as a vertical line
 	//verLine(x, drawStart, drawEnd, color);
 	x++;
