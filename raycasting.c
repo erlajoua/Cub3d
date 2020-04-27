@@ -1,7 +1,7 @@
 #include "cub.h"
 #include <math.h>
-#define WIN_H 800
-#define WIN_W 600
+#define WIN_H 50
+#define WIN_W 100
 #define mapWidth 24
 #define mapHeight 24
 
@@ -12,7 +12,7 @@ int map[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,1,0,1,0,1,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,1,/**/0/**/,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,1,0,0,0,1,0,0,0,1},
   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,1,0,1,0,1,0,0,0,1},
@@ -36,9 +36,9 @@ int map[mapWidth][mapHeight]=
 int main(void)
 {
 	//Initialisation position et direction du joueur
-	double posX = 22, posY = 12;
-	double dirX = -1, dirY = 0;
-	double planeX = 0, planeY = 0.66;
+	double posX = 5, posY = 5;
+	double dirX = 0, dirY = 1;
+	double planeX = 0.66, planeY = 0;
 
 	//Initialisation variables FPS
 	double time = 0;
@@ -49,11 +49,11 @@ int main(void)
 	{
 		printf("test\n");
 		int x = 0;
-		double w = 10;
-		while (x <= (int)w)
+		// double w = 10;
+		while (x <= WIN_W)
 		{
 			//calculate ray position and direction
-			double cameraX = 2 * x / w - 1;
+			double cameraX = 2 * x / (double)WIN_W - 1;
 			// printf("cameraX : %lf\n", cameraX);
 			double rayDirX = dirX + planeX * cameraX;
 			double rayDirY = dirY + planeY * cameraX;
@@ -66,43 +66,46 @@ int main(void)
 			double sideDistX;
       		double sideDistY;
 
-			// double deltaDistX = fabs(1 / rayDirX);
-      		// double deltaDistY = fabs(1 / rayDirY);
+
       		double deltaDistX = (rayDirY == 0) ? 0 : ((rayDirX == 0) ? 1 : fabs(1 / rayDirX));
       		double deltaDistY = (rayDirX == 0) ? 0 : ((rayDirY == 0) ? 1 : fabs(1 / rayDirY));
+      		// printf("deltaDistX : %lf --- deltaDistY : %lf \n", deltaDistX, deltaDistY);
 
-      		// printf("deltaDistX (%lf) \n deltaDistY (%lf)\n", deltaDistX, deltaDistY);
-      		double perpWallDist;
+      		double perpWallDist; //the length of the ray
 
-			int stepX;
-      		int stepY;
+			int stepX; //1 ou -1
+      		int stepY; //1 ou -1
 
 			int hit = 0;
-			int side;
+			int side; //was a NS or a EW wall hit?
+			// printf("RAY DIR X : %lf\n", rayDirX);
 			if (rayDirX < 0)
 			{
+				// printf("IF rayDirX - sideDistX : %lf\n", sideDistX);
 				stepX = -1;
 				sideDistX = (posX - mapX) * deltaDistX;
-				printf("IF : sideDistX : %lf\n", sideDistX);
 			}
 			else
 			{
 				stepX = 1;
 				sideDistX = (mapX + 1.0 - posX) * deltaDistX;
-				printf("ELSE : sideDistX : %lf\n", sideDistX);
+				// printf("rayDirX >= 0 - sideDistX : %lf\n", sideDistX);
 			}
 			if (rayDirY < 0)
 			{
 				stepY = -1;
 				sideDistY = (posY - mapY) * deltaDistY;
-				printf("IF : sideDistY : %lf\n", sideDistY);
+				// printf("IF : sideDistY : %lf\n", sideDistY);
 			}
 			else
 			{
 				stepY = 1;
 				sideDistY = (mapY + 1.0 - posY) * deltaDistY;
-				printf("ELSE : sideDistY : %lf\n", sideDistY);
+				// printf("ELSE : sideDistY : %lf\n", sideDistY);
 			}
+      		// printf("Side Dist X %lf --- Side Dist Y %lf\n", sideDistX, sideDistY);
+			// printf("deltaDistX : %lf ----- deltaDistY : %lf\n", deltaDistX, deltaDistY);
+			printf("Side Dist X |%lf| ---- Side Dist Y |%lf|\n", sideDistX, sideDistY);
 			while (hit == 0)
 			{
 				//jump to next map square, OR in x-direction, OR in y-direction
@@ -134,6 +137,7 @@ int main(void)
 			int lineHeight = (int)(WIN_H / perpWallDist);
 			//printf("lineHeight : %d\n", lineHeight);
 			int drawStart = -lineHeight / 2 + WIN_H / 2;
+
 			if(drawStart < 0)
 				drawStart = 0;
 			int drawEnd = lineHeight / 2 + WIN_H / 2;
