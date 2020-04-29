@@ -265,13 +265,9 @@ int main(void)
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
 	
-	/*int y = -1;
 
-	while(++y < 5000)
-	{*/
 	ft_all(&infos, &mlx);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
-	//}
 }
