@@ -81,7 +81,7 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 	int k = infos->drawEnd;
 	while (infos->drawStart < infos->drawEnd)
 	{
-		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = (int)0xFAFA05;
+		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = (int)0x00FF00;
 		infos->drawEnd--;
 	}
 	for(k; k < screenHeight; k++)
