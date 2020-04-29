@@ -71,14 +71,14 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 	if (infos->side == 0)//EW
 	{
 		if (infos->rayDirX > 0)
-			color = (int)0xFFFFFF; //blanc
+			color = (int)0xFFFF00; //jaune
 		else
 			color = (int)0x00FF00;
 	}
 	else if (infos->side == 1) //NS
 	{
 		if (infos->rayDirY < 0)
-			color = (int)0xAAAAAA; //gris
+			color = (int)0xFFFFFF; //gris
 		else
 			color = (int)0xFF0000;
 	}
@@ -114,7 +114,7 @@ void	initializeValues(t_mlx *mlx, t_info *infos)
 	infos->dirX = 0, infos->dirY = -1;
 	infos->planeX = 0.66, infos->planeY = 0;
 
-	infos->moveSpeed = 0.3;
+	infos->moveSpeed = 0.9;
 }
 
 void	ft_raydirXY(t_info *infos)
