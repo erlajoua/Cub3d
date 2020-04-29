@@ -67,6 +67,12 @@ typedef struct s_info t_info;
 
 void	ft_draw(t_mlx *mlx, t_info *infos)
 {
+	int color = (int)0x0000FF;
+	if (infos->side == 0)//EW
+		color = (int)0x00FF00;
+	if (infos->side == 1) //NS
+		color = (int)0xFF0000;
+
 	infos->drawStart = -infos->lineHeight / 2 + screenHeight / 2;
 	if(infos->drawStart < 0)
 		infos->drawStart = 0;
@@ -81,7 +87,7 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 	int k = infos->drawEnd;
 	while (infos->drawStart < infos->drawEnd)
 	{
-		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = (int)0x00FF00;
+		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = color;
 		infos->drawEnd--;
 	}
 	for(k; k < screenHeight; k++)
