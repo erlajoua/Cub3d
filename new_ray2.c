@@ -1,5 +1,5 @@
-#define screenWidth 1910
-#define screenHeight 1000
+#define screenWidth 800
+#define screenHeight 600
 #define mapWidth 24
 #define mapHeight 24
 #include "cub.h"
@@ -61,7 +61,7 @@ struct s_info{
 	int thomas;
 	double oldDirX;
 	double oldPlaneX;
-
+	double saveDir;
 };
 typedef struct s_info t_info;
 
@@ -105,14 +105,6 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 	}
 }
 
-void	initializeValues(t_mlx *mlx, t_info *infos)
-{
-	infos->posX = 4, infos->posY = 3;
-	infos->dirX = 1, infos->dirY = 0;
-	infos->planeX = 0, infos->planeY = 0.80;
-
-	infos->moveSpeed = 0.1;
-}
 
 void	ft_raydirXY(t_info *infos)
 {
@@ -194,6 +186,38 @@ void ft_all(t_info *infos, t_mlx *mlx)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 
+void	initializeValues(t_mlx *mlx, t_info *infos)
+{
+	infos->posX = 4, infos->posY = 3;
+	infos->dirX = 0, infos->dirY = 1;
+	infos->planeX = 0.66, infos->planeY = 0;
+
+	if(infos->dirY == 0)
+	{
+		if(infos->dirX < 0)
+		{
+			infos->saveDir = 1; //qd inversé
+		}
+		else if(infos->dirX > 0)
+		{
+			infos->saveDir = -1; //good
+		}
+	}
+	else if(infos->dirX == 0)
+	{
+		if(infos->dirY < 0)
+		{
+			infos->saveDir = -1; //DJQZIDQZOJ
+		}
+		else if(infos->dirY > 0)
+		{
+			infos->saveDir = 1; //QD inversé
+		}
+	}
+
+	infos->moveSpeed = 0.1;
+}
+
 int	keypressed(int key, void *p)
 {
 	void **recup;
@@ -211,8 +235,8 @@ int	keypressed(int key, void *p)
 	infos->moveSpeed = 0.3;
 	if(key == 122 || key == 115)
 	{
-		if(key == 115)
-			infos->moveSpeed *= -1;
+		//infos->moveSpeed *= infos->saveDir;
+		infos->moveSpeed *= (key == 115) ? -1 : 1;
 		if(worldMap[(int)(infos->posX + infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0) 
 		{
 			infos->posX += infos->dirX * infos->moveSpeed;
@@ -225,34 +249,24 @@ int	keypressed(int key, void *p)
 	}
 	else if(key == 113 || key == 100) //left right
 	{
-		if(key == 100)
-			infos->moveSpeed *= -1;
+		infos->moveSpeed *= -infos->saveDir;
+		infos->moveSpeed *= (key == 100) ? -1 : 1;
+
 		if (worldMap[(int)(infos->posX)][(int)(infos->posY - infos->dirX * infos->moveSpeed)] == 0)
         	infos->posY -= infos->dirX * infos->moveSpeed;
     	if (worldMap[(int)(infos->posX + infos->moveSpeed * infos->dirY)][(int)(infos->posY)] == 0)
         	infos->posX += infos->dirY * infos->moveSpeed;
 		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
-	else if(key == 65361) //fleche gauche
+	else if(key == 65361 || key == 65363) //fleche gauche
 	{	
 		double    olddirx;
 		double    oldplanex;
-		double    angle = -3.14159265358979323846 / 30;
-
-		olddirx = infos->dirX;
-		oldplanex = infos->planeX;
-		infos->dirX = infos->dirX * cos(angle) - infos->dirY * sin(angle);
-		infos->dirY = olddirx * sin(angle) + infos->dirY * cos(angle);
-		infos->planeX = infos->planeX * cos(angle) - infos->planeY * sin(angle);
-		infos->planeY = oldplanex * sin(angle) + infos->planeY * cos(angle);
-		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
-	}
-	else if(key == 65363)//fleche droite
-	{
-		double    olddirx;
-		double    oldplanex;
-		double    angle = 3.14159265358979323846 / 30;
-
+		double    angle;
+		
+		angle = 3.14159265358979323846 / 30 * infos->saveDir;
+		angle *= (key == 65363) ? -1 : 1;
+		
 		olddirx = infos->dirX;
 		oldplanex = infos->planeX;
 		infos->dirX = infos->dirX * cos(angle) - infos->dirY * sin(angle);
