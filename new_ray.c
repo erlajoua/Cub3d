@@ -1,5 +1,5 @@
-#define screenWidth 1910
-#define screenHeight 1070
+#define screenWidth 700
+#define screenHeight 400
 #define mapWidth 24
 #define mapHeight 24
 #include "cub.h"
@@ -82,8 +82,8 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 		else
 			color = (int)0xFF0000;
 	}
-//	if (infos->side == 1)
-//		color = color /2;
+	//if (infos->side == 1)
+	//	color = color /2;
 
 	infos->drawStart = -infos->lineHeight / 2 + screenHeight / 2;
 	if(infos->drawStart < 0)
@@ -111,8 +111,8 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 void	initializeValues(t_mlx *mlx, t_info *infos)
 {
 	infos->posX = 4, infos->posY = 3;
-	infos->dirX = 0, infos->dirY = -1;
-	infos->planeX = 0.66, infos->planeY = 0;
+	infos->dirX = 1, infos->dirY = 0;
+	infos->planeX = 0, infos->planeY = 0.66;
 
 	infos->moveSpeed = 0.9;
 }
@@ -207,36 +207,103 @@ int	keypressed(int key, void *p)
 
 	infos = recup[0];
 	mlx = recup[1];
+	
+//	printf("key : %d\n", key);
+	printf("dirX : %lf -- dirY : %lf\n", infos->dirX, infos->dirY);
+//	infos->moveSpeed = 0.3;
 	if(key == 65307)
 	{
 		exit(0);
 	}
-	if(key == 122) //up
-	{
-		if(worldMap[(int)(infos->posX + infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0) 
+	if(key == 115) //down
+	{	
+		if (worldMap[(int)(infos->posX - infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0)
+		{
+			infos->posX -= infos->dirX * infos->moveSpeed;
+		}
+		if (worldMap[(int)infos->posX][(int)(infos->posY - infos->dirY * infos->moveSpeed)])
+		{
+			infos->posY -= infos->dirY * infos->moveSpeed;
+		}
+
+		/*if(worldMap[(int)(infos->posX + infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0) 
 		{
 			infos->posX += infos->dirX * infos->moveSpeed;
 		}
 		if(worldMap[(int)(infos->posX)][(int)(infos->posY + infos->dirY * infos->moveSpeed)] == 0) 
 		{
 			infos->posY += infos->dirY * infos->moveSpeed;
-		}
+		}*/
 		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
-	if(key == 115) //down
+	if(key == 122) //up
 	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->win);
-		if(worldMap[(int)(infos->posX - infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0) 
+		if (worldMap[(int)((infos->posX) + infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0)
+		{
+			infos->posX += infos->dirX * infos->moveSpeed;
+		}
+		if (worldMap[(int)infos->posX][(int)((infos->posY) + infos->dirY * infos->moveSpeed)])
+		{
+			infos->posY += infos->dirY * infos->moveSpeed;
+		}
+
+		/*if(worldMap[(int)(infos->posX - infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0) 
 		{
 			infos->posX -= infos->dirX * infos->moveSpeed;
 		}
       	if(worldMap[(int)(infos->posX)][(int)(infos->posY - infos->dirY * infos->moveSpeed)] == 0) 
 		{
 			infos->posY -= infos->dirY * infos->moveSpeed;
-		}
+		}*/
 		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
 	if(key == 113) //left
+    {
+		if (worldMap[(int)(infos->posX - infos->planeX * infos->moveSpeed)][(int)(infos->posY)] == 0)
+		{
+			infos->posX -= infos->planeX * infos->moveSpeed;
+		}
+		if (worldMap[(int)infos->posX][(int)(infos->posY - infos->planeY * infos->moveSpeed)])
+		{
+			infos->posY -= infos->planeY * infos->moveSpeed;
+		}
+		/*if (worldMap[(int)(infos->posY - infos->dirX * infos->moveSpeed)][(int)(infos->posX)] == 0)
+        {
+			printf("1er if du left\n");
+			infos->posY = infos->posY - infos->dirX * infos->moveSpeed;
+        }
+        if (worldMap[(int)(infos->posY)][(int)(infos->posX + infos->dirY * infos->moveSpeed)] == 0)
+        {
+			printf("2e if du left\n");
+            infos->posX += infos->dirY *infos->moveSpeed;
+        }*/
+        ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+    }
+    if(key == 100) //right
+    {
+		if (worldMap[(int)(infos->posX + infos->planeX * infos->moveSpeed)][(int)(infos->posY)] == 0)
+		{
+			infos->posX += infos->planeX * infos->moveSpeed;
+		}
+		if (worldMap[(int)infos->posX][(int)(infos->posY + infos->planeY * infos->moveSpeed)])
+		{
+			infos->posY += infos->planeY * infos->moveSpeed;
+		}
+
+      /*  if (worldMap[(int)(infos->posY + infos->dirX * infos->moveSpeed)][(int)(infos->posX)] == 0)
+        {
+			printf("1er if du right\n");
+           infos->posY -= (-infos->dirX) * infos->moveSpeed;
+        }
+        if (worldMap[(int)(infos->posY)][(int)(infos->posX - infos->dirY * infos->moveSpeed)] == 0)
+        {
+			printf("2e if du right\n");
+            infos->posX = infos->posX - infos->dirY *infos->moveSpeed;
+        }*/
+        ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+    }		
+			
+	if(key == 65361) //left : 113
 	{	
 		double    olddirx;
 		double    oldplanex;
@@ -250,7 +317,7 @@ int	keypressed(int key, void *p)
 		infos->planeY = oldplanex * sin(angle) + infos->planeY * cos(angle);
 		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
-	if(key == 100)
+	if(key == 65363) //right : 100
 	{
 		double    olddirx;
 		double    oldplanex;
