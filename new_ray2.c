@@ -88,10 +88,12 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 	infos->drawEnd = infos->lineHeight / 2 + screenHeight / 2;
 	if(infos->drawEnd >= screenHeight)
 		infos->drawEnd = screenHeight - 1;
-	
-	for(int j = 0; j < infos->drawStart; j++)
+
+	int j = 0;	
+	while(j < infos->drawStart)
 	{
 		mlx->img.data[infos->x + j * screenWidth] = (int)0x050E85;
+		j++;
 	}
 	int k = infos->drawEnd;
 	while (infos->drawStart < infos->drawEnd)
@@ -99,9 +101,10 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = color;
 		infos->drawEnd--;
 	}
-	for(k; k < screenHeight; k++)
+	while(k < screenHeight)
 	{
 		mlx->img.data[infos->x + k * screenWidth] = (int)0x2B1B14;
+		k++;
 	}
 }
 
@@ -195,24 +198,16 @@ void	initializeValues(t_mlx *mlx, t_info *infos)
 	if(infos->dirY == 0)
 	{
 		if(infos->dirX < 0)
-		{
-			infos->saveDir = 1; //qd inversé
-		}
+			infos->saveDir = 1;
 		else if(infos->dirX > 0)
-		{
-			infos->saveDir = -1; //good
-		}
+			infos->saveDir = -1;
 	}
 	else if(infos->dirX == 0)
 	{
 		if(infos->dirY < 0)
-		{
-			infos->saveDir = -1; //DJQZIDQZOJ
-		}
+			infos->saveDir = -1;
 		else if(infos->dirY > 0)
-		{
-			infos->saveDir = 1; //QD inversé
-		}
+			infos->saveDir = 1;
 	}
 
 	infos->moveSpeed = 0.1;
@@ -233,37 +228,30 @@ int	keypressed(int key, void *p)
 		exit(0);
 	}
 	infos->moveSpeed = 0.3;
-	if(key == 122 || key == 115)
+	if(key == 122 || key == 115) //up & down
 	{
-		//infos->moveSpeed *= infos->saveDir;
 		infos->moveSpeed *= (key == 115) ? -1 : 1;
-		if(worldMap[(int)(infos->posX + infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0) 
-		{
+		if(worldMap[(int)(infos->posX + infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0)
 			infos->posX += infos->dirX * infos->moveSpeed;
-		}
-		if(worldMap[(int)(infos->posX)][(int)(infos->posY + infos->dirY * infos->moveSpeed)] == 0) 
-		{
+		if(worldMap[(int)(infos->posX)][(int)(infos->posY + infos->dirY * infos->moveSpeed)] == 0)
 			infos->posY += infos->dirY * infos->moveSpeed;
-		}
 		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
-	else if(key == 113 || key == 100) //left right
+	else if(key == 113 || key == 100) //left & right
 	{
 		infos->moveSpeed *= -infos->saveDir;
 		infos->moveSpeed *= (key == 100) ? -1 : 1;
-
 		if (worldMap[(int)(infos->posX)][(int)(infos->posY - infos->dirX * infos->moveSpeed)] == 0)
         	infos->posY -= infos->dirX * infos->moveSpeed;
     	if (worldMap[(int)(infos->posX + infos->moveSpeed * infos->dirY)][(int)(infos->posY)] == 0)
         	infos->posX += infos->dirY * infos->moveSpeed;
 		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
-	else if(key == 65361 || key == 65363) //fleche gauche
+	else if(key == 65361 || key == 65363) //camera left & right
 	{	
 		double    olddirx;
 		double    oldplanex;
 		double    angle;
-		
 		angle = 3.14159265358979323846 / 30 * infos->saveDir;
 		angle *= (key == 65363) ? -1 : 1;
 		
@@ -275,6 +263,7 @@ int	keypressed(int key, void *p)
 		infos->planeY = oldplanex * sin(angle) + infos->planeY * cos(angle);
 		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
+	return (1);
 }
 
 int main(void)
