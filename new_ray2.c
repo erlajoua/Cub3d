@@ -2,6 +2,7 @@
 #define screenHeight 600
 #define mapWidth 24
 #define mapHeight 24
+
 #include "cub.h"
 
 int worldMap[mapWidth][mapHeight]=
@@ -31,6 +32,10 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+
+	int texWidth = 64;
+	int texHeight = 64;
+
 
 struct s_info{
 	double posX;
@@ -76,30 +81,34 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 			color = (int)0x00FF00;
 	}
 	else if (infos->side == 1) //NS
-	{
+{
 		if (infos->rayDirY < 0)
 			color = (int)0xFFFFFF; //gris
 		else
 			color = (int)0xFF0000;
 	}
+
 	infos->drawStart = -infos->lineHeight / 2 + screenHeight / 2;
 	if(infos->drawStart < 0)
 		infos->drawStart = 0;
 	infos->drawEnd = infos->lineHeight / 2 + screenHeight / 2;
 	if(infos->drawEnd >= screenHeight)
 		infos->drawEnd = screenHeight - 1;
-
 	int j = 0;	
+	int x = 0;
 	while(j < infos->drawStart)
 	{
 		mlx->img.data[infos->x + j * screenWidth] = (int)0x050E85;
 		j++;
 	}
 	int k = infos->drawEnd;
-	while (infos->drawStart < infos->drawEnd)
+	while (infos->drawStart < infos->drawEnd && x < 10)
 	{
-		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = color;
+		int xor = (infos->drawEnd * 256 / texWidth ) ^ (x * 256 / texHeight);
+		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = 256 * xor;
 		infos->drawEnd--;
+		x++;
+		printf("boucle XOR PATTERN\n");
 	}
 	while(k < screenHeight)
 	{
@@ -272,9 +281,22 @@ int main(void)
 	t_mlx	mlx;
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, screenWidth, screenHeight, "Thomas!");
+	//mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
+	int *textuWidth = &texWidth;
+	int *textuHeight = &texHeight;
+	
+	mlx.xpm_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", textuWidth, textuHeight);
+	printf("xpm_file_to_img ptr in main\n");
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
-	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
+	printf("2xpm_file_to_img ptr in main\n");
 
+	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
+	printf("3xpm_file_to_img ptr in main\n");
+
+//	mlx.img.data2 = (int *)mlx_get_data_addr(mlx.xpm_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
+	printf("xpm ptr in main\n");
+
+//	mlx_get_data_add();
 	initializeValues(&mlx, &infos);
 
 	void *params[2];
@@ -283,7 +305,7 @@ int main(void)
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
 	
-
+	
 	ft_all(&infos, &mlx);
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
