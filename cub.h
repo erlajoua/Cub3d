@@ -57,8 +57,9 @@ struct s_img
 	void	*img_ptr;
 	int 	bpp;
 	int 	size_l;
-	int	*data;
-	int	endian;
+	int		*data;
+	int		*data2;
+	int		endian;
 };
 typedef struct s_img t_img;
 
@@ -66,6 +67,7 @@ struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win;
+	void	*xpm_ptr;
 	t_img	img;
 };
 typedef struct s_mlx t_mlx;
