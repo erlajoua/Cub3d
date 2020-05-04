@@ -36,6 +36,7 @@ int worldMap[mapWidth][mapHeight]=
 	int texWidth = 64;
 	int texHeight = 64;
 
+typedef struct s_textr t_textr;
 
 struct s_info{
 	double posX;
@@ -63,10 +64,12 @@ struct s_info{
 	int drawStart;
 	int drawEnd;
 	int x;
-	int thomas;
 	double oldDirX;
 	double oldPlaneX;
 	double saveDir;
+	char *txtr;
+	int texwidth;
+	int texheight;
 };
 typedef struct s_info t_info;
 
@@ -102,13 +105,11 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 		j++;
 	}
 	int k = infos->drawEnd;
-	while (infos->drawStart < infos->drawEnd && x < 10)
+	while (infos->drawStart < infos->drawEnd)
 	{
-		int xor = (infos->drawEnd * 256 / texWidth ) ^ (x * 256 / texHeight);
-		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = 256 * xor;
+		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = infos->txtr;
 		infos->drawEnd--;
 		x++;
-		printf("boucle XOR PATTERN\n");
 	}
 	while(k < screenHeight)
 	{
@@ -280,20 +281,14 @@ int main(void)
 	t_info  infos;
 	t_mlx	mlx;
 	mlx.mlx_ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx_ptr, screenWidth, screenHeight, "Thomas!");
+	mlx.win = mlx_new_window(mlx.mlx_ptr, screenWidth, screenHeight, "Erwan");
 	//mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
-	int *textuWidth = &texWidth;
-	int *textuHeight = &texHeight;
 	
-	mlx.xpm_ptr = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", textuWidth, textuHeight);
-	printf("xpm_file_to_img ptr in main\n");
+	infos.txtr = mlx_xpm_file_to_image(mlx.mlx_ptr, "brick.xpm", &infos.texwidth, &infos.texheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
-	printf("2xpm_file_to_img ptr in main\n");
 
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
-	printf("3xpm_file_to_img ptr in main\n");
-
-//	mlx.img.data2 = (int *)mlx_get_data_addr(mlx.xpm_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
+	mlx.img.data2 = (int *)mlx_get_data_addr(infos.txtr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
 	printf("xpm ptr in main\n");
 
 //	mlx_get_data_add();
