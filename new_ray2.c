@@ -102,7 +102,7 @@ void	drawsky(t_mlx *mlx, t_info *infos)
 	int j = 0;
 	while (j < infos->drawstart)
 	{
-		mlx->img.data[infos->x + j * WIN_W] = (int)0x050E85;
+		mlx->img.data[infos->x + j * WIN_W] = (int)0x00FF00;
 		j++;
 	}
 }
