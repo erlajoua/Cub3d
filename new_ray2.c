@@ -130,7 +130,7 @@ void	setdrawp(t_mlx *mlx, t_info *infos)
 	infos->texpos = (infos->drawstart - WIN_H / 2 + infos->lineHeight / 2) * infos->step;
 }
 
-void	drawwall(t_mlx *mlx, t_infos *infos)
+void	drawwall(t_mlx *mlx, t_info *infos)
 {
 	while (infos->drawstart < infos->drawend)
 	{
@@ -152,9 +152,9 @@ void	draw(t_mlx *mlx, t_info *infos)
 
 	k = infos->drawend;
 	chose_color(infos);
-	setdrawp(&mlx, &infos);
-	drawfloor(&mlx, &infos);
-	drawwall(&mlx, &infos);
+	setdrawp(mlx, infos);
+	drawfloor(mlx, infos);
+	drawwall(mlx, infos);
 
 	//drawfloor
 	while (k < WIN_H)
