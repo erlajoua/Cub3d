@@ -97,7 +97,7 @@ void	chose_color(t_info *infos)
 	}
 }
 
-void	drawfloor(t_mlx *mlx, t_info *infos)
+void	drawsky(t_mlx *mlx, t_info *infos)
 {
 	int j = 0;
 	while (j < infos->drawstart)
@@ -153,10 +153,10 @@ void	draw(t_mlx *mlx, t_info *infos)
 	k = infos->drawend;
 	chose_color(infos);
 	setdrawp(mlx, infos);
-	drawfloor(mlx, infos);
+	drawsky(mlx, infos);
 	drawwall(mlx, infos);
 
-	//drawsky
+	//drawfloor
 	while (k < WIN_H)
 	{
 		mlx->img.data[infos->x + k * WIN_W] = (int)0x2B1B14;
