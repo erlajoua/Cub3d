@@ -339,10 +339,6 @@ int main(void)
 	t_mlx mlx;
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
-
-	/*infos.txtr[0].width = 64;
-	infos.txtr[0].height = 64;*/
-	/*infos.txtr[0].data = "bricks.xpm";*/
 	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txtr[0].width, &infos.txtr[0].height);
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
