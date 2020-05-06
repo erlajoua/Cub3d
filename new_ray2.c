@@ -87,7 +87,7 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 			color = (int)0x00FF00;
 	}
 	else if (infos->side == 1) //NS
-{
+	{
 		if (infos->rayDirY < 0)
 			color = (int)0xFFFFFF; //gris
 		else
@@ -131,10 +131,9 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 	{
 		mlx->img.data[infos->x + j * screenWidth] = (int)0x050E85;
 		j++;
-		//x++;
+		x++;
 	}
 	int k = infos->drawEnd;
-
 	while (infos->drawStart < infos->drawEnd)
 	{
 		int texY = (int)texpos & (texHeight - 1);
@@ -143,18 +142,17 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 		
 		int out = infos->testdata[texY * texWidth + texX];
 
-		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = out;
+		mlx->img.data[infos->x + (infos->drawEnd  * screenWidth)] = out;
 //		printf("x : %d\n", x);
-//		mlx->img.data[infos->x * screenWidth + x] = out;
+//		mlx->img.data[x * screenWidth + infos->x] = out;
 		infos->drawEnd--;
 		x++;
 	}
-
 	while(k < screenHeight)
 	{
 		mlx->img.data[infos->x + k * screenWidth] = (int)0x2B1B14;
 		k++;
-	//	x++;
+		x++;
 	}
 }
 
@@ -325,9 +323,7 @@ int main(void)
 	//mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
 	
 //	infos.txtr = mlx_xpm_file_to_image(mlx.mlx_ptr, "brick.xpm", &infos.texwidth, &infos.texheight);
-	infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "brick.xpm", &infos.texwidth, &infos.texheight);
-
-
+	infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.texwidth, &infos.texheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
 
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
