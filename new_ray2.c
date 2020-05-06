@@ -11,24 +11,24 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
+  {1,0,0,1,1,1,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
   {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1},
   {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
+  {1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1},
+  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
@@ -70,6 +70,9 @@ struct s_info{
 	char *txtr;
 	int texwidth;
 	int texheight;
+
+	int *testdata;
+	void *tximg;
 };
 typedef struct s_info t_info;
 
@@ -97,24 +100,61 @@ void	ft_draw(t_mlx *mlx, t_info *infos)
 	infos->drawEnd = infos->lineHeight / 2 + screenHeight / 2;
 	if(infos->drawEnd >= screenHeight)
 		infos->drawEnd = screenHeight - 1;
+	
+
+	int texNum = worldMap[infos->mapX][infos->mapY] -1;
+	double wallX;
+	if (infos->side == 0)
+	{
+		wallX = infos->posY +infos->perpWallDist * infos->rayDirY;
+	}
+	else
+	{
+		wallX = infos->posX + infos->perpWallDist * infos->rayDirX;
+	}
+	wallX -= floor(wallX);
+	int texX = (int)(wallX * (double)texWidth);
+	if (infos->side == 0 && infos->rayDirX > 0)
+	{
+		texX = texWidth - texX - 1;
+	}
+	if (infos->side == 1 && infos->rayDirY < 0)
+	{
+		texX = texWidth - texX - 1;
+	}
+	double step = 1.0 * infos->texheight / infos->lineHeight;
+	double texpos = (infos->drawStart - screenHeight / 2 + infos->lineHeight / 2) * step;
+
 	int j = 0;	
 	int x = 0;
 	while(j < infos->drawStart)
 	{
 		mlx->img.data[infos->x + j * screenWidth] = (int)0x050E85;
 		j++;
+		//x++;
 	}
 	int k = infos->drawEnd;
+
 	while (infos->drawStart < infos->drawEnd)
 	{
-		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = infos->txtr;
+		int texY = (int)texpos & (texHeight - 1);
+		texpos += step;
+		infos->testdata = (int *)mlx_get_data_addr(infos->tximg, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian); 
+		
+		int out = infos->testdata[texY * texWidth + texX];
+
+		mlx->img.data[infos->x + (infos->drawEnd * screenWidth)] = out;
+//		printf("x : %d\n", x);
+//		mlx->img.data[infos->x * screenWidth + x] = out;
 		infos->drawEnd--;
 		x++;
 	}
+
 	while(k < screenHeight)
 	{
 		mlx->img.data[infos->x + k * screenWidth] = (int)0x2B1B14;
 		k++;
+	//	x++;
 	}
 }
 
@@ -284,12 +324,14 @@ int main(void)
 	mlx.win = mlx_new_window(mlx.mlx_ptr, screenWidth, screenHeight, "Erwan");
 	//mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
 	
-	infos.txtr = mlx_xpm_file_to_image(mlx.mlx_ptr, "brick.xpm", &infos.texwidth, &infos.texheight);
+//	infos.txtr = mlx_xpm_file_to_image(mlx.mlx_ptr, "brick.xpm", &infos.texwidth, &infos.texheight);
+	infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "brick.xpm", &infos.texwidth, &infos.texheight);
+
+
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
 
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
-	mlx.img.data2 = (int *)mlx_get_data_addr(infos.txtr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
-	printf("xpm ptr in main\n");
+//	mlx.img.data2 = (int *)mlx_get_data_addr(infos.txtr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
 
 //	mlx_get_data_add();
 	initializeValues(&mlx, &infos);
