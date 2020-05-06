@@ -41,7 +41,7 @@ typedef struct s_txtr t_txtr;
 
 struct s_info
 {
-	t_txtr txtr[4];
+	t_txtr txtr[5];
 	double posx;
 	double posy;
 	double mvspeed;
@@ -82,6 +82,7 @@ struct s_info
 	double step;
 	double texpos;
 	int hex;
+	int infotxtr;
 };
 typedef struct s_info t_info;
 
@@ -90,16 +91,16 @@ void	chose_color(t_info *infos)
 	if (infos->side == 0) //EW
 	{
 		if (infos->raydirx > 0)
-			infos->color = (int)0xFFFF00; //jaune
+			infos->infotxtr = 0; //0
 		else
-			infos->color = (int)0x00FF00; //vert
+			infos->infotxtr = 1; //1
 	}
 	else if (infos->side == 1) //NS
 	{
 		if (infos->raydiry < 0)
-			infos->color = (int)0xFFFFFF; //gris
+			infos->infotxtr = 2; //2
 		else
-			infos->color = (int)0xFF0000; //rouge
+			infos->infotxtr = 3; //3
 	}
 }
 
@@ -141,10 +142,10 @@ void	drawwall(t_mlx *mlx, t_info *infos)
 {
 	while (infos->drawstart < infos->drawend)
 	{
-		infos->tex_y = (int)infos->texpos & (infos->txtr[0].height - 1);
+		infos->tex_y = (int)infos->texpos & (infos->txtr[infos->infotxtr].height - 1);
 		infos->texpos += infos->step;
-		infos->dataimg = (int *)mlx_get_data_addr(infos->txtr[0].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
-		infos->hex = infos->dataimg[infos->tex_y * infos->txtr[0].width + infos->tex_x];
+		infos->dataimg = (int *)mlx_get_data_addr(infos->txtr[infos->infotxtr].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
+		infos->hex = infos->dataimg[infos->tex_y * infos->txtr[infos->infotxtr].width + infos->tex_x];
 		mlx->img.data[infos->x + (infos->drawend * WIN_W)] = infos->hex;
 		infos->drawend--;
 	}
@@ -338,9 +339,9 @@ int main(void)
 	t_mlx mlx;
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
-	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txtr[0].width, &infos.txtr[0].height); //north.xpm
+	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "north.xpm", &infos.txtr[0].width, &infos.txtr[0].height); //north.xpm
 	infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
-	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "weast.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
+	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "west.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
 	infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
 
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
