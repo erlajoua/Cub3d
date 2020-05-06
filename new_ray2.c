@@ -142,7 +142,7 @@ void	drawwall(t_mlx *mlx, t_info *infos)
 	{
 		infos->tex_y = (int)infos->texpos & (infos->txheight - 1);
 		infos->texpos += infos->step;
-		infos->testdata = (int *)mlx_get_data_addr(infos->tximg, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
+		infos->testdata = (int *)mlx_get_data_addr(infos.txtr[0].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 
 		infos->hex = infos->testdata[infos->tex_y * infos->txwidth + infos->tex_x];
 
