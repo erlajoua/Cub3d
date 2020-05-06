@@ -70,7 +70,7 @@ struct s_info
 	double olddirx;
 	double oldplanex;
 	double savedir;
-	int *testdata;
+	int *dataimg;
 	void *tximg;
 	int color; //color tmp pour les murs, sol, plafond
 	int texnum;
@@ -143,9 +143,9 @@ void	drawwall(t_mlx *mlx, t_info *infos)
 	{
 		infos->tex_y = (int)infos->texpos & (infos->txtr[0].height - 1);
 		infos->texpos += infos->step;
-		infos->testdata = (int *)mlx_get_data_addr(infos->txtr[0].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
+		infos->dataimg = (int *)mlx_get_data_addr(infos->txtr[0].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 
-		infos->hex = infos->testdata[infos->tex_y * infos->txtr[0].width + infos->tex_x];
+		infos->hex = infos->dataimg[infos->tex_y * infos->txtr[0].width + infos->tex_x];
 
 		mlx->img.data[infos->x + (infos->drawend * WIN_W)] = infos->hex;
 		infos->drawend--;
@@ -341,9 +341,9 @@ int main(void)
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
 	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[0].width, &infos.txtr[0].height); //north.xpm
-	//infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
-	//infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "weast.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
-	//infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
+	infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
+	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "weast.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
+	infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
 
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
