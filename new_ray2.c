@@ -102,7 +102,7 @@ void	drawsky(t_mlx *mlx, t_info *infos)
 	int j = 0;
 	while (j < infos->drawstart)
 	{
-		mlx->img.data[infos->x + j * WIN_W] = (int)0x00FF00;
+		mlx->img.data[infos->x + j * WIN_W] = (int)0x050E85;
 		j++;
 	}
 }
@@ -159,7 +159,7 @@ void	draw(t_mlx *mlx, t_info *infos)
 	//drawfloor
 	while (k < WIN_H)
 	{
-		mlx->img.data[infos->x + k * WIN_W] = (int)0x2B1B14;
+		mlx->img.data[infos->x + k * WIN_W] = (int)0x00FF00;
 		k++;
 	}
 }
