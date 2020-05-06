@@ -159,7 +159,7 @@ void	draw(t_mlx *mlx, t_info *infos)
 	//drawfloor
 	while (k < WIN_H)
 	{
-		mlx->img.data[infos->x + k * WIN_W] = (int)0x00FF00;
+		mlx->img.data[infos->x + k * WIN_W] = (int)0x2B1B14;
 		k++;
 	}
 }
