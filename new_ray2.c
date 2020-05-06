@@ -132,7 +132,7 @@ void	setdrawp(t_mlx *mlx, t_info *infos)
 		infos->tex_x = infos->txtr[0].width - infos->tex_x - 1;
 	if (infos->side == 1 && infos->raydiry < 0)
 		infos->tex_x = infos->txtr[0].width - infos->tex_x - 1;
-	infos->step = 1.0 * infos->txtr[0].heigth / infos->lineHeight;
+	infos->step = 1.0 * infos->txtr[0].height / infos->lineHeight;
 	infos->texpos = (infos->drawstart - WIN_H / 2 + infos->lineHeight / 2) * infos->step;
 }
 
@@ -140,7 +140,7 @@ void	drawwall(t_mlx *mlx, t_info *infos)
 {
 	while (infos->drawstart < infos->drawend)
 	{
-		infos->tex_y = (int)infos->texpos & (infos->txtr[0].heigth - 1);
+		infos->tex_y = (int)infos->texpos & (infos->txtr[0].height - 1);
 		infos->texpos += infos->step;
 		infos->testdata = (int *)mlx_get_data_addr(infos.txtr[0].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 
