@@ -340,9 +340,9 @@ int main(void)
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
 	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "north.xpm", &infos.txtr[0].width, &infos.txtr[0].height); //north.xpm
-	infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
-	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "weast.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
-	infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
+	//infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
+	//infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "weast.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
+	//infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
 
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
