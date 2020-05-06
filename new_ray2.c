@@ -311,17 +311,17 @@ int keypressed(int key, void *p)
 	infos->mvspeed = 0.3;
 	if (key == 122 || key == 115) //up & down
 	{
-		updown(&mlx, &infos, key);	
+		updown(mlx, infos, key);	
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
 	else if (key == 113 || key == 100) //left & right
 	{
-		mv_lr(&mlx, &infos, key);
+		mv_lr(mlx, infos, key);
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
 	else if (key == 65361 || key == 65363) //camera left & right
 	{
-		cam_lr(&mlx, &infos, key);
+		cam_lr(mlx, infos, key);
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
 	return (1);
