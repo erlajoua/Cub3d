@@ -150,18 +150,18 @@ void	draw(t_mlx *mlx, t_info *infos)
 	// int infos->color;
 	int k;
 
-	k = infos->drawend;
 	chose_color(infos);
 	setdrawp(mlx, infos);
 	drawsky(mlx, infos);
+	k = infos->drawend;
 	drawwall(mlx, infos);
 
 	//drawfloor
-	/*while (k < WIN_H)
+	while (k < WIN_H)
 	{
 		mlx->img.data[infos->x + k * WIN_W] = (int)0x00FF00;
 		k++;
-	}*/
+	}
 }
 
 void raydirxy(t_info *infos)
