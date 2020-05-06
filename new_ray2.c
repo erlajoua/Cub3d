@@ -337,8 +337,6 @@ int main(void)
 {
 	t_info infos;
 	t_mlx mlx;
-	infos.txwidth = 64;
-	infos.txheight = 64;
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
 
