@@ -41,7 +41,7 @@ typedef struct s_txtr t_txtr;
 
 struct s_info
 {
-	t_txtr txtr[1];
+	t_txtr txtr[4];
 	double posx;
 	double posy;
 	double mvspeed;
@@ -339,7 +339,11 @@ int main(void)
 	t_mlx mlx;
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
-	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txtr[0].width, &infos.txtr[0].height);
+	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "north.xpm", &infos.txtr[0].width, &infos.txtr[0].height); //north.xpm
+	infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
+	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "weast.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
+	infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
+
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
