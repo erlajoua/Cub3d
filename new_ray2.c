@@ -1,335 +1,343 @@
-#define screenWidth 800
-#define screenHeight 600
 #define mapWidth 24
 #define mapHeight 24
 
 #include "cub.h"
 
-int worldMap[mapWidth][mapHeight]=
+int worldMap[mapWidth][mapHeight] =
+	{
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+		
+struct s_info
 {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,1,1,1,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
-  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1},
-  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1},
-  {1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-
-	int texWidth = 64;
-	int texHeight = 64;
-
-typedef struct s_textr t_textr;
-
-struct s_info{
-	double posX;
-	double posY;
-	double moveSpeed;
-	double dirX;
-	double dirY;
+	double posx;
+	double posy;
+	double mvspeed;
+	double dirx;
+	double diry;
 	double planeX;
 	double planeY;
 	double cameraX;
-	double rayDirX;
-	double rayDirY;
-	double sideDistX;
-	double sideDistY;
-	double deltaDistX;
-	double deltaDistY;
-	double perpWallDist;
-	int stepX;
-	int stepY;
+	double raydirx;
+	double raydiry;
+	double sidedistx;
+	double sidedisty;
+	double deltadistx;
+	double deltadisty;
+	double perpwalldist;
+	int stepx;
+	int stepy;
 	int side;
 	int hit;
-	int mapX;
-	int mapY;
+	int mapx;
+	int mapy;
 	int lineHeight;
-	int drawStart;
-	int drawEnd;
+	int drawstart;
+	int drawend;
 	int x;
-	double oldDirX;
-	double oldPlaneX;
-	double saveDir;
+	double olddirx;
+	double oldplanex;
+	double savedir;
 	char *txtr;
-	int texwidth;
-	int texheight;
-
+	// int texwidth;
+	// int texheight;
+	
 	int *testdata;
 	void *tximg;
+	int color; //color tmp pour les murs, sol, plafond
+	int texnum;
+	double wallx;
+	int tex_x;
+	int tex_y;
+	int txwidth;
+	int txheight;
+	double step;
+	double texpos;
+	int hex;
 };
 typedef struct s_info t_info;
 
-void	ft_draw(t_mlx *mlx, t_info *infos)
+void	chose_color(t_info *infos) 
 {
-	int color;
-	if (infos->side == 0)//EW
+	if (infos->side == 0) //EW
 	{
-		if (infos->rayDirX > 0)
-			color = (int)0xFFFF00; //jaune
+		if (infos->raydirx > 0)
+			infos->color = (int)0xFFFF00; //jaune
 		else
-			color = (int)0x00FF00;
+			infos->color = (int)0x00FF00; //vert
 	}
 	else if (infos->side == 1) //NS
 	{
-		if (infos->rayDirY < 0)
-			color = (int)0xFFFFFF; //gris
+		if (infos->raydiry < 0)
+			infos->color = (int)0xFFFFFF; //gris
 		else
-			color = (int)0xFF0000;
-	}
-
-	infos->drawStart = -infos->lineHeight / 2 + screenHeight / 2;
-	if(infos->drawStart < 0)
-		infos->drawStart = 0;
-	infos->drawEnd = infos->lineHeight / 2 + screenHeight / 2;
-	if(infos->drawEnd >= screenHeight)
-		infos->drawEnd = screenHeight - 1;
-	
-
-	int texNum = worldMap[infos->mapX][infos->mapY] -1;
-	double wallX;
-	if (infos->side == 0)
-	{
-		wallX = infos->posY +infos->perpWallDist * infos->rayDirY;
-	}
-	else
-	{
-		wallX = infos->posX + infos->perpWallDist * infos->rayDirX;
-	}
-	wallX -= floor(wallX);
-	int texX = (int)(wallX * (double)texWidth);
-	if (infos->side == 0 && infos->rayDirX > 0)
-	{
-		texX = texWidth - texX - 1;
-	}
-	if (infos->side == 1 && infos->rayDirY < 0)
-	{
-		texX = texWidth - texX - 1;
-	}
-	double step = 1.0 * infos->texheight / infos->lineHeight;
-	double texpos = (infos->drawStart - screenHeight / 2 + infos->lineHeight / 2) * step;
-
-	int j = 0;	
-	int x = 0;
-	while(j < infos->drawStart)
-	{
-		mlx->img.data[infos->x + j * screenWidth] = (int)0x050E85;
-		j++;
-		x++;
-	}
-	int k = infos->drawEnd;
-	while (infos->drawStart < infos->drawEnd)
-	{
-		int texY = (int)texpos & (texHeight - 1);
-		texpos += step;
-		infos->testdata = (int *)mlx_get_data_addr(infos->tximg, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian); 
-		
-		int out = infos->testdata[texY * texWidth + texX];
-
-		mlx->img.data[infos->x + (infos->drawEnd  * screenWidth)] = out;
-//		printf("x : %d\n", x);
-//		mlx->img.data[x * screenWidth + infos->x] = out;
-		infos->drawEnd--;
-		x++;
-	}
-	while(k < screenHeight)
-	{
-		mlx->img.data[infos->x + k * screenWidth] = (int)0x2B1B14;
-		k++;
-		x++;
+			infos->color = (int)0xFF0000; //rouge
 	}
 }
 
-
-void	ft_raydirXY(t_info *infos)
+void	draw_floor(t_mlx *mlx, t_info *infos)
 {
-	infos->mapX = (int)infos->posX;
-	infos->mapY = (int)infos->posY;
-
-	infos->cameraX = 2 * infos->x / (double)screenWidth - 1;
-			
-	infos->rayDirX = infos->dirX + infos->planeX * infos->cameraX;
-	infos->rayDirY = infos->dirY + infos->planeY * infos->cameraX;
-
-	infos->deltaDistX = (infos->rayDirY == 0) ? 0 : ((infos->rayDirX == 0) ? 1 : fabs(1 / infos->rayDirX));
-	infos->deltaDistY = (infos->rayDirX == 0) ? 0 : ((infos->rayDirY == 0) ? 1 : fabs(1 / infos->rayDirY));
+	int j = 0;
+	while (j < infos->drawstart)
+	{
+		mlx->img.data[infos->x + j * WIN_W] = (int)0x050E85;
+		j++;
+	}
 }
 
-void	ft_sideDistXY(t_info *infos)
+void	setdrawp(t_mlx *mlx, t_info *infos)
+{
+	infos->drawstart = -infos->lineHeight / 2 + WIN_H / 2;
+	if (infos->drawstart < 0)
+		infos->drawstart = 0;
+	infos->drawend = infos->lineHeight / 2 + WIN_H / 2;
+	if (infos->drawend >= WIN_H)
+		infos->drawend = WIN_H - 1;
+	infos->texnum = worldMap[infos->mapx][infos->mapy] - 1;
+	if (infos->side == 0)
+		infos->wallx = infos->posy + infos->perpwalldist * infos->raydiry;
+	else
+		infos->wallx = infos->posx + infos->perpwalldist * infos->raydirx;
+	infos->wallx -= floor(infos->wallx);
+	infos->tex_x = (int)(infos->wallx * (double)infos->txwidth);
+	if (infos->side == 0 && infos->raydirx > 0)
+		infos->tex_x = infos->txwidth - infos->tex_x - 1;
+	if (infos->side == 1 && infos->raydiry < 0)
+		infos->tex_x = infos->txwidth - infos->tex_x - 1;
+	infos->step = 1.0 * infos->txheight / infos->lineHeight;
+	infos->texpos = (infos->drawstart - WIN_H / 2 + infos->lineHeight / 2) * infos->step;
+}
+
+void	drawwall(t_mlx *mlx, t_infos *infos)
+{
+	while (infos->drawstart < infos->drawend)
+	{
+		infos->tex_y = (int)infos->texpos & (infos->txheight - 1);
+		infos->texpos += infos->step;
+		infos->testdata = (int *)mlx_get_data_addr(infos->tximg, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
+
+		infos->hex = infos->testdata[infos->tex_y * infos->txwidth + infos->tex_x];
+
+		mlx->img.data[infos->x + (infos->drawend * WIN_W)] = infos->hex;
+		infos->drawend--;
+	}
+}
+
+void	draw(t_mlx *mlx, t_info *infos)
+{
+	// int infos->color;
+	int k;
+
+	k = infos->drawend;
+	chose_color(infos);
+	setdrawp(&mlx, &infos);
+	drawfloor(&mlx, &infos);
+	drawwall(&mlx, &infos);
+
+	//drawfloor
+	while (k < WIN_H)
+	{
+		mlx->img.data[infos->x + k * WIN_W] = (int)0x2B1B14;
+		k++;
+	}
+}
+
+void raydirxy(t_info *infos)
+{
+	infos->mapx = (int)infos->posx;
+	infos->mapy = (int)infos->posy;
+	infos->cameraX = 2 * infos->x / (double)WIN_W - 1;
+	infos->raydirx = infos->dirx + infos->planeX * infos->cameraX;
+	infos->raydiry = infos->diry + infos->planeY * infos->cameraX;
+	infos->deltadistx = (infos->raydiry == 0) ? 0 : ((infos->raydirx == 0) ? 1 : fabs(1 / infos->raydirx));
+	infos->deltadisty = (infos->raydirx == 0) ? 0 : ((infos->raydiry == 0) ? 1 : fabs(1 / infos->raydiry));
+}
+
+void sidedistxy(t_info *infos)
 {
 	infos->hit = 0;
-	if(infos->rayDirX < 0)
+	if (infos->raydirx < 0)
 	{
-		infos->stepX = -1;
-		infos->sideDistX = (infos->posX - infos->mapX) * infos->deltaDistX;
+		infos->stepx = -1;
+		infos->sidedistx = (infos->posx - infos->mapx) * infos->deltadistx;
 	}
 	else
 	{
-		infos->stepX = 1;
-		infos->sideDistX = (infos->mapX + 1.0 - infos->posX) * infos->deltaDistX;
+		infos->stepx = 1;
+		infos->sidedistx = (infos->mapx + 1.0 - infos->posx) * infos->deltadistx;
 	}
-	if(infos->rayDirY < 0)
+	if (infos->raydiry < 0)
 	{
-		infos->stepY = -1;
-		infos->sideDistY = (infos->posY - infos->mapY) * infos->deltaDistY;
+		infos->stepy = -1;
+		infos->sidedisty = (infos->posy - infos->mapy) * infos->deltadisty;
 	}
 	else
 	{
-		infos->stepY = 1;
-		infos->sideDistY = (infos->mapY + 1.0 - infos->posY) * infos->deltaDistY;
+		infos->stepy = 1;
+		infos->sidedisty = (infos->mapy + 1.0 - infos->posy) * infos->deltadisty;
 	}
 }
 
-void	ft_dda(t_info *infos)
+void dda(t_info *infos)
 {
 	while (infos->hit == 0)
 	{
-		if(infos->sideDistX < infos->sideDistY)
+		if (infos->sidedistx < infos->sidedisty)
 		{
-			infos->sideDistX += infos->deltaDistX;
-			infos->mapX += infos->stepX;
+			infos->sidedistx += infos->deltadistx;
+			infos->mapx += infos->stepx;
 			infos->side = 0;
 		}
 		else
 		{
-			infos->sideDistY += infos->deltaDistY;
-			infos->mapY += infos->stepY;
+			infos->sidedisty += infos->deltadisty;
+			infos->mapy += infos->stepy;
 			infos->side = 1;
 		}
-		if(worldMap[infos->mapX][infos->mapY] > 0)
+		if (worldMap[infos->mapx][infos->mapy] > 0)
 			infos->hit = 1;
 	}
-	if(infos->side == 0)
-		infos->perpWallDist = (infos->mapX - infos->posX + (1 - infos->stepX) / 2) / infos->rayDirX;
+	if (infos->side == 0)
+		infos->perpwalldist = (infos->mapx - infos->posx + (1 - infos->stepx) / 2) / infos->raydirx;
 	else
-		infos->perpWallDist = (infos->mapY - infos->posY + (1 - infos->stepY) / 2) / infos->rayDirY;
-	infos->lineHeight = (int)(screenHeight / infos->perpWallDist);
+		infos->perpwalldist = (infos->mapy - infos->posy + (1 - infos->stepy) / 2) / infos->raydiry;
+	infos->lineHeight = (int)(WIN_H / infos->perpwalldist);
 }
 
-
-void ft_all(t_info *infos, t_mlx *mlx)
+void all(t_info *infos, t_mlx *mlx)
 {
 	infos->x = 0;
-	while (infos->x < screenWidth)
+	while (infos->x < WIN_W)
 	{
-		ft_raydirXY(infos);
-		ft_sideDistXY(infos);
-		ft_dda(infos);
-		ft_draw(mlx, infos);
+		raydirxy(infos);
+		sidedistxy(infos);
+		dda(infos);
+		draw(mlx, infos);
 		infos->x++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 
-void	initializeValues(t_mlx *mlx, t_info *infos)
+void initializeValues(t_mlx *mlx, t_info *infos)
 {
-	infos->posX = 4, infos->posY = 3;
-	infos->dirX = 0, infos->dirY = 1;
+	infos->posx = 4, infos->posy = 3;
+	infos->dirx = 0, infos->diry = 1;
 	infos->planeX = 0.66, infos->planeY = 0;
-
-	if(infos->dirY == 0)
+	if (infos->diry == 0)
 	{
-		if(infos->dirX < 0)
-			infos->saveDir = 1;
-		else if(infos->dirX > 0)
-			infos->saveDir = -1;
+		if (infos->dirx < 0)
+			infos->savedir = 1;
+		else if (infos->dirx > 0)
+			infos->savedir = -1;
 	}
-	else if(infos->dirX == 0)
+	else if (infos->dirx == 0)
 	{
-		if(infos->dirY < 0)
-			infos->saveDir = -1;
-		else if(infos->dirY > 0)
-			infos->saveDir = 1;
+		if (infos->diry < 0)
+			infos->savedir = -1;
+		else if (infos->diry > 0)
+			infos->savedir = 1;
 	}
-
-	infos->moveSpeed = 0.1;
+	infos->mvspeed = 0.1;
 }
 
-int	keypressed(int key, void *p)
+void	updown(t_mlx *mlx, t_info *infos, int key)
+{
+		infos->mvspeed *= (key == 115) ? -1 : 1;
+		if (worldMap[(int)(infos->posx + infos->dirx * infos->mvspeed)][(int)(infos->posy)] == 0)
+			infos->posx += infos->dirx * infos->mvspeed;
+		if (worldMap[(int)(infos->posx)][(int)(infos->posy + infos->diry * infos->mvspeed)] == 0)
+			infos->posy += infos->diry * infos->mvspeed;
+}
+
+void	mv_lr(t_mlx *mlx, t_info *infos, int key)
+{
+		infos->mvspeed *= -infos->savedir;
+		infos->mvspeed *= (key == 100) ? -1 : 1;
+		if (worldMap[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == 0)
+			infos->posy -= infos->dirx * infos->mvspeed;
+		if (worldMap[(int)(infos->posx + infos->mvspeed * infos->diry)][(int)(infos->posy)] == 0)
+			infos->posx += infos->diry * infos->mvspeed;
+}
+
+void	cam_lr(t_mlx *mlx, t_info *infos, int key)
+{
+		double olddirx;
+		double oldplanex;
+		double angle;
+		angle = D_PI / 30 * infos->savedir;
+		angle *= (key == 65363) ? -1 : 1;
+
+		olddirx = infos->dirx;
+		oldplanex = infos->planeX;
+		infos->dirx = infos->dirx * cos(angle) - infos->diry * sin(angle);
+		infos->diry = olddirx * sin(angle) + infos->diry * cos(angle);
+		infos->planeX = infos->planeX * cos(angle) - infos->planeY * sin(angle);
+		infos->planeY = oldplanex * sin(angle) + infos->planeY * cos(angle);
+}
+
+int keypressed(int key, void *p)
 {
 	void **recup;
 	t_info *infos;
 	t_mlx *mlx;
-
+	
 	recup = (void **)p;
-
 	infos = recup[0];
 	mlx = recup[1];
-	if(key == 65307)
-	{
+	if (key == 65307)
 		exit(0);
-	}
-	infos->moveSpeed = 0.3;
-	if(key == 122 || key == 115) //up & down
+	infos->mvspeed = 0.3;
+	if (key == 122 || key == 115) //up & down
 	{
-		infos->moveSpeed *= (key == 115) ? -1 : 1;
-		if(worldMap[(int)(infos->posX + infos->dirX * infos->moveSpeed)][(int)(infos->posY)] == 0)
-			infos->posX += infos->dirX * infos->moveSpeed;
-		if(worldMap[(int)(infos->posX)][(int)(infos->posY + infos->dirY * infos->moveSpeed)] == 0)
-			infos->posY += infos->dirY * infos->moveSpeed;
-		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+		updown(&mlx, &infos, key);	
+		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
-	else if(key == 113 || key == 100) //left & right
+	else if (key == 113 || key == 100) //left & right
 	{
-		infos->moveSpeed *= -infos->saveDir;
-		infos->moveSpeed *= (key == 100) ? -1 : 1;
-		if (worldMap[(int)(infos->posX)][(int)(infos->posY - infos->dirX * infos->moveSpeed)] == 0)
-        	infos->posY -= infos->dirX * infos->moveSpeed;
-    	if (worldMap[(int)(infos->posX + infos->moveSpeed * infos->dirY)][(int)(infos->posY)] == 0)
-        	infos->posX += infos->dirY * infos->moveSpeed;
-		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+		mv_lr(&mlx, &infos, key);
+		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
-	else if(key == 65361 || key == 65363) //camera left & right
-	{	
-		double    olddirx;
-		double    oldplanex;
-		double    angle;
-		angle = 3.14159265358979323846 / 30 * infos->saveDir;
-		angle *= (key == 65363) ? -1 : 1;
-		
-		olddirx = infos->dirX;
-		oldplanex = infos->planeX;
-		infos->dirX = infos->dirX * cos(angle) - infos->dirY * sin(angle);
-		infos->dirY = olddirx * sin(angle) + infos->dirY * cos(angle);
-		infos->planeX = infos->planeX * cos(angle) - infos->planeY * sin(angle);
-		infos->planeY = oldplanex * sin(angle) + infos->planeY * cos(angle);
-		ft_all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+	else if (key == 65361 || key == 65363) //camera left & right
+	{
+		cam_lr(&mlx, &infos, key);
+		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
 	}
 	return (1);
 }
 
 int main(void)
 {
-	t_info  infos;
-	t_mlx	mlx;
+	t_info infos;
+	t_mlx mlx;
+	infos.txwidth = 64;
+	infos.txheight = 64;
 	mlx.mlx_ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx_ptr, screenWidth, screenHeight, "Erwan");
-	//mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
-	
-//	infos.txtr = mlx_xpm_file_to_image(mlx.mlx_ptr, "brick.xpm", &infos.texwidth, &infos.texheight);
-	infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.texwidth, &infos.texheight);
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, screenWidth, screenHeight);
-
-	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
-//	mlx.img.data2 = (int *)mlx_get_data_addr(infos.txtr, &mlx.img.bpp, &mlx.img.size_l,&mlx.img.endian);
-
-//	mlx_get_data_add();
+	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
+	infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
+	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
+	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
 	initializeValues(&mlx, &infos);
 
 	void *params[2];
@@ -337,9 +345,8 @@ int main(void)
 	double oldTime = 0;
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
-	
-	
-	ft_all(&infos, &mlx);
+
+	all(&infos, &mlx);
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
 }
