@@ -34,8 +34,8 @@ struct s_txtr
 {
 	void *img;
 	char *data;
-	int texwidth;
-	int texheigth;
+	int width;
+	int height;
 };
 typedef struct s_txtr t_txtr;
 
@@ -342,10 +342,10 @@ int main(void)
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
 
-	infos.txtr[0].texwidth = 64;
-	infos.txtr[0].texheigth = 64;
+	infos.txtr[0].width = 64;
+	infos.txtr[0].heigth = 64;
 	/*infos.txtr[0].data = "bricks.xpm";*/
-	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txtr[0].texwidth, &infos.txtr[0].texheigth);
+	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txtr[0].width, &infos.txtr[0].height);
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
