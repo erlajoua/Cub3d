@@ -70,7 +70,6 @@ struct s_info
 	double olddirx;
 	double oldplanex;
 	double savedir;
-	char *txtr;
 	int *testdata;
 	void *tximg;
 	int color; //color tmp pour les murs, sol, plafond
@@ -342,6 +341,10 @@ int main(void)
 	infos.txheight = 64;
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
+
+	infos.txtr[0].texwidth = 64;
+	infos.txtr[0].texheigth = 64;
+	infos.txtr[0].data = "bricks.xpm";
 	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txtr[0].texwidth, &infos.txtr[0].texheigth);
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
