@@ -20,8 +20,10 @@
 #include "minilibx-linux/mlx.h"
 #include <math.h>
 #define BUFFER_SIZE 2048
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 600
+#define WIN_W 800
+#define WIN_H 600
+#define D_PI 3.14159265358979323846
+
 
 struct s_parse
 {
