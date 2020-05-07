@@ -3,32 +3,6 @@
 #include "cub.h"
 
 	char txt_rgb[8] = "0x00FF00";
-int worldMap[mapWidth][mapHeight] =
-	{
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
 // struct s_txtr
 // {
@@ -115,7 +89,7 @@ void	drawsky(t_mlx *mlx, t_info *infos, t_cub *cub)
 	}
 }
 
-void	setdrawp(t_mlx *mlx, t_info *infos)
+void	setdrawp(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 	infos->drawstart = -infos->lineHeight / 2 + infos->RESY / 2;
 	if (infos->drawstart < 0)
@@ -123,7 +97,7 @@ void	setdrawp(t_mlx *mlx, t_info *infos)
 	infos->drawend = infos->lineHeight / 2 + infos->RESY / 2;
 	if (infos->drawend >= infos->RESY)
 		infos->drawend = infos->RESY - 1;
-	infos->texnum = worldMap[infos->mapx][infos->mapy] - 1;
+	infos->texnum = cub->parse.map[infos->mapx][infos->mapy] - 1;
 	if (infos->side == 0)
 		infos->wallx = infos->posy + infos->perpwalldist * infos->raydiry;
 	else
@@ -157,7 +131,7 @@ void	draw(t_mlx *mlx, t_info *infos, t_cub *cub)
 	int k;
 
 	chose_color(infos);
-	setdrawp(mlx, infos);
+	setdrawp(mlx, infos, cub);
 	drawsky(mlx, infos, cub);
 	k = infos->drawend;
 	drawwall(mlx, infos);
@@ -223,7 +197,7 @@ void dda(t_info *infos, t_cub *cub)
 			infos->mapy += infos->stepy;
 			infos->side = 1;
 		}
-		if (worldMap[infos->mapx][infos->mapy] > 0)
+		if (cub->parse.map[infos->mapx][infos->mapy] == '1' || cub->parse.map[infos->mapx][infos->mapy] == '2') //faire attention
 			infos->hit = 1;
 	}
 	if (infos->side == 0)
@@ -251,14 +225,32 @@ void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 
 	infos->posx = cub->parse.pos[0], infos->posy = cub->parse.pos[1];
-	infos->dirx = 0, infos->diry = 1;
-	infos->planex = 0.66, infos->planey = 0;
 
-	/*printf("Direction : %c\n", cub->parse.side);
+
+	infos->dirx = 0;
+	infos->diry = 0;
+	infos->planex = 0;
+	infos->planey = 0;
+	if(cub->parse.side == 'N')
+	{
+		infos->diry = 1;
+		infos->planex = 0.66;
+	}
 	if(cub->parse.side == 'W')
 	{
-		infos->dirx = -1, infos->diry = 0;
-	}*/
+		infos->dirx = -1;
+		infos->planey = 0.66;
+	}
+	if(cub->parse.side == 'S')
+	{
+		infos->diry = -1;
+		infos->planex = 0.66;
+	}
+	if(cub->parse.side == 'E')
+	{
+		infos->dirx = 1;
+		infos->planey = 0.66;
+	}
 
 	if (infos->diry == 0)
 	{
@@ -274,29 +266,39 @@ void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 		else if (infos->diry > 0)
 			infos->savedir = 1;
 	}
-	infos->mvspeed = 0.1;
 }
 
-void	updown(t_mlx *mlx, t_info *infos, int key)
+void	updown(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 {
+	
+		char dirSide;
+
+		dirSide = cub->parse.side;
 		infos->mvspeed *= (key == 115) ? -1 : 1;
-		if (worldMap[(int)(infos->posx + infos->dirx * infos->mvspeed)][(int)(infos->posy)] == 0)
+		if (cub->parse.map[(int)(infos->posx + infos->dirx * infos->mvspeed)][(int)(infos->posy)] == '0'
+		|| cub->parse.map[(int)(infos->posx + infos->dirx * infos->mvspeed)][(int)(infos->posy)] == dirSide)
 			infos->posx += infos->dirx * infos->mvspeed;
-		if (worldMap[(int)(infos->posx)][(int)(infos->posy + infos->diry * infos->mvspeed)] == 0)
+		if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry * infos->mvspeed)] == '0'
+		|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry * infos->mvspeed)] == dirSide)
 			infos->posy += infos->diry * infos->mvspeed;
 }
 
-void	mv_lr(t_mlx *mlx, t_info *infos, int key)
+void	mv_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 {
+		char dirSide;
+
+		dirSide = cub->parse.side;
 		infos->mvspeed *= -infos->savedir;
 		infos->mvspeed *= (key == 100) ? -1 : 1;
-		if (worldMap[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == 0)
+		if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == '0'
+		|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == dirSide)
 			infos->posy -= infos->dirx * infos->mvspeed;
-		if (worldMap[(int)(infos->posx + infos->mvspeed * infos->diry)][(int)(infos->posy)] == 0)
+		if (cub->parse.map[(int)(infos->posx + infos->mvspeed * infos->diry)][(int)(infos->posy)] == '0'
+		|| cub->parse.map[(int)(infos->posx + infos->mvspeed * infos->diry)][(int)(infos->posy)] == dirSide)
 			infos->posx += infos->diry * infos->mvspeed;
 }
 
-void	cam_lr(t_mlx *mlx, t_info *infos, int key)
+void	cam_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 {
 		double olddirx;
 		double oldplanex;
@@ -328,17 +330,17 @@ int keypressed(int key, void *p)
 	infos->mvspeed = 0.3;
 	if (key == 122 || key == 115) //up & down
 	{
-		updown(mlx, infos, key);	
+		updown(mlx, infos, cub, key);	
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	else if (key == 113 || key == 100) //left & right
 	{
-		mv_lr(mlx, infos, key);
+		mv_lr(mlx, infos, cub, key);
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	else if (key == 65361 || key == 65363) //camera left & right
 	{
-		cam_lr(mlx, infos, key);
+		cam_lr(mlx, infos, cub, key);
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	return (1);
@@ -358,7 +360,7 @@ int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 	//infos->tximg = mlx_xpm_file_to_image(mlx->mlx_ptr, "bricks.xpm", &infos->txwidth, &infos->txheight);
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, infos->RESX, infos->RESY);
 	mlx->img.data = (int *)mlx_get_data_addr(mlx->img.img_ptr, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
-	
+
 	initializeValues(mlx, infos, cub);
 	
 	all(infos, mlx, cub);

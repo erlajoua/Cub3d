@@ -88,6 +88,7 @@ int main(int ac, char **av)
 	mlx.mlx_ptr = mlx_init();
 	infos.RESX = ft_atoi(cub.parse.res_x);
 	infos.RESY = ft_atoi(cub.parse.res_y);
+	/**/
 	mlx.win = mlx_new_window(mlx.mlx_ptr, infos.RESX, infos.RESY, "Cub3d");
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
