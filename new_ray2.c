@@ -1,6 +1,6 @@
 #define mapWidth 24
 #define mapHeight 24
-
+//#include "floor_ceiling.c"
 #include "cub.h"
 
 int worldMap[mapWidth][mapHeight] =
@@ -41,15 +41,15 @@ typedef struct s_txtr t_txtr;
 
 struct s_info
 {
-	t_txtr txtr[5];
+	t_txtr txtr[6];
 	double posx;
 	double posy;
 	double mvspeed;
 	double dirx;
 	double diry;
-	double planeX;
-	double planeY;
-	double cameraX;
+	double planex;
+	double planey;
+	double camerax;
 	double raydirx;
 	double raydiry;
 	double sidedistx;
@@ -174,9 +174,9 @@ void raydirxy(t_info *infos)
 {
 	infos->mapx = (int)infos->posx;
 	infos->mapy = (int)infos->posy;
-	infos->cameraX = 2 * infos->x / (double)WIN_W - 1;
-	infos->raydirx = infos->dirx + infos->planeX * infos->cameraX;
-	infos->raydiry = infos->diry + infos->planeY * infos->cameraX;
+	infos->camerax = 2 * infos->x / (double)WIN_W - 1;
+	infos->raydirx = infos->dirx + infos->planex * infos->camerax;
+	infos->raydiry = infos->diry + infos->planey * infos->camerax;
 	infos->deltadistx = (infos->raydiry == 0) ? 0 : ((infos->raydirx == 0) ? 1 : fabs(1 / infos->raydirx));
 	infos->deltadisty = (infos->raydirx == 0) ? 0 : ((infos->raydiry == 0) ? 1 : fabs(1 / infos->raydiry));
 }
@@ -250,7 +250,7 @@ void initializeValues(t_mlx *mlx, t_info *infos)
 {
 	infos->posx = 4, infos->posy = 3;
 	infos->dirx = 0, infos->diry = 1;
-	infos->planeX = 0.66, infos->planeY = 0;
+	infos->planex = 0.66, infos->planey = 0;
 	if (infos->diry == 0)
 	{
 		if (infos->dirx < 0)
@@ -296,11 +296,11 @@ void	cam_lr(t_mlx *mlx, t_info *infos, int key)
 		angle *= (key == 65363) ? -1 : 1;
 
 		olddirx = infos->dirx;
-		oldplanex = infos->planeX;
+		oldplanex = infos->planex;
 		infos->dirx = infos->dirx * cos(angle) - infos->diry * sin(angle);
 		infos->diry = olddirx * sin(angle) + infos->diry * cos(angle);
-		infos->planeX = infos->planeX * cos(angle) - infos->planeY * sin(angle);
-		infos->planeY = oldplanex * sin(angle) + infos->planeY * cos(angle);
+		infos->planex = infos->planex * cos(angle) - infos->planey * sin(angle);
+		infos->planey = oldplanex * sin(angle) + infos->planey * cos(angle);
 }
 
 int keypressed(int key, void *p)
@@ -343,6 +343,8 @@ int main(void)
 	infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
 	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "west.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
 	infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
+	infos.txtr[4].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "floor.xpm", &infos.txtr[4].width, &infos.txtr[3].height); //floor.xpm
+	infos.txtr[5].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "ceiling.xpm", &infos.txtr[5].width, &infos.txtr[3].height); //ceiling.xpm
 
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
