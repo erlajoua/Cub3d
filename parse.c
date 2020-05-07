@@ -5,6 +5,7 @@
 #include "parsing_rgb.c"
 #include "parsing_texture.c"
 #include "parse_info.c"
+#include "new_ray2.c"
 
 void ft_start(t_cub *cub)
 {
@@ -77,9 +78,7 @@ int main(int ac, char **av)
 	// printf("(coucou)\n");
 	check_map(&cub);
 	show_parsed(&cub);
-	printf("Map valide, affichage...!\n\n");
-	show_map(&cub);
-	printf("\n");
+	raycasting(&cub);
 	//system("leaks a.out");
 	return 0;
 }

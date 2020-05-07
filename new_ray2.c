@@ -246,11 +246,18 @@ void all(t_info *infos, t_mlx *mlx)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 
-void initializeValues(t_mlx *mlx, t_info *infos)
+void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
-	infos->posx = 4, infos->posy = 3;
+	infos->posx = cub->parse.pos[0], infos->posy = cub->parse.pos[1];
 	infos->dirx = 0, infos->diry = 1;
 	infos->planex = 0.66, infos->planey = 0;
+
+	printf("Direction : %c\n", cub->parse.side);
+	if(cub->parse.side == 'W')
+	{
+		infos->diry = -1;
+	}
+
 	if (infos->diry == 0)
 	{
 		if (infos->dirx < 0)
@@ -333,16 +340,17 @@ int keypressed(int key, void *p)
 	return (1);
 }
 
-int main(void)
+int		raycasting(t_cub *cub)
 {
 	t_info infos;
 	t_mlx mlx;
-	
-	int floor_rgb[3];
-	// char txt_rgb[8] = "0x00FF00";
-	floor_rgb[0] = 200;
-	floor_rgb[1] = 190;
-	floor_rgb[2] = 50;
+
+	/*TEST VIA PARSING*/
+	printf("Map valide(in raycasting..), affichage...!\n\n");
+	show_map(cub);
+	printf("\n");
+	printf("Coord du spawn  : %d, %d",cub->parse.pos[0], cub->parse.pos[1]);
+	/*FIN VIA PARSING*/
 
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
@@ -357,7 +365,8 @@ int main(void)
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
-	initializeValues(&mlx, &infos);
+	initializeValues(&mlx, &infos, cub);
+	printf("COUCOUCOUCOUC BUG\n");
 
 	void *params[2];
 	double time = 0;
@@ -368,4 +377,5 @@ int main(void)
 	all(&infos, &mlx);
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
+	return (1);
 }
