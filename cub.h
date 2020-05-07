@@ -20,8 +20,8 @@
 #include "minilibx-linux/mlx.h"
 #include <math.h>
 #define BUFFER_SIZE 2048
-#define WIN_W 1900
-#define WIN_H 1000
+#define WIN_W 700
+#define WIN_H 300
 #define D_PI 3.14159265358979323846
 
 
