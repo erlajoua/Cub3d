@@ -77,6 +77,8 @@ struct s_info
 	double texpos;
 	int hex;
 	int infotxtr;
+	int RESX;
+	int RESY;
 };
 typedef struct s_info t_info;
 
