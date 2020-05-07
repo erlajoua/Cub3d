@@ -24,6 +24,61 @@
 #define WIN_H 300
 #define D_PI 3.14159265358979323846
 
+struct s_txtr
+{
+	void *img;
+	char *data;
+	int width;
+	int height;
+};
+typedef struct s_txtr t_txtr;
+
+struct s_info
+{
+	t_txtr txtr[6];
+	double posx;
+	double posy;
+	double mvspeed;
+	double dirx;
+	double diry;
+	double planex;
+	double planey;
+	double camerax;
+	double raydirx;
+	double raydiry;
+	double sidedistx;
+	double sidedisty;
+	double deltadistx;
+	double deltadisty;
+	double perpwalldist;
+	int stepx;
+	int stepy;
+	int side;
+	int hit;
+	int mapx;
+	int mapy;
+	int lineHeight;
+	int drawstart;
+	int drawend;
+	int x;
+	double olddirx;
+	double oldplanex;
+	double savedir;
+	int *dataimg;
+	void *tximg;
+	int color; //color tmp pour les murs, sol, plafond
+	int texnum;
+	double wallx;
+	int tex_x;
+	int tex_y;
+	int txwidth;
+	int txheight;
+	double step;
+	double texpos;
+	int hex;
+	int infotxtr;
+};
+typedef struct s_info t_info;
 
 struct s_parse
 {

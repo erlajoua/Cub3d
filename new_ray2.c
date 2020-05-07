@@ -1,8 +1,8 @@
 #define mapWidth 24
 #define mapHeight 24
-//#include "floor_ceiling.c"
 #include "cub.h"
 
+	char txt_rgb[8] = "0x00FF00";
 int worldMap[mapWidth][mapHeight] =
 	{
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -30,61 +30,61 @@ int worldMap[mapWidth][mapHeight] =
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
-struct s_txtr
-{
-	void *img;
-	char *data;
-	int width;
-	int height;
-};
-typedef struct s_txtr t_txtr;
+// struct s_txtr
+// {
+// 	void *img;
+// 	char *data;
+// 	int width;
+// 	int height;
+// };
+// typedef struct s_txtr t_txtr;
 
-struct s_info
-{
-	t_txtr txtr[6];
-	double posx;
-	double posy;
-	double mvspeed;
-	double dirx;
-	double diry;
-	double planex;
-	double planey;
-	double camerax;
-	double raydirx;
-	double raydiry;
-	double sidedistx;
-	double sidedisty;
-	double deltadistx;
-	double deltadisty;
-	double perpwalldist;
-	int stepx;
-	int stepy;
-	int side;
-	int hit;
-	int mapx;
-	int mapy;
-	int lineHeight;
-	int drawstart;
-	int drawend;
-	int x;
-	double olddirx;
-	double oldplanex;
-	double savedir;
-	int *dataimg;
-	void *tximg;
-	int color; //color tmp pour les murs, sol, plafond
-	int texnum;
-	double wallx;
-	int tex_x;
-	int tex_y;
-	int txwidth;
-	int txheight;
-	double step;
-	double texpos;
-	int hex;
-	int infotxtr;
-};
-typedef struct s_info t_info;
+// struct s_info
+// {
+// 	t_txtr txtr[6];
+// 	double posx;
+// 	double posy;
+// 	double mvspeed;
+// 	double dirx;
+// 	double diry;
+// 	double planex;
+// 	double planey;
+// 	double camerax;
+// 	double raydirx;
+// 	double raydiry;
+// 	double sidedistx;
+// 	double sidedisty;
+// 	double deltadistx;
+// 	double deltadisty;
+// 	double perpwalldist;
+// 	int stepx;
+// 	int stepy;
+// 	int side;
+// 	int hit;
+// 	int mapx;
+// 	int mapy;
+// 	int lineHeight;
+// 	int drawstart;
+// 	int drawend;
+// 	int x;
+// 	double olddirx;
+// 	double oldplanex;
+// 	double savedir;
+// 	int *dataimg;
+// 	void *tximg;
+// 	int color; //color tmp pour les murs, sol, plafond
+// 	int texnum;
+// 	double wallx;
+// 	int tex_x;
+// 	int tex_y;
+// 	int txwidth;
+// 	int txheight;
+// 	double step;
+// 	double texpos;
+// 	int hex;
+// 	int infotxtr;
+// };
+// typedef struct s_info t_info;
 
 void	chose_color(t_info *infos) 
 {
@@ -109,7 +109,7 @@ void	drawsky(t_mlx *mlx, t_info *infos)
 	int j = 0;
 	while (j < infos->drawstart)
 	{
-		mlx->img.data[infos->x + j * WIN_W] = (int)0x050E85;
+		mlx->img.data[infos->x + j * WIN_W] = 256 * 256 * 72 + 256 * 112 + 96;
 		//mlx->img.data[infos->x + j * WIN_W] = (int)0x00FF00;
 		j++;
 	}
@@ -165,7 +165,7 @@ void	draw(t_mlx *mlx, t_info *infos)
 	//drawfloor
 	while (k < WIN_H)
 	{
-		mlx->img.data[infos->x + k * WIN_W] = (int)0x2B1B14;
+		mlx->img.data[infos->x + k * WIN_W] = 256 * 256 * 59 +  56 * 256 + 15;
 		k++;
 	}
 }
@@ -337,14 +337,22 @@ int main(void)
 {
 	t_info infos;
 	t_mlx mlx;
+	
+	int floor_rgb[3];
+	// char txt_rgb[8] = "0x00FF00";
+	floor_rgb[0] = 200;
+	floor_rgb[1] = 190;
+	floor_rgb[2] = 50;
+
 	mlx.mlx_ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
 	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "north.xpm", &infos.txtr[0].width, &infos.txtr[0].height); //north.xpm
 	infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
 	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "west.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
 	infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
-	infos.txtr[4].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "floor.xpm", &infos.txtr[4].width, &infos.txtr[3].height); //floor.xpm
-	infos.txtr[5].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "ceiling.xpm", &infos.txtr[5].width, &infos.txtr[3].height); //ceiling.xpm
+
+	infos.txtr[4].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "floor.xpm", &infos.txtr[4].width, &infos.txtr[4].height); //floor.xpm
+	infos.txtr[5].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "ceiling.xpm", &infos.txtr[5].width, &infos.txtr[5].height); //ceiling.xpm
 
 	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
