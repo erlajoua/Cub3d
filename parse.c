@@ -78,7 +78,22 @@ int main(int ac, char **av)
 	// printf("(coucou)\n");
 	check_map(&cub);
 	show_parsed(&cub);
-	raycasting(&cub);
-	//system("leaks a.out");
+	printf("Map valide, affichage...!\n\n");
+	show_map(&cub);
+	printf("\n");
+
+	t_mlx mlx;
+	t_info infos;
+	void *params[3];
+	mlx.mlx_ptr = mlx_init();
+	infos.RESX = ft_atoi(cub.parse.res_x);
+	infos.RESY = ft_atoi(cub.parse.res_y);
+	mlx.win = mlx_new_window(mlx.mlx_ptr, infos.RESX, infos.RESY, "Cub3d");
+	params[0] = (void *)&infos;
+	params[1] = (void *)&mlx;
+	params[2] = (void *)&cub;
+	raycasting(&mlx, &infos, &cub);
+	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
+	mlx_loop(mlx.mlx_ptr);
 	return 0;
 }

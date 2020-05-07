@@ -104,25 +104,25 @@ void	chose_color(t_info *infos)
 	}
 }
 
-void	drawsky(t_mlx *mlx, t_info *infos)
+void	drawsky(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 	int j = 0;
 	while (j < infos->drawstart)
 	{
-		mlx->img.data[infos->x + j * WIN_W] = 256 * 256 * 72 + 256 * 112 + 96;
-		//mlx->img.data[infos->x + j * WIN_W] = (int)0x00FF00;
+		mlx->img.data[infos->x + j * infos->RESX] = 256 * 256 * cub->parse.ceiling_rgb[0] + 256 * cub->parse.ceiling_rgb[1] + cub->parse.ceiling_rgb[2];
+		//mlx->img.data[infos->x + j * infos->RESX] = (int)0x00FF00;
 		j++;
 	}
 }
 
 void	setdrawp(t_mlx *mlx, t_info *infos)
 {
-	infos->drawstart = -infos->lineHeight / 2 + WIN_H / 2;
+	infos->drawstart = -infos->lineHeight / 2 + infos->RESY / 2;
 	if (infos->drawstart < 0)
 		infos->drawstart = 0;
-	infos->drawend = infos->lineHeight / 2 + WIN_H / 2;
-	if (infos->drawend >= WIN_H)
-		infos->drawend = WIN_H - 1;
+	infos->drawend = infos->lineHeight / 2 + infos->RESY / 2;
+	if (infos->drawend >= infos->RESY)
+		infos->drawend = infos->RESY - 1;
 	infos->texnum = worldMap[infos->mapx][infos->mapy] - 1;
 	if (infos->side == 0)
 		infos->wallx = infos->posy + infos->perpwalldist * infos->raydiry;
@@ -135,7 +135,7 @@ void	setdrawp(t_mlx *mlx, t_info *infos)
 	if (infos->side == 1 && infos->raydiry < 0)
 		infos->tex_x = infos->txtr[0].width - infos->tex_x - 1;
 	infos->step = 1.0 * infos->txtr[0].height / infos->lineHeight;
-	infos->texpos = (infos->drawstart - WIN_H / 2 + infos->lineHeight / 2) * infos->step;
+	infos->texpos = (infos->drawstart - infos->RESY / 2 + infos->lineHeight / 2) * infos->step;
 }
 
 void	drawwall(t_mlx *mlx, t_info *infos)
@@ -146,42 +146,43 @@ void	drawwall(t_mlx *mlx, t_info *infos)
 		infos->texpos += infos->step;
 		infos->dataimg = (int *)mlx_get_data_addr(infos->txtr[infos->infotxtr].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 		infos->hex = infos->dataimg[infos->tex_y * infos->txtr[infos->infotxtr].width + infos->tex_x];
-		mlx->img.data[infos->x + (infos->drawend * WIN_W)] = infos->hex;
+		mlx->img.data[infos->x + (infos->drawend * infos->RESX)] = infos->hex;
 		infos->drawend--;
 	}
 }
 
-void	draw(t_mlx *mlx, t_info *infos)
+void	draw(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 	// int infos->color;
 	int k;
 
 	chose_color(infos);
 	setdrawp(mlx, infos);
-	drawsky(mlx, infos);
+	drawsky(mlx, infos, cub);
 	k = infos->drawend;
 	drawwall(mlx, infos);
 
 	//drawfloor
-	while (k < WIN_H)
+	while (k < infos->RESY)
 	{
-		mlx->img.data[infos->x + k * WIN_W] = 256 * 256 * 59 +  56 * 256 + 15;
+		mlx->img.data[infos->x + k * infos->RESX] = 256 * 256 * cub->parse.floor_rgb[0] +  256 * cub->parse.floor_rgb[1] + cub->parse.floor_rgb[2];
+		//mlx->img.data[infos->x + k * infos->RESX] = 256 * 256 * 15 +  256 * 56 + 15;
 		k++;
 	}
 }
 
-void raydirxy(t_info *infos)
+void raydirxy(t_info *infos, t_cub *cub)
 {
 	infos->mapx = (int)infos->posx;
 	infos->mapy = (int)infos->posy;
-	infos->camerax = 2 * infos->x / (double)WIN_W - 1;
+	infos->camerax = 2 * infos->x / (double)infos->RESX - 1;
 	infos->raydirx = infos->dirx + infos->planex * infos->camerax;
 	infos->raydiry = infos->diry + infos->planey * infos->camerax;
 	infos->deltadistx = (infos->raydiry == 0) ? 0 : ((infos->raydirx == 0) ? 1 : fabs(1 / infos->raydirx));
 	infos->deltadisty = (infos->raydirx == 0) ? 0 : ((infos->raydiry == 0) ? 1 : fabs(1 / infos->raydiry));
 }
 
-void sidedistxy(t_info *infos)
+void sidedistxy(t_info *infos, t_cub *cub)
 {
 	infos->hit = 0;
 	if (infos->raydirx < 0)
@@ -206,7 +207,7 @@ void sidedistxy(t_info *infos)
 	}
 }
 
-void dda(t_info *infos)
+void dda(t_info *infos, t_cub *cub)
 {
 	while (infos->hit == 0)
 	{
@@ -229,18 +230,18 @@ void dda(t_info *infos)
 		infos->perpwalldist = (infos->mapx - infos->posx + (1 - infos->stepx) / 2) / infos->raydirx;
 	else
 		infos->perpwalldist = (infos->mapy - infos->posy + (1 - infos->stepy) / 2) / infos->raydiry;
-	infos->lineHeight = (int)(WIN_H / infos->perpwalldist);
+	infos->lineHeight = (int)(infos->RESY / infos->perpwalldist);
 }
 
-void all(t_info *infos, t_mlx *mlx)
+void all(t_info *infos, t_mlx *mlx, t_cub *cub)
 {
 	infos->x = 0;
-	while (infos->x < WIN_W)
+	while (infos->x < infos->RESX)
 	{
-		raydirxy(infos);
-		sidedistxy(infos);
-		dda(infos);
-		draw(mlx, infos);
+		raydirxy(infos, cub);
+		sidedistxy(infos, cub);
+		dda(infos, cub);
+		draw(mlx, infos, cub);
 		infos->x++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
@@ -248,15 +249,16 @@ void all(t_info *infos, t_mlx *mlx)
 
 void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
+
 	infos->posx = cub->parse.pos[0], infos->posy = cub->parse.pos[1];
 	infos->dirx = 0, infos->diry = 1;
 	infos->planex = 0.66, infos->planey = 0;
 
-	printf("Direction : %c\n", cub->parse.side);
+	/*printf("Direction : %c\n", cub->parse.side);
 	if(cub->parse.side == 'W')
 	{
-		infos->diry = -1;
-	}
+		infos->dirx = -1, infos->diry = 0;
+	}*/
 
 	if (infos->diry == 0)
 	{
@@ -315,67 +317,50 @@ int keypressed(int key, void *p)
 	void **recup;
 	t_info *infos;
 	t_mlx *mlx;
+	t_cub *cub;
 	
 	recup = (void **)p;
 	infos = recup[0];
 	mlx = recup[1];
+	cub = recup[2];
 	if (key == 65307)
 		exit(0);
 	infos->mvspeed = 0.3;
 	if (key == 122 || key == 115) //up & down
 	{
 		updown(mlx, infos, key);	
-		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	else if (key == 113 || key == 100) //left & right
 	{
 		mv_lr(mlx, infos, key);
-		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	else if (key == 65361 || key == 65363) //camera left & right
 	{
 		cam_lr(mlx, infos, key);
-		all(((t_info *)recup[0]), ((t_mlx *)recup[1]));
+		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	return (1);
 }
 
-int		raycasting(t_cub *cub)
+int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
-	t_info infos;
-	t_mlx mlx;
-
-	/*TEST VIA PARSING*/
-	printf("Map valide(in raycasting..), affichage...!\n\n");
-	show_map(cub);
-	printf("\n");
-	printf("Coord du spawn  : %d, %d",cub->parse.pos[0], cub->parse.pos[1]);
 	/*FIN VIA PARSING*/
+	infos->txtr[0].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "north.xpm", &infos->txtr[0].width, &infos->txtr[0].height); //north.xpm
+	infos->txtr[1].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "south.xpm", &infos->txtr[1].width, &infos->txtr[1].height); //south.xpm
+	infos->txtr[2].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "west.xpm", &infos->txtr[2].width, &infos->txtr[2].height); //weast.xpm
+	infos->txtr[3].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "east.xpm", &infos->txtr[3].width, &infos->txtr[3].height); //east.xpm
 
-	mlx.mlx_ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx_ptr, WIN_W, WIN_H, "Cub3d");
-	infos.txtr[0].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "north.xpm", &infos.txtr[0].width, &infos.txtr[0].height); //north.xpm
-	infos.txtr[1].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "south.xpm", &infos.txtr[1].width, &infos.txtr[1].height); //south.xpm
-	infos.txtr[2].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "west.xpm", &infos.txtr[2].width, &infos.txtr[2].height); //weast.xpm
-	infos.txtr[3].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "east.xpm", &infos.txtr[3].width, &infos.txtr[3].height); //east.xpm
+	infos->txtr[4].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "floor.xpm", &infos->txtr[4].width, &infos->txtr[4].height); //floor.xpm
+	infos->txtr[5].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "ceiling.xpm", &infos->txtr[5].width, &infos->txtr[5].height); //ceiling.xpm
 
-	infos.txtr[4].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "floor.xpm", &infos.txtr[4].width, &infos.txtr[4].height); //floor.xpm
-	infos.txtr[5].img = mlx_xpm_file_to_image(mlx.mlx_ptr, "ceiling.xpm", &infos.txtr[5].width, &infos.txtr[5].height); //ceiling.xpm
-
-	//infos.tximg = mlx_xpm_file_to_image(mlx.mlx_ptr, "bricks.xpm", &infos.txwidth, &infos.txheight);
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_W, WIN_H);
-	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
-	initializeValues(&mlx, &infos, cub);
-	printf("COUCOUCOUCOUC BUG\n");
-
-	void *params[2];
-	double time = 0;
-	double oldTime = 0;
-	params[0] = (void *)&infos;
-	params[1] = (void *)&mlx;
-
-	all(&infos, &mlx);
-	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
-	mlx_loop(mlx.mlx_ptr);
+	//infos->tximg = mlx_xpm_file_to_image(mlx->mlx_ptr, "bricks.xpm", &infos->txwidth, &infos->txheight);
+	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, infos->RESX, infos->RESY);
+	mlx->img.data = (int *)mlx_get_data_addr(mlx->img.img_ptr, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
+	
+	initializeValues(mlx, infos, cub);
+	
+	all(infos, mlx, cub);
 	return (1);
 }
