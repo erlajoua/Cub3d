@@ -20,9 +20,23 @@
 #include "minilibx-linux/mlx.h"
 #include <math.h>
 #define BUFFER_SIZE 2048
-#define WIN_W 700
-#define WIN_H 300
+#define WIN_W 500
+#define WIN_H 500
 #define D_PI 3.14159265358979323846
+
+
+struct s_sprite
+{
+// 		int *spr_order;
+// 	double *spr_dist;	
+
+	double first;
+	double second;
+	double x;
+	double y;
+	void *txt; 
+};
+typedef struct s_sprite t_sprite;
 
 struct s_txtr
 {
@@ -36,6 +50,25 @@ typedef struct s_txtr t_txtr;
 struct s_info
 {
 	t_txtr txtr[6];
+	t_sprite *sprite;
+	int spr_nb;
+	int *spr_order;
+	double *spr_dist;	
+	double *zbuffer;
+	double spr_x;
+	double spr_y;
+	double invdet;
+	double transx;
+	double transy;
+	int sprscreen_x;
+	int sprscreen_y;
+	int spr_h;
+	int drawstart_x;
+	int drawstart_y;
+	int drawend_x;
+	int drawend_y;
+	int spr_w;
+
 	double posx;
 	double posy;
 	double mvspeed;
@@ -77,6 +110,8 @@ struct s_info
 	double texpos;
 	int hex;
 	int infotxtr;
+	int RESX;
+	int RESY;
 };
 typedef struct s_info t_info;
 
@@ -159,5 +194,9 @@ int check_around(t_cub *cub, int j, int i, char *s);
 void line_check(t_cub *cub, int j);
 void first_line_check(t_cub *cub);
 void last_line_check(t_cub *cub);
+
+
+
+void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
 
 #endif
