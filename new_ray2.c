@@ -4,62 +4,6 @@
 
 	char txt_rgb[8] = "0x00FF00";
 
-// struct s_txtr
-// {
-// 	void *img;
-// 	char *data;
-// 	int width;
-// 	int height;
-// };
-// typedef struct s_txtr t_txtr;
-
-// struct s_info
-// {
-// 	t_txtr txtr[6];
-// 	double posx;
-// 	double posy;
-// 	double mvspeed;
-// 	double dirx;
-// 	double diry;
-// 	double planex;
-// 	double planey;
-// 	double camerax;
-// 	double raydirx;
-// 	double raydiry;
-// 	double sidedistx;
-// 	double sidedisty;
-// 	double deltadistx;
-// 	double deltadisty;
-// 	double perpwalldist;
-// 	int stepx;
-// 	int stepy;
-// 	int side;
-// 	int hit;
-// 	int mapx;
-// 	int mapy;
-// 	int lineHeight;
-// 	int drawstart;
-// 	int drawend;
-// 	int x;
-// 	double olddirx;
-// 	double oldplanex;
-// 	double savedir;
-// 	int *dataimg;
-// 	void *tximg;
-// 	int color; //color tmp pour les murs, sol, plafond
-// 	int texnum;
-// 	double wallx;
-// 	int tex_x;
-// 	int tex_y;
-// 	int txwidth;
-// 	int txheight;
-// 	double step;
-// 	double texpos;
-// 	int hex;
-// 	int infotxtr;
-// };
-// typedef struct s_info t_info;
-
 void	chose_color(t_info *infos) 
 {
 	if (infos->side == 0) //EW
@@ -197,7 +141,7 @@ void dda(t_info *infos, t_cub *cub)
 			infos->mapy += infos->stepy;
 			infos->side = 1;
 		}
-		if (cub->parse.map[infos->mapx][infos->mapy] == '1' || cub->parse.map[infos->mapx][infos->mapy] == '2') //faire attention
+		if (cub->parse.map[infos->mapx][infos->mapy] == '1') //|| cub->parse.map[infos->mapx][infos->mapy] == '2') //faire attention
 			infos->hit = 1;
 	}
 	if (infos->side == 0)
@@ -216,8 +160,10 @@ void all(t_info *infos, t_mlx *mlx, t_cub *cub)
 		sidedistxy(infos, cub);
 		dda(infos, cub);
 		draw(mlx, infos, cub);
+		infos->zbuffer[infos->x] = infos->perpwalldist;
 		infos->x++;
 	}
+	draw_sprite(infos, cub, mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 
@@ -225,7 +171,6 @@ void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 
 	infos->posx = cub->parse.pos[0], infos->posy = cub->parse.pos[1];
-
 
 	infos->dirx = 0;
 	infos->diry = 0;
@@ -271,30 +216,30 @@ void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 void	updown(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 {
 	
-		char dirSide;
+		char dirside;
 
-		dirSide = cub->parse.side;
+		dirside = cub->parse.side;
 		infos->mvspeed *= (key == 115) ? -1 : 1;
 		if (cub->parse.map[(int)(infos->posx + infos->dirx * infos->mvspeed)][(int)(infos->posy)] == '0'
-		|| cub->parse.map[(int)(infos->posx + infos->dirx * infos->mvspeed)][(int)(infos->posy)] == dirSide)
+		|| cub->parse.map[(int)(infos->posx + infos->dirx * infos->mvspeed)][(int)(infos->posy)] == dirside)
 			infos->posx += infos->dirx * infos->mvspeed;
 		if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry * infos->mvspeed)] == '0'
-		|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry * infos->mvspeed)] == dirSide)
+		|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry * infos->mvspeed)] == dirside)
 			infos->posy += infos->diry * infos->mvspeed;
 }
 
 void	mv_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 {
-		char dirSide;
+		char dirside;
 
-		dirSide = cub->parse.side;
+		dirside = cub->parse.side;
 		infos->mvspeed *= -infos->savedir;
 		infos->mvspeed *= (key == 100) ? -1 : 1;
 		if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == '0'
-		|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == dirSide)
+		|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == dirside)
 			infos->posy -= infos->dirx * infos->mvspeed;
 		if (cub->parse.map[(int)(infos->posx + infos->mvspeed * infos->diry)][(int)(infos->posy)] == '0'
-		|| cub->parse.map[(int)(infos->posx + infos->mvspeed * infos->diry)][(int)(infos->posy)] == dirSide)
+		|| cub->parse.map[(int)(infos->posx + infos->mvspeed * infos->diry)][(int)(infos->posy)] == dirside)
 			infos->posx += infos->diry * infos->mvspeed;
 }
 
@@ -349,20 +294,24 @@ int keypressed(int key, void *p)
 int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 	/*FIN VIA PARSING*/
-	infos->txtr[0].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "north.xpm", &infos->txtr[0].width, &infos->txtr[0].height); //north.xpm
-	infos->txtr[1].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "south.xpm", &infos->txtr[1].width, &infos->txtr[1].height); //south.xpm
-	infos->txtr[2].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "west.xpm", &infos->txtr[2].width, &infos->txtr[2].height); //weast.xpm
-	infos->txtr[3].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "east.xpm", &infos->txtr[3].width, &infos->txtr[3].height); //east.xpm
-
-	infos->txtr[4].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "floor.xpm", &infos->txtr[4].width, &infos->txtr[4].height); //floor.xpm
-	infos->txtr[5].img = mlx_xpm_file_to_image(mlx->mlx_ptr, "ceiling.xpm", &infos->txtr[5].width, &infos->txtr[5].height); //ceiling.xpm
+	//GESTION D"ERREUR A FAIRE
+	infos->txtr[0].img = mlx_xpm_file_to_image(mlx->mlx_ptr, cub->parse.north, &infos->txtr[0].width, &infos->txtr[0].height); //north.xpm
+	infos->txtr[1].img = mlx_xpm_file_to_image(mlx->mlx_ptr, cub->parse.south, &infos->txtr[1].width, &infos->txtr[1].height); //south.xpm
+	infos->txtr[2].img = mlx_xpm_file_to_image(mlx->mlx_ptr, cub->parse.west, &infos->txtr[2].width, &infos->txtr[2].height); //weast.xpm
+	infos->txtr[3].img = mlx_xpm_file_to_image(mlx->mlx_ptr, cub->parse.east, &infos->txtr[3].width, &infos->txtr[3].height); //east.xpm
+	infos->txtr[4].img = mlx_xpm_file_to_image(mlx->mlx_ptr, cub->parse.sprite, &infos->txtr[4].width, &infos->txtr[4].height); //sprc.xpm
 
 	//infos->tximg = mlx_xpm_file_to_image(mlx->mlx_ptr, "bricks.xpm", &infos->txwidth, &infos->txheight);
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, infos->RESX, infos->RESY);
 	mlx->img.data = (int *)mlx_get_data_addr(mlx->img.img_ptr, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 
+	if (!(infos->zbuffer = malloc(sizeof(double) * WIN_W)))
+		ft_error("malloc zbuffer error");
+	
 	initializeValues(mlx, infos, cub);
 	
 	all(infos, mlx, cub);
+	// draw_sprite(infos, cub, mlx);
+
 	return (1);
 }
