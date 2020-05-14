@@ -20,16 +20,13 @@
 #include "minilibx-linux/mlx.h"
 #include <math.h>
 #define BUFFER_SIZE 2048
-#define WIN_W 500
-#define WIN_H 500
+#define WIN_W 700
+#define WIN_H 700
 #define D_PI 3.14159265358979323846
 
 
 struct s_sprite
 {
-// 		int *spr_order;
-// 	double *spr_dist;	
-
 	double first;
 	double second;
 	double x;
@@ -196,7 +193,8 @@ void first_line_check(t_cub *cub);
 void last_line_check(t_cub *cub);
 
 
-
 void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
+void		sort_spr(t_info *infos, t_cub *cub);
+void    start_spr(t_info *infos, t_cub *cub);
 
 #endif

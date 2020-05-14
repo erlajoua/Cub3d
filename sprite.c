@@ -1,70 +1,74 @@
 #include "cub.h"
 
-void    sort_spr(t_info *infos, t_cub *cub)
-{
-    int i;
-    double first;
-    double second;
-    double tmp;
+// void    sort_spr(t_info *infos, t_cub *cub)
+// {
+//     int i;
+//     double first;
+//     double second;
+//     double tmp;
 
-    i = 0;
-    tmp = 0;
-    while (i < infos->spr_nb)
-    {
-        infos->sprite[i].first = infos->spr_dist[i];
-        infos->sprite[i].second = infos->spr_order[i];
-        // printf("infos->sprite[i].first : %lf || infos->spr_order[i] : %d\n", infos->sprite[i].first, infos->spr_order[i]);
-        i++;
-    }
-    i = 0;
-    while (i+1 <= infos->spr_nb)
-    {
-        // tmp = 0;
-        if (infos->sprite[i].first > infos->sprite[i+1].first && i+1 < infos->spr_nb)
-        {
-            tmp = infos->sprite[i+1].first;
-            infos->sprite[i+1].first = infos->sprite[i].first;
-            infos->sprite[i].first = tmp;
-        }
-        i++;
-    }
+//     i = 0;
+//     tmp = 0;
+//     while (i < infos->spr_nb)
+//     {
+//         infos->sprite[i].first = infos->spr_dist[i];
+//         infos->sprite[i].second = infos->spr_order[i];
+//         // printf("infos->sprite[i].first : %lf || infos->spr_order[i] : %d\n", infos->sprite[i].first, infos->spr_order[i]);
+//         i++;
+//     }
+//     i = 0;
+//     while (i+1 <= infos->spr_nb)
+//     {
+//         if (infos->sprite[i].first > infos->sprite[i+1].first && i+1 < infos->spr_nb)
+//         {
+//             tmp = infos->sprite[i+1].first;
+//             infos->sprite[i+1].first = infos->sprite[i].first;
+//             infos->sprite[i].first = tmp;
+//             //  printf("infos->sprite[i+1].first  ->> %lf\n", infos->sprite[i].first);
+//         }
+//         i++;
+//     }
     
-    i = 0;
-    while (i < infos->spr_nb)
-    {
-        infos->spr_dist[i] = infos->sprite[infos->spr_nb - i - 1].first;
-        infos->spr_order[i] = infos->sprite[infos->spr_nb - i - 1].second;
-        i++;
-    } 
-}
+//     i = 0;
+//     while (i < infos->spr_nb)
+//     {
+//         infos->spr_dist[i] = infos->sprite[infos->spr_nb - i - 1].first;
+//         infos->spr_order[i] = infos->sprite[infos->spr_nb - i - 1].second;
+//         i++;
+//     }
+//     for(int j = 0; j < infos->spr_nb; j++)
+//      {
+//          printf("->> first : %lf \n", infos->spr_dist[j]);
+//         //  printf("--> test : %lf\n",infos->sprite[infos->spr_nb - i - 1].first);
+// //     //     //  printf("sec : %d \n", infos->spr_order[j]);
+//     }
+//     printf("\n\n");
+// }
 
 void    start_spr(t_info *infos, t_cub *cub)
 {
     int i;
     double first;
     double second;
+    t_sprite tmp;
 
-    if (!(infos->spr_order = malloc(sizeof(int) * infos->spr_nb)))
-        ft_error("malloc error spr_order");
-    if (!(infos->spr_dist = malloc(sizeof(double) * infos->spr_nb)))
-        ft_error("malloc error spr_dist");
     i = 0;
-    // printf("posx : %lf || posy : %lf || sprite[i].x : %lf || sprite[i].y : %lf\n", infos->posx, infos->posy,  infos->sprite[i].x,  infos->sprite[i].y);
-    while (i < infos->spr_nb)
+    // printf("posx : %lf || posy : %lf || sprite[i].x : %lf || sprite[i].y : %lf\n", infos->posx, infos->posy,  infos->sprite[i+1].x,  infos->sprite[i+1].y);
+    while (i < infos->spr_nb && i+1 != infos->spr_nb)
     {
-        infos->spr_order[i] = i;
-        infos->spr_dist[i] = ((infos->posx - infos->sprite[i].x) * (infos->posx - infos->sprite[i].x)
+        first = ((infos->posx - infos->sprite[i].x) * (infos->posx - infos->sprite[i].x)
                 + (infos->posy - infos->sprite[i].y) * (infos->posy - infos->sprite[i].y));
+        second = ((infos->posx - infos->sprite[i+1].x) * (infos->posx - infos->sprite[i+1].x)
+                + (infos->posy - infos->sprite[i+1].y) * (infos->posy - infos->sprite[i+1].y));
+        if (first < second)
+        {
+            tmp = infos->sprite[i];
+            infos->sprite[i] = infos->sprite[i + 1];
+            infos->sprite[i + 1] = tmp;
+            i = -1;
+        }
         i++;
     }
-    sort_spr(infos, cub);
-
-//    for(int j = 0; j < infos->spr_nb; j++)
-//      {
-//          printf("->> first : %lf \n", infos->sprite[j].first);
-//     //     //  printf("sec : %d \n", infos->spr_order[j]);
-//     }
-//     printf("\n\n");
 }
 
 void    init_spr(t_info *infos, t_cub *cub)
@@ -131,7 +135,6 @@ void    disp_spr(t_info *infos, t_cub *cub, t_mlx *mlx)
     txt = 0;
     txtr_y = 0;
     i = infos->drawstart_x;
-        sort_spr(infos, cub);
 
     while (i < infos->drawend_x)
     {
@@ -147,7 +150,6 @@ void    disp_spr(t_info *infos, t_cub *cub, t_mlx *mlx)
                 if (!(datatest = (int *)mlx_get_data_addr(infos->sprite[0].txt, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian)))
                     printf("ERROROROOOOOOORR\n");
                 res = datatest[txtr_y * 64 + txt];
-    
                 if (res && 0x00FFFFFF != 0)
                     mlx->img.data[j * infos->RESX + i] = res;
                 j++;
@@ -162,21 +164,12 @@ void        calc_spr(t_info *infos, t_cub *cub, t_mlx *mlx)
     int i;
 
     i = 0;
-    sort_spr(infos, cub);
-
-    for(int j = 0; j < infos->spr_nb; j++)
-     {
-         printf("->> first : %lf \n", infos->sprite[j].first);
-    //     //  printf("sec : %d \n", infos->spr_order[j]);
-    }
-    printf("\n\n");
-
     while (i < infos->spr_nb)
     {
-        infos->spr_x = infos->sprite[infos->spr_order[i]].x - infos->posx;
-        infos->spr_y = infos->sprite[infos->spr_order[i]].y - infos->posy;
-        // infos->spr_x = infos->sprite[i].x - infos->posx;
-        // infos->spr_y = infos->sprite[i].y - infos->posy;
+        // infos->spr_x = infos->sprite[infos->spr_order[i]].x - infos->posx;
+        // infos->spr_y = infos->sprite[infos->spr_order[i]].y - infos->posy;
+        infos->spr_x = infos->sprite[i].x - infos->posx;
+        infos->spr_y = infos->sprite[i].y - infos->posy;
 
         infos->invdet = 1.0 / (infos->planex * infos->diry - infos->dirx * infos->planey);
         infos->transx = infos->invdet * (infos->diry * infos->spr_x - infos->dirx * infos->spr_y);
@@ -216,9 +209,5 @@ void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx)
     get_nb_spr(infos, cub);
     init_spr(infos, cub);
     start_spr(infos, cub);
-        sort_spr(infos, cub);
-
     calc_spr(infos, cub, mlx);
-
-    // disp_spr(infos, cub, mlx);
 }
