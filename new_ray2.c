@@ -176,40 +176,37 @@ void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 	infos->diry = 0;
 	infos->planex = 0;
 	infos->planey = 0;
-	if(cub->parse.side == 'N')
-	{
-		infos->diry = 1;
-		infos->planex = 0.66;
-	}
-	if(cub->parse.side == 'W')
+	if(cub->parse.side == 'N') //good
 	{
 		infos->dirx = -1;
-		infos->planey = 0.66;
+		infos->diry = 0;
+		infos->planex = 0;
+		infos->planey = -0.66;
+		infos->savedir = -1;
 	}
-	if(cub->parse.side == 'S')
+	if(cub->parse.side == 'W') //good
 	{
-		infos->diry = -1;
-		infos->planex = 0.66;
+		infos->dirx = 0;
+		infos->diry = 1;
+		infos->planex = -0.66;
+		infos->planey = 0;
+		infos->savedir = -1;
 	}
-	if(cub->parse.side == 'E')
+	if(cub->parse.side == 'S') //good
 	{
 		infos->dirx = 1;
+		infos->diry = 0;
+		infos->planex = 0;
 		infos->planey = 0.66;
+		infos->savedir = 1;
 	}
-
-	if (infos->diry == 0)
+	if(cub->parse.side == 'E') //good
 	{
-		if (infos->dirx < 0)
-			infos->savedir = 1;
-		else if (infos->dirx > 0)
-			infos->savedir = -1;
-	}
-	else if (infos->dirx == 0)
-	{
-		if (infos->diry < 0)
-			infos->savedir = -1;
-		else if (infos->diry > 0)
-			infos->savedir = 1;
+		infos->dirx = 0;
+		infos->diry = -1;
+		infos->planex = 0.66;
+		infos->planey = 0;
+		infos->savedir = 1;
 	}
 }
 
@@ -233,7 +230,7 @@ void	mv_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 		char dirside;
 
 		dirside = cub->parse.side;
-		infos->mvspeed *= -infos->savedir;
+		//infos->mvspeed *= -infos->savedir;
 		infos->mvspeed *= (key == 100) ? -1 : 1;
 		if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == '0'
 		|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx * infos->mvspeed)] == dirside)
@@ -248,7 +245,7 @@ void	cam_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 		double olddirx;
 		double oldplanex;
 		double angle;
-		angle = D_PI / 30 * infos->savedir;
+		angle = (D_PI / 30) * -1;
 		angle *= (key == 65363) ? -1 : 1;
 
 		olddirx = infos->dirx;
@@ -272,7 +269,7 @@ int keypressed(int key, void *p)
 	cub = recup[2];
 	if (key == 65307)
 		exit(0);
-	infos->mvspeed = 0.3;
+	infos->mvspeed = 0.4;
 	if (key == 122 || key == 115) //up & down
 	{
 		updown(mlx, infos, cub, key);	
@@ -305,7 +302,7 @@ int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, infos->RESX, infos->RESY);
 	mlx->img.data = (int *)mlx_get_data_addr(mlx->img.img_ptr, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 
-	if (!(infos->zbuffer = malloc(sizeof(double) * WIN_W)))
+	if (!(infos->zbuffer = malloc(sizeof(double) * infos->RESX)))
 		ft_error("malloc zbuffer error");
 	
 	initializeValues(mlx, infos, cub);

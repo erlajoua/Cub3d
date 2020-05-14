@@ -7,6 +7,7 @@
 #include "parse_info.c"
 #include "new_ray2.c"
 #include "sprite.c"
+
 void ft_start(t_cub *cub)
 {
 	cub->parse.i = 0;
