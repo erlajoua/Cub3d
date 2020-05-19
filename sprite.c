@@ -1,49 +1,5 @@
 #include "cub.h"
 
-// void    sort_spr(t_info *infos, t_cub *cub)
-// {
-//     int i;
-//     double first;
-//     double second;
-//     double tmp;
-
-//     i = 0;
-//     tmp = 0;
-//     while (i < infos->spr_nb)
-//     {
-//         infos->sprite[i].first = infos->spr_dist[i];
-//         infos->sprite[i].second = infos->spr_order[i];
-//         // printf("infos->sprite[i].first : %lf || infos->spr_order[i] : %d\n", infos->sprite[i].first, infos->spr_order[i]);
-//         i++;
-//     }
-//     i = 0;
-//     while (i+1 <= infos->spr_nb)
-//     {
-//         if (infos->sprite[i].first > infos->sprite[i+1].first && i+1 < infos->spr_nb)
-//         {
-//             tmp = infos->sprite[i+1].first;
-//             infos->sprite[i+1].first = infos->sprite[i].first;
-//             infos->sprite[i].first = tmp;
-//             //  printf("infos->sprite[i+1].first  ->> %lf\n", infos->sprite[i].first);
-//         }
-//         i++;
-//     }
-    
-//     i = 0;
-//     while (i < infos->spr_nb)
-//     {
-//         infos->spr_dist[i] = infos->sprite[infos->spr_nb - i - 1].first;
-//         infos->spr_order[i] = infos->sprite[infos->spr_nb - i - 1].second;
-//         i++;
-//     }
-//     for(int j = 0; j < infos->spr_nb; j++)
-//      {
-//          printf("->> first : %lf \n", infos->spr_dist[j]);
-//         //  printf("--> test : %lf\n",infos->sprite[infos->spr_nb - i - 1].first);
-// //     //     //  printf("sec : %d \n", infos->spr_order[j]);
-//     }
-//     printf("\n\n");
-// }
 
 void    start_spr(t_info *infos, t_cub *cub)
 {
