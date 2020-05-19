@@ -58,13 +58,24 @@ void	setdrawp(t_mlx *mlx, t_info *infos, t_cub *cub)
 
 void	drawwall(t_mlx *mlx, t_info *infos)
 {
+	// infos->dataimg = malloc(sizeof(int) * 100);
+	// printf("xtt : %d\n", infos->txtr[1].height);
 	while (infos->drawstart < infos->drawend)
 	{
 		infos->tex_y = (int)infos->texpos & (infos->txtr[infos->infotxtr].height - 1);
+				// printf("1super!\n");
 		infos->texpos += infos->step;
+				// printf("2super!\n");
+					// printf("xtt : %d\n", infos->infotxtr);
 		infos->dataimg = (int *)mlx_get_data_addr(infos->txtr[infos->infotxtr].img, &mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
+					// printf("3super!\n");
+
 		infos->hex = infos->dataimg[infos->tex_y * infos->txtr[infos->infotxtr].width + infos->tex_x];
+				// printf("4super!\n");
+
 		mlx->img.data[infos->x + (infos->drawend * infos->RESX)] = infos->hex;
+				// printf("5super!\n");
+
 		infos->drawend--;
 	}
 }
@@ -79,6 +90,7 @@ void	draw(t_mlx *mlx, t_info *infos, t_cub *cub)
 	drawsky(mlx, infos, cub);
 	k = infos->drawend;
 	drawwall(mlx, infos);
+	// printf("2super!\n");
 
 	//drawfloor
 	while (k < infos->RESY)
@@ -156,19 +168,23 @@ void all(t_info *infos, t_mlx *mlx, t_cub *cub)
 	infos->x = 0;
 	while (infos->x < infos->RESX)
 	{
+		printf("x = %d\n", infos->x);
 		raydirxy(infos, cub);
 		sidedistxy(infos, cub);
 		dda(infos, cub);
 		draw(mlx, infos, cub);
 		infos->zbuffer[infos->x] = infos->perpwalldist;
 		infos->x++;
+		printf("super!\n");
 	}
+	printf("folie\n");
+
 	draw_sprite(infos, cub, mlx);
-	if(cub->parse.save == 1)
-	{
-		cub->parse.save = 0;
-		bitmap(mlx);
-	}
+	// if(cub->parse.save == 1)
+	// {
+	// 	cub->parse.save = 0;
+	// 	bitmap(mlx);
+	// }
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 
@@ -183,6 +199,7 @@ void initializeValues(t_mlx *mlx, t_info *infos, t_cub *cub)
 	infos->planey = 0;
 	if(cub->parse.side == 'N') //good
 	{
+		// printf("super!\n");
 		infos->dirx = -1;
 		infos->diry = 0;
 		infos->planex = 0;
@@ -312,8 +329,12 @@ int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 	
 	initializeValues(mlx, infos, cub);
 	
+	//sil y a un mur pile sur le joueur
+	infos->posx += 0.5;
+	infos->posy += 0.5;
+	
 	all(infos, mlx, cub);
-	// draw_sprite(infos, cub, mlx);
 
+	// printf("debug\n");
 	return (1);
 }
