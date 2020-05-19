@@ -165,13 +165,13 @@ struct s_mlx
 typedef struct s_mlx t_mlx;
 
 //parse_info.c
-int parsing_informations(t_cub *cub, char *line);
+int parsing_informations(t_cub *cub, t_info *infos, char *line);
 void show_parsed(t_cub *cub);
 int parsing_line(t_cub *cub, char *str);
 //parsing_res.c
 void parsing_res_x(t_cub *cub, char *line);
 void parsing_res_y(t_cub *cub, char *line);
-int parsing_res(t_cub *cub, char *line);
+int parsing_res(t_cub *cub, t_info *infos, char *line);
 //parsing_rgb.c
 int parsing_floor(t_cub *cub, char *line);
 int parsing_ceiling(t_cub *cub, char *line);

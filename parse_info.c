@@ -9,10 +9,10 @@ void    show_parsed(t_cub *cub)
     printf("\nParamètres de la map :\n\n\tNombre de lignes   : |%d|\n\tNombre de char max : |%d|\n\tOrientation spawn  : |%c|\n\tPosition du spawn  : [%d,%d]\n\n", cub->parse.nbline, cub->parse.strlen, cub->parse.side, cub->parse.pos[0], cub->parse.pos[1]);
 }
 
-int parsing_informations(t_cub *cub, char *line)
+int parsing_informations(t_cub *cub, t_info *infos, char *line)
 {
     if (line[0] == 'R')
-        return parsing_res(cub, line);
+        return parsing_res(cub, infos,line);
     else if (line[0] == 'N' && line[1] == 'O')
         return parsing_north(cub, line);
     else if (line[0] == 'S' && line[1] == 'O')
