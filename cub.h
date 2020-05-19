@@ -20,6 +20,7 @@
 #include "minilibx-linux/mlx.h"
 #include <math.h>
 #define BUFFER_SIZE 2048
+
 #define WIN_W 400
 #define WIN_H 400
 #define D_PI 3.14159265358979323846
@@ -132,6 +133,7 @@ struct s_parse
 	int pos[2];
 	char side;
 	int flag;
+	int save;
 };
 typedef struct s_parse t_parse;
 
@@ -149,6 +151,8 @@ struct s_img
 	int		*data;
 	int		*data2;
 	int		endian;
+	int		width;
+	int		height;
 };
 typedef struct s_img t_img;
 
@@ -196,5 +200,7 @@ void last_line_check(t_cub *cub);
 void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
 void		sort_spr(t_info *infos, t_cub *cub);
 void    start_spr(t_info *infos, t_cub *cub);
+
+void	bitmap(t_mlx *mlx);
 
 #endif

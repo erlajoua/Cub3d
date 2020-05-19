@@ -7,6 +7,8 @@
 #include "parse_info.c"
 #include "new_ray2.c"
 #include "sprite.c"
+#include "bitmap.c"
+
 void ft_start(t_cub *cub)
 {
 	cub->parse.i = 0;
@@ -81,13 +83,32 @@ int main(int ac, char **av)
 	// printf("Map valide, affichage...!\n\n");
 	// show_map(&cub);
 	// printf("\n");
-
+	/*--save : */
+	printf("before it's ok\n");
+	if(av[2])
+	{
+		printf("HERE ? \n");
+		if(ft_strcmp(av[2], "--save") == 0)
+		{
+			cub.parse.save = 1;
+		}
+		else
+		{
+			ft_error("second argument is not --save");
+		}
+	}
+	else
+		cub.parse.save = 0;
+	printf("it's ok\n");
+	/* fin --save */
 	t_mlx mlx;
 	t_info infos;
 	void *params[3];
 	mlx.mlx_ptr = mlx_init();
 	infos.RESX = ft_atoi(cub.parse.res_x);
 	infos.RESY = ft_atoi(cub.parse.res_y);
+	mlx.img.width = infos.RESX;
+	mlx.img.height = infos.RESY;
 	/**/
 	
 	mlx.win = mlx_new_window(mlx.mlx_ptr, infos.RESX, infos.RESY, "Cub3d");
