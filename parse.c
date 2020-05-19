@@ -37,7 +37,10 @@ int main(int ac, char **av)
 	int j;
 	char *str;
 	char *another;
-
+	t_mlx mlx;
+	t_info infos;
+	void *params[3];
+	
 	ret = 0;
 	i = 0;
 	j = 0;
@@ -47,7 +50,7 @@ int main(int ac, char **av)
 	i = 0;
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
-		parsing_informations(&cub, str);
+		parsing_informations(&cub, &infos,str);
 	}
 	close(fd);
 
@@ -84,12 +87,13 @@ int main(int ac, char **av)
 	// show_map(&cub);
 	// printf("\n");
 	/*--save : */
-	printf("before it's ok\n");
-	if(av[2])
+	// printf("before it's ok\n");
+	if(ac == 3)
 	{
-		printf("HERE ? \n");
+		// printf("HERE ? \n");
 		if(ft_strcmp(av[2], "--save") == 0)
 		{
+			printf("alright\n");
 			cub.parse.save = 1;
 		}
 		else
@@ -99,23 +103,19 @@ int main(int ac, char **av)
 	}
 	else
 		cub.parse.save = 0;
-	printf("it's ok\n");
+	// printf("it's ok\n");
 	/* fin --save */
-	t_mlx mlx;
-	t_info infos;
-	void *params[3];
+	
 	mlx.mlx_ptr = mlx_init();
-	infos.RESX = ft_atoi(cub.parse.res_x);
-	infos.RESY = ft_atoi(cub.parse.res_y);
 	mlx.img.width = infos.RESX;
 	mlx.img.height = infos.RESY;
-	/**/
 	
 	mlx.win = mlx_new_window(mlx.mlx_ptr, infos.RESX, infos.RESY, "Cub3d");
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
 	params[2] = (void *)&cub;
 	raycasting(&mlx, &infos, &cub);
+
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
 	return 0;
