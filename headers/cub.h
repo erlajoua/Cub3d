@@ -24,7 +24,6 @@
 #define WIN_H 400
 #define D_PI 3.14159265358979323846
 
-
 struct s_sprite
 {
 	double first;
@@ -96,7 +95,7 @@ struct s_info
 	double savedir;
 	int *dataimg;
 	void *tximg;
-	int color; //color tmp pour les murs, sol, plafond
+	int color;
 	int texnum;
 	double wallx;
 	int tex_x;
@@ -164,6 +163,20 @@ struct s_mlx
 };
 typedef struct s_mlx t_mlx;
 
+
+void ft_error(char *str);
+void draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
+void line_check(t_cub *cub, int j);
+void first_line_check(t_cub *cub);
+void last_line_check(t_cub *cub);
+void bitmap(t_mlx *mlx);
+int check_around(t_cub *cub, int j, int i, char *s);
+int find_in(char c, char *str);
+void parsing_map(t_cub *cub, char *line);
+void fill_sp(t_cub *cub);
+int check_map(t_cub *cub);
+
+/*
 //parse_info.c
 int parsing_informations(t_cub *cub, t_info *infos, char *line);
 void show_parsed(t_cub *cub);
@@ -196,10 +209,16 @@ void first_line_check(t_cub *cub);
 void last_line_check(t_cub *cub);
 
 
-void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
 void		sort_spr(t_info *infos, t_cub *cub);
-void    start_spr(t_info *infos, t_cub *cub);
 
 void	bitmap(t_mlx *mlx);
 
+
+//sprite.c
+void    start_spr(t_info *infos, t_cub *cub);
+void    init_spr(t_info *infos, t_cub *cub);
+void    get_nb_spr(t_info *infos, t_cub *cub);
+void    disp_spr(t_info *infos, t_cub *cub, t_mlx *mlx);
+void    calc_spr(t_info *infos, t_cub *cub, t_mlx *mlx);
+void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);*/
 #endif

@@ -1,21 +1,19 @@
 #include "../headers/cub.h"
 
-void fill_sp(t_cub *cub)
+void	fill_sp(t_cub *cub)
 {
-	int i;
-	int j;
-	int len;
-	char *s;
+	int	i;
+	int	j;
+	int	len;
+	char	*s;
 
 	len = 0;
 	j = -1;
 	while (++j < cub->parse.nbline)
 	{
-		// printf("(coucou)\n");
 		i = -1;
 		len = ft_strlen(cub->parse.map[j]);
 		s = ft_strdup(cub->parse.map[j]);
-		// printf("s : (%s) ---- len : %d \n", s, len);
 		if (!(cub->parse.map[j] = (char *)malloc(sizeof(char) * cub->parse.strlen + 1)))
 			return ((void)NULL);
 		while (++i < cub->parse.strlen)
@@ -25,23 +23,23 @@ void fill_sp(t_cub *cub)
 		while (++i < len)
 			cub->parse.map[j][i] = s[i];
 	}
-
 }
 
-int find_in(char c, char *str)
+int	find_in(char c, char *str)
 {
 	int i;
+
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
-			return 1;
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
-void show_map(t_cub *cub)
+void	show_map(t_cub *cub)
 {
 	int x;
 
@@ -54,7 +52,7 @@ void show_map(t_cub *cub)
 	}
 }
 
-void parsing_map(t_cub *cub, char *line)
+void	parsing_map(t_cub *cub, char *line)
 {
 	int i;
 
@@ -75,12 +73,11 @@ void parsing_map(t_cub *cub, char *line)
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
 }
 
-int check_map(t_cub *cub)
+int	check_map(t_cub *cub)
 {
 	int y;
 
 	y = 1;
-	// printf("(coucou)\n");
 	if (cub->parse.side == '0')
 		ft_error("Map invalid : No side found...\n");
 	first_line_check(cub);
@@ -90,5 +87,5 @@ int check_map(t_cub *cub)
 		y++;
 	}
 	last_line_check(cub);
-	return 0;
+	return (0);
 }
