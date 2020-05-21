@@ -24,19 +24,6 @@ void	setdrawp(t_mlx *mlx, t_info *infos, t_cub *cub)
 	infos->lineHeight / 2) * infos->step;
 }
 
-void	raydirxy(t_info *infos, t_cub *cub)
-{
-	infos->mapx = (int)infos->posx;
-	infos->mapy = (int)infos->posy;
-	infos->camerax = 2 * infos->x / (double)infos->RESX - 1;
-	infos->raydirx = infos->dirx + infos->planex * infos->camerax;
-	infos->raydiry = infos->diry + infos->planey * infos->camerax;
-	infos->deltadistx = (infos->raydiry == 0) ? 0 :
-	((infos->raydirx == 0) ? 1 : fabs(1 / infos->raydirx));
-	infos->deltadisty = (infos->raydirx == 0) ? 0 :
-	((infos->raydiry == 0) ? 1 : fabs(1 / infos->raydiry));
-}
-
 void	sidedistxy(t_info *infos, t_cub *cub)
 {
 	infos->hit = 0;
@@ -114,8 +101,7 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 
-
-int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
+int	raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 	infos->txtr[0].img = mlx_xpm_file_to_image(mlx->mlx_ptr,
 	cub->parse.north, &infos->txtr[0].width, &infos->txtr[0].height);
