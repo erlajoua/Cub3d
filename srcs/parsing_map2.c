@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 01:17:20 by tsarafia          #+#    #+#             */
+/*   Updated: 2020/05/22 01:17:44 by tsarafia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub.h"
 
-int	last_checkaround(t_cub *cub, int i, int j, char *s)
+int		last_checkaround(t_cub *cub, int i, int j, char *s)
 {
 	if (find_in(cub->parse.map[j][i - 1], s)
 			&& find_in(cub->parse.map[j][i + 1], s)
@@ -63,7 +75,7 @@ void	last_line_check(t_cub *cub)
 	}
 }
 
-int	check_around(t_cub *cub, int j, int i, char *s)
+int		check_around(t_cub *cub, int j, int i, char *s)
 {
 	if (cub->parse.map[j][i] == cub->parse.side)
 	{

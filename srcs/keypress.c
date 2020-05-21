@@ -6,7 +6,7 @@
 /*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 00:37:37 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 00:56:15 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/22 01:01:38 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	updown(t_info *infos, t_cub *cub, int key)
 	dirside = cub->parse.side;
 	infos->mvspeed *= (key == 115) ? -1 : 1;
 	if (cub->parse.map[(int)(infos->posx + infos->dirx *
-				infos->mvspeed)][(int)(infos->posy)] == '0'
-			|| cub->parse.map[(int)(infos->posx + infos->dirx *
-				infos->mvspeed)][(int)(infos->posy)] == dirside)
+	infos->mvspeed)][(int)(infos->posy)] == '0'
+	|| cub->parse.map[(int)(infos->posx + infos->dirx *
+	infos->mvspeed)][(int)(infos->posy)] == dirside)
 		infos->posx += infos->dirx * infos->mvspeed;
 	if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry *
-				infos->mvspeed)] == '0'
-			|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry *
-				infos->mvspeed)] == dirside)
+	infos->mvspeed)] == '0'
+	|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy + infos->diry *
+	infos->mvspeed)] == dirside)
 		infos->posy += infos->diry * infos->mvspeed;
 }
 
@@ -37,14 +37,14 @@ void	mv_lr(t_info *infos, t_cub *cub, int key)
 	dirside = cub->parse.side;
 	infos->mvspeed *= (key == 100) ? -1 : 1;
 	if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx *
-				infos->mvspeed)] == '0'
-			|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx *
-				infos->mvspeed)] == dirside)
+	infos->mvspeed)] == '0'
+	|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx *
+	infos->mvspeed)] == dirside)
 		infos->posy -= infos->dirx * infos->mvspeed;
 	if (cub->parse.map[(int)(infos->posx + infos->mvspeed *
-				infos->diry)][(int)(infos->posy)] == '0'
-			|| cub->parse.map[(int)(infos->posx + infos->mvspeed *
-				infos->diry)][(int)(infos->posy)] == dirside)
+	infos->diry)][(int)(infos->posy)] == '0'
+	|| cub->parse.map[(int)(infos->posx + infos->mvspeed *
+	infos->diry)][(int)(infos->posy)] == dirside)
 		infos->posx += infos->diry * infos->mvspeed;
 }
 
@@ -64,7 +64,7 @@ void	cam_lr(t_info *infos, int key)
 	infos->planey = oldplanex * sin(angle) + infos->planey * cos(angle);
 }
 
-int	keypressed(int key, void *p)
+int		keypressed(int key, void *p)
 {
 	void		**recup;
 	t_info		*infos;

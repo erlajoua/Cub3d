@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 01:26:55 by tsarafia          #+#    #+#             */
+/*   Updated: 2020/05/22 01:26:56 by tsarafia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub.h"
 
 void	start_spr(t_info *infos)
 {
-	int		i;
+	int			i;
 	double		first;
 	double		second;
 	t_sprite	tmp;
@@ -96,5 +108,5 @@ void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx)
 	get_nb_spr(infos, cub);
 	init_spr(infos, cub);
 	start_spr(infos);
-	calc_spr(infos,  mlx);
+	calc_spr(infos, mlx);
 }

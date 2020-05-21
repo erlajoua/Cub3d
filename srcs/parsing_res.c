@@ -68,7 +68,7 @@ void	parsing_res_y(t_cub *cub, char *line)
 	cub->parse.res_y[start] = '\0';
 }
 
-int	parsing_res(t_cub *cub, t_info *infos, char *line)
+int		parsing_res(t_cub *cub, t_info *infos, char *line)
 {
 	parsing_res_x(cub, line);
 	parsing_res_y(cub, line);

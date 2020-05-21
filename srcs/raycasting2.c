@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 01:22:30 by tsarafia          #+#    #+#             */
+/*   Updated: 2020/05/22 01:22:32 by tsarafia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub.h"
 
 void	drawsky(t_mlx *mlx, t_info *infos, t_cub *cub)
@@ -44,7 +56,7 @@ void	draw(t_mlx *mlx, t_info *infos, t_cub *cub)
 	while (k < infos->RESY)
 	{
 		mlx->img.data[infos->x + k * infos->RESX] = 256 * 256 *
-		cub->parse.floor_rgb[0] +  256 * cub->parse.floor_rgb[1] +
+		cub->parse.floor_rgb[0] + 256 * cub->parse.floor_rgb[1] +
 		cub->parse.floor_rgb[2];
 		k++;
 	}
@@ -58,38 +70,8 @@ void	initvalue(t_info *infos, t_cub *cub)
 	infos->diry = 0;
 	infos->planex = 0;
 	infos->planey = 0;
-	if (cub->parse.side == 'N')
-	{
-		infos->dirx = -1;
-		infos->diry = 0;
-		infos->planex = 0;
-		infos->planey = -0.66;
-		infos->savedir = -1;
-	}
-	if (cub->parse.side == 'W')
-	{
-		infos->dirx = 0;
-		infos->diry = 1;
-		infos->planex = -0.66;
-		infos->planey = 0;
-		infos->savedir = -1;
-	}
-	if (cub->parse.side == 'S')
-	{
-		infos->dirx = 1;
-		infos->diry = 0;
-		infos->planex = 0;
-		infos->planey = 0.66;
-		infos->savedir = 1;
-	}
-	if (cub->parse.side == 'E')
-	{
-		infos->dirx = 0;
-		infos->diry = -1;
-		infos->planex = 0.66;
-		infos->planey = 0;
-		infos->savedir = 1;
-	}
+	init_nw(infos, cub);
+	init_se(infos, cub);
 }
 
 void	chose_color(t_info *infos)

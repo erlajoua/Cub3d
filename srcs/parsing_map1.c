@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map1.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 00:37:37 by tsarafia          #+#    #+#             */
+/*   Updated: 2020/05/22 01:15:38 by tsarafia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub.h"
 
 void	fill_sp(t_cub *cub)
 {
-	int	i;
-	int	j;
-	int	len;
+	int		i;
+	int		j;
+	int		len;
 	char	*s;
 
 	len = 0;
@@ -26,7 +38,7 @@ void	fill_sp(t_cub *cub)
 	}
 }
 
-int	find_in(char c, char *str)
+int		find_in(char c, char *str)
 {
 	int i;
 
@@ -63,7 +75,7 @@ void	parsing_map(t_cub *cub, char *line)
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
 }
 
-int	check_map(t_cub *cub)
+int		check_map(t_cub *cub)
 {
 	int y;
 

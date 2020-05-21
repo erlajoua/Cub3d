@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 01:25:13 by tsarafia          #+#    #+#             */
+/*   Updated: 2020/05/22 01:25:15 by tsarafia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub.h"
 
 void	setdrawp(t_info *infos, t_cub *cub)
@@ -101,7 +113,7 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 
-int	raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
+int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 	infos->txtr[0].img = mlx_xpm_file_to_image(mlx->mlx_ptr,
 	cub->parse.north, &infos->txtr[0].width, &infos->txtr[0].height);
