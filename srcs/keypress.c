@@ -1,6 +1,6 @@
 #include "../headers/cub.h"
 
-void	updown(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
+void	updown(t_info *infos, t_cub *cub, int key)
 {
 	char dirside;
 
@@ -18,7 +18,7 @@ void	updown(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 		infos->posy += infos->diry * infos->mvspeed;
 }
 
-void	mv_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
+void	mv_lr(t_info *infos, t_cub *cub, int key)
 {
 	char dirside;
 
@@ -36,7 +36,7 @@ void	mv_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
 		infos->posx += infos->diry * infos->mvspeed;
 }
 
-void	cam_lr(t_mlx *mlx, t_info *infos, t_cub *cub, int key)
+void	cam_lr(t_info *infos, int key)
 {
 	double olddirx;
 	double oldplanex;
@@ -56,29 +56,29 @@ int	keypressed(int key, void *p)
 {
 	void		**recup;
 	t_info		*infos;
-	t_mlx		*mlx;
+	// t_mlx		*mlx;
 	t_cub		*cub;
 
 	recup = (void **)p;
 	infos = recup[0];
-	mlx = recup[1];
+	// mlx = recup[1];
 	cub = recup[2];
 	if (key == 65307)
 		exit(0);
 	infos->mvspeed = 0.4;
 	if (key == 122 || key == 115)
 	{
-		updown(mlx, infos, cub, key);
+		updown(infos, cub, key);
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	else if (key == 113 || key == 100)
 	{
-		mv_lr(mlx, infos, cub, key);
+		mv_lr(infos, cub, key);
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	else if (key == 65361 || key == 65363)
 	{
-		cam_lr(mlx, infos, cub, key);
+		cam_lr(infos, key);
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	}
 	return (1);

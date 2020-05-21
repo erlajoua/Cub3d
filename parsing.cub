@@ -1,0 +1,18 @@
+R 400 400
+
+NO ./textures/north.xpm
+SO ./textures/west.xpm
+WE ./textures/south.xpm
+EA ./textures/east.xpm
+S ./textures/sprite.xpm
+F 99, 34,93
+C 10, 74,4
+
+
+11111111111111
+100200000000001
+10000011111111
+100N001
+1000001
+1000001
+1111111

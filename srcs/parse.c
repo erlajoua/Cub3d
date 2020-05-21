@@ -1,18 +1,18 @@
 #include "../headers/cub.h"
-#include "parsing_map1.c"
-#include "parsing_map2.c"
-#include "parsing_res.c"
-#include "parsing_rgb.c"
-#include "parsing_texture.c"
-#include "parse_info.c"
-#include "raycasting3.c"
-#include "raycasting2.c"
-#include "raycasting.c"
-#include "bitmap.c"
-#include "sprite2.c"
-#include "sprite.c"
-#include "utils.c"
-#include "keypress.c"
+// #include "parsing_map1.c"
+// #include "parsing_map2.c"
+// #include "parsing_res.c"
+// #include "parsing_rgb.c"
+// #include "parsing_texture.c"
+// #include "parse_info.c"
+// #include "raycasting3.c"
+// #include "raycasting2.c"
+// #include "raycasting.c"
+// #include "bitmap.c"
+// #include "sprite2.c"
+// #include "sprite.c"
+// #include "utils.c"
+// #include "keypress.c"
 
 void	want_save(t_cub *cub, int ac, char *av2)
 {
@@ -78,7 +78,6 @@ void	ft_start(t_cub *cub)
 
 int	main(int ac, char **av)
 {
-	char	*line;
 	void	*params[3];
 	t_mlx	mlx;
 	t_info	infos;

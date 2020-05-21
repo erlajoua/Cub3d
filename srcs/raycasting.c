@@ -1,6 +1,6 @@
 #include "../headers/cub.h"
 
-void	setdrawp(t_mlx *mlx, t_info *infos, t_cub *cub)
+void	setdrawp(t_info *infos, t_cub *cub)
 {
 	infos->drawstart = -infos->lineHeight / 2 + infos->RESY / 2;
 	if (infos->drawstart < 0)
@@ -24,7 +24,7 @@ void	setdrawp(t_mlx *mlx, t_info *infos, t_cub *cub)
 	infos->lineHeight / 2) * infos->step;
 }
 
-void	sidedistxy(t_info *infos, t_cub *cub)
+void	sidedistxy(t_info *infos)
 {
 	infos->hit = 0;
 	if (infos->raydirx < 0)
@@ -85,8 +85,8 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub)
 	infos->x = 0;
 	while (infos->x < infos->RESX)
 	{
-		raydirxy(infos, cub);
-		sidedistxy(infos, cub);
+		raydirxy(infos);
+		sidedistxy(infos);
 		dda(infos, cub);
 		draw(mlx, infos, cub);
 		infos->zbuffer[infos->x] = infos->perpwalldist;
@@ -118,7 +118,7 @@ int	raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 	&mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 	if (!(infos->zbuffer = malloc(sizeof(double) * infos->RESX)))
 		ft_error("malloc zbuffer error");
-	initvalue(mlx, infos, cub);
+	initvalue(infos, cub);
 	infos->posx += 0.5;
 	infos->posy += 0.5;
 	all(infos, mlx, cub);

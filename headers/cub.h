@@ -15,8 +15,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../libft/libft.h"
-#include "../gnl/get_next_line.h"
+// #include "../libft/libft.h"
+// #include "../gnl/get_next_line.h"
 #include "../minilibx-linux/mlx.h"
 #include <math.h>
 #define BUFFER_SIZE 2048
@@ -164,61 +164,97 @@ struct s_mlx
 typedef struct s_mlx t_mlx;
 
 
-void ft_error(char *str);
-void draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
-void line_check(t_cub *cub, int j);
-void first_line_check(t_cub *cub);
-void last_line_check(t_cub *cub);
-void bitmap(t_mlx *mlx);
-int check_around(t_cub *cub, int j, int i, char *s);
-int find_in(char c, char *str);
-void parsing_map(t_cub *cub, char *line);
-void fill_sp(t_cub *cub);
-int check_map(t_cub *cub);
+//bitmap
+void	bitmap(t_mlx *mlx);
+void	header_bmp(t_mlx *mlx, int fd);
+void	vertical(int fd, t_mlx *mlx);
 
-/*
+//keypressed 
+int		keypressed(int key, void *p);
+void	cam_lr(t_info *infos, int key);
+void	mv_lr(t_info *infos, t_cub *cub, int key);
+void	updown(t_info *infos, t_cub *cub, int key);
+
 //parse_info.c
 int parsing_informations(t_cub *cub, t_info *infos, char *line);
 void show_parsed(t_cub *cub);
 int parsing_line(t_cub *cub, char *str);
-//parsing_res.c
-void parsing_res_x(t_cub *cub, char *line);
-void parsing_res_y(t_cub *cub, char *line);
-int parsing_res(t_cub *cub, t_info *infos, char *line);
-//parsing_rgb.c
-int parsing_floor(t_cub *cub, char *line);
-int parsing_ceiling(t_cub *cub, char *line);
-//parsing_texture.c
-int parsing_north(t_cub *cub, char *line);
-int parsing_west(t_cub *cub, char *line);
-int parsing_east(t_cub *cub, char *line);
-int parsing_south(t_cub *cub, char *line);
+
 //parse.c
 void ft_start(t_cub *cub);
-void ft_error(char *str);
+void	init_window(t_mlx *mlx, t_info *infos);
+void	get_lines(t_cub *cub, t_info *infos, char *av1);
+void	want_save(t_cub *cub, int ac, char *av2);
+
+//parsing_res.c
+void	parsing_res_x(t_cub *cub, char *line);
+void	parsing_res_y(t_cub *cub, char *line);
+int		parsing_res(t_cub *cub, t_info *infos, char *line);
+
+//raycasting.c
+void	setdrawp(t_info *infos, t_cub *cub);
+void	sidedistxy(t_info *infos);
+void	dda(t_info *infos, t_cub *cub);
+void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
+int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
+
 //parsing_map1.c
 void fill_sp(t_cub *cub);
 int find_in(char c, char *str);
 void show_map(t_cub *cub);
 void parsing_map(t_cub *cub, char *line);
 int check_map(t_cub *cub);
+
 //parsing_map2.c
 int check_around(t_cub *cub, int j, int i, char *s);
 void line_check(t_cub *cub, int j);
 void first_line_check(t_cub *cub);
 void last_line_check(t_cub *cub);
 
+//parsing_res.c
+void parsing_res_x(t_cub *cub, char *line);
+void parsing_res_y(t_cub *cub, char *line);
+int parsing_res(t_cub *cub, t_info *infos, char *line);
 
-void		sort_spr(t_info *infos, t_cub *cub);
 
-void	bitmap(t_mlx *mlx);
+//parsing_rgb.c
+int parsing_floor(t_cub *cub, char *line);
+int parsing_ceiling(t_cub *cub, char *line);
 
+//parsing_texture.c
+int parsing_north(t_cub *cub, char *line);
+int parsing_west(t_cub *cub, char *line);
+int parsing_east(t_cub *cub, char *line);
+int parsing_south(t_cub *cub, char *line);
+int	parsing_sprite(t_cub *cub, char *line);
+
+//raycasting
+int	raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
+void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
+void	dda(t_info *infos, t_cub *cub);
+void	sidedistxy(t_info *infos);
+void	setdrawp(t_info *infos, t_cub *cub);
+
+//raycasting2
+void	chose_color(t_info *infos);
+void	initvalue(t_info *infos, t_cub *cub);
+void	draw(t_mlx *mlx, t_info *infos, t_cub *cub);
+void	drawwall(t_mlx *mlx, t_info *infos);
+void	drawsky(t_mlx *mlx, t_info *infos, t_cub *cub);
+
+//raycasting3
+void	raydirxy(t_info *infos);
 
 //sprite.c
-void    start_spr(t_info *infos, t_cub *cub);
+void    start_spr(t_info *infos);
 void    init_spr(t_info *infos, t_cub *cub);
 void    get_nb_spr(t_info *infos, t_cub *cub);
-void    disp_spr(t_info *infos, t_cub *cub, t_mlx *mlx);
-void    calc_spr(t_info *infos, t_cub *cub, t_mlx *mlx);
-void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);*/
+void    disp_spr(t_info *infos, t_mlx *mlx);
+void    calc_spr(t_info *infos, t_mlx *mlx);
+void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
+
+// void	ft_error(char *str);
+int		ft_strcmp(char *s1, char *s2);
+
+
 #endif

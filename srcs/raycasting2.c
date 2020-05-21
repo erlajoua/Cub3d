@@ -37,7 +37,7 @@ void	draw(t_mlx *mlx, t_info *infos, t_cub *cub)
 	int k;
 
 	chose_color(infos);
-	setdrawp(mlx, infos, cub);
+	setdrawp(infos, cub);
 	drawsky(mlx, infos, cub);
 	k = infos->drawend;
 	drawwall(mlx, infos);
@@ -50,7 +50,7 @@ void	draw(t_mlx *mlx, t_info *infos, t_cub *cub)
 	}
 }
 
-void	initvalue(t_mlx *mlx, t_info *infos, t_cub *cub)
+void	initvalue(t_info *infos, t_cub *cub)
 {
 	infos->posx = cub->parse.pos[0];
 	infos->posy = cub->parse.pos[1];

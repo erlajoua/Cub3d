@@ -28,7 +28,7 @@ void	init_spr(t_info *infos, t_cub *cub)
 	}
 }
 
-void	disp_spr(t_info *infos, t_cub *cub, t_mlx *mlx)
+void	disp_spr(t_info *infos, t_mlx *mlx)
 {
 	int i;
 	int j;

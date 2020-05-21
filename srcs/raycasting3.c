@@ -1,6 +1,6 @@
 #include "../headers/cub.h"
 
-void	raydirxy(t_info *infos, t_cub *cub)
+void	raydirxy(t_info *infos)
 {
 	infos->mapx = (int)infos->posx;
 	infos->mapy = (int)infos->posy;
