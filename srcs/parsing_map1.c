@@ -14,7 +14,8 @@ void	fill_sp(t_cub *cub)
 		i = -1;
 		len = ft_strlen(cub->parse.map[j]);
 		s = ft_strdup(cub->parse.map[j]);
-		if (!(cub->parse.map[j] = (char *)malloc(sizeof(char) * cub->parse.strlen + 1)))
+		if (!(cub->parse.map[j] = (char *)malloc(sizeof(char) *
+						cub->parse.strlen + 1)))
 			return ((void)NULL);
 		while (++i < cub->parse.strlen)
 			cub->parse.map[j][i] = ' ';
@@ -39,19 +40,6 @@ int	find_in(char c, char *str)
 	return (0);
 }
 
-void	show_map(t_cub *cub)
-{
-	int x;
-
-	x = 0;
-	while (x < cub->parse.nbline)
-	{
-		printf("%d - ", x + 1);
-		printf("%s\n", cub->parse.map[x]);
-		x++;
-	}
-}
-
 void	parsing_map(t_cub *cub, char *line)
 {
 	int i;
@@ -61,11 +49,13 @@ void	parsing_map(t_cub *cub, char *line)
 	{
 		if (cub->parse.side == '0')
 		{
-			if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+			if (line[i] == 'N' || line[i] == 'S'
+					|| line[i] == 'E' || line[i] == 'W')
 				cub->parse.side = line[i];
 		}
-		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-			ft_error("Map invalid : There's more than one spawn created...\n");
+		else if (line[i] == 'N' || line[i] == 'S'
+				|| line[i] == 'E' || line[i] == 'W')
+			ft_error("Map invalid : Spawn's number > 1\n");
 		if (!find_in(line[i], " 012NSEW"))
 			ft_error("Map invalid : Invalid character in map content...\n");
 		i++;

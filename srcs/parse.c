@@ -8,6 +8,56 @@
 #include "raycasting.c"
 #include "bitmap.c"
 #include "sprite.c"
+#include "utils.c"
+
+void	want_save(t_cub *cub, int ac, char *av2)
+{
+	if (ac == 3)
+	{
+		if (ft_strcmp(av2, "--save") == 0)
+			cub->parse.save = 1;
+		else
+			ft_error("second argument is not --save");
+	}
+	else
+		cub->parse.save = 0;
+}
+
+void	get_lines(t_cub *cub, t_info *infos, char *av1)
+{
+	int	ret;
+	int	i;
+	int	fd;
+	char	*str;
+
+	fd = open(av1, O_RDONLY);
+	ret = 0;
+	i = 0;
+	while ((ret = get_next_line(fd, &str)) > 0)
+		parsing_informations(cub, infos, str);
+	close(fd);
+	ret = 0;
+	fd = open(av1, O_RDONLY);
+	while ((ret = get_next_line(fd, &str)) > 0 && cub->parse.flag != 2)
+		parsing_line(cub, str);
+	while ((ret = get_next_line(fd, &str)) > 0)
+		parsing_line(cub, str);
+	close(fd);
+	ret = 0;
+	fd = open(av1, O_RDONLY);
+	cub->parse.map = (char **)malloc(sizeof(char *) * cub->parse.nbline + 1);
+	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
+		if (find_in(str[0], " 012") && ++i)
+			parsing_map(cub, str);
+}
+
+void	init_window(t_mlx *mlx, t_info *infos)
+{
+	mlx->mlx_ptr = mlx_init();
+	mlx->img.width = infos->RESX;
+	mlx->img.height = infos->RESY;
+	mlx->win = mlx_new_window(mlx->mlx_ptr, infos->RESX, infos->RESY, "Cub3d");
+}
 
 void	ft_start(t_cub *cub)
 {
@@ -20,77 +70,20 @@ void	ft_start(t_cub *cub)
 	cub->parse.flag = 0;
 }
 
-void	ft_error(char *str)
-{
-	write(1, "Error\n", 6);
-	write(1, str, ft_strlen(str));
-	exit(0);
-}
-
 int		main(int ac, char **av)
 {
 	char	*line;
-	int		fd;
-	int		rdbytes;
-	int		ret;
-	int		i;
-	int		j;
-	char	*str;
-	char	*another;
 	void	*params[3];
 	t_mlx	mlx;
 	t_info	infos;
 	t_cub	cub;
 
-	ret = 0;
-	i = 0;
-	j = 0;
 	ft_start(&cub);
-	fd = open(av[1], O_RDONLY);
-	i = 0;
-	while ((ret = get_next_line(fd, &str)) > 0)
-	{
-		parsing_informations(&cub, &infos, str);
-	}
-	close(fd);
-	ret = 0;
-	fd = open(av[1], O_RDONLY);
-	i = 0;
-	while ((ret = get_next_line(fd, &str)) > 0 && cub.parse.flag != 2)
-		parsing_line(&cub, str);
-	while ((ret = get_next_line(fd, &str)) > 0)
-		parsing_line(&cub, str);
-	close(fd);
-	ret = 0;
-	fd = open(av[1], O_RDONLY);
-	i = 0;
-	cub.parse.map = (char **)malloc(sizeof(char *) * cub.parse.nbline + 1);
-	while ((ret = get_next_line(fd, &str)) > 0 && i < cub.parse.nbline)
-	{
-		if (find_in(str[0], " 012"))
-		{
-			parsing_map(&cub, str);
-			i++;
-		}
-	}
+	get_lines(&cub, &infos, av[1]);
 	fill_sp(&cub);
 	check_map(&cub);
-	if (ac == 3)
-	{
-		if (ft_strcmp(av[2], "--save") == 0)
-		{
-			printf("alright\n");
-			cub.parse.save = 1;
-		}
-		else
-			ft_error("second argument is not --save");
-	}
-	else
-		cub.parse.save = 0;
-	mlx.mlx_ptr = mlx_init();
-	mlx.img.width = infos.RESX;
-	mlx.img.height = infos.RESY;
-	mlx.win = mlx_new_window(mlx.mlx_ptr, infos.RESX, infos.RESY, "Cub3d");
+	want_save(&cub, ac, av[2]);
+	init_window(&mlx, &infos);
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
 	params[2] = (void *)&cub;

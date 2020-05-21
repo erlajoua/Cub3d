@@ -1,5 +1,15 @@
 #include "../headers/cub.h"
 
+int	last_checkaround(t_cub *cub, int i, int j, char *s)
+{
+	if (find_in(cub->parse.map[j][i - 1], s)
+			&& find_in(cub->parse.map[j][i + 1], s)
+			&& find_in(cub->parse.map[j - 1][i], s)
+			&& find_in(cub->parse.map[j + 1][i], s))
+		return (1);
+	return (0);
+}
+
 void	line_check(t_cub *cub, int j)
 {
 	int i;
@@ -17,7 +27,7 @@ void	line_check(t_cub *cub, int j)
 				ft_error("Map invalid : Character One\n");
 		if ((cub->parse.map[j][i] == '0') || (cub->parse.map[j][i] == '2')
 				|| ((cub->parse.map[j][i] == 'N' || cub->parse.map[j][i] == 'S'
-						|| cub->parse.map[j][i] == 'E' || cub->parse.map[j][i] == 'W')))
+				|| cub->parse.map[j][i] == 'E' || cub->parse.map[j][i] == 'W')))
 			if (!check_around(cub, j, i, "012NSEW"))
 				ft_error("Map invalid : 0,2,N,S,E,W, or other\n");
 		i++;
@@ -76,11 +86,7 @@ int	check_around(t_cub *cub, int j, int i, char *s)
 	}
 	else
 	{
-		if (find_in(cub->parse.map[j][i - 1], s)
-				&& find_in(cub->parse.map[j][i + 1], s)
-				&& find_in(cub->parse.map[j - 1][i], s)
-				&& find_in(cub->parse.map[j + 1][i], s))
-			return (1);
+		last_checkaround(cub, i, j, s);
 	}
-	return (0);
+	return (1);
 }
