@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:59:08 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/03/11 14:57:45 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/22 00:41:59 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-// #include "../libft/libft.h"
-// #include "../gnl/get_next_line.h"
+ #include "../libft/libft.h"
+ #include "../gnl/get_next_line.h"
 #include "../minilibx-linux/mlx.h"
 #include <math.h>
 #define BUFFER_SIZE 2048
@@ -255,6 +255,6 @@ void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
 
 // void	ft_error(char *str);
 int		ft_strcmp(char *s1, char *s2);
-
+void	ft_error(char *str);
 
 #endif

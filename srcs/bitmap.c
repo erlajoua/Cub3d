@@ -1,34 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bitmap.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 00:36:54 by tsarafia          #+#    #+#             */
+/*   Updated: 2020/05/22 00:38:14 by tsarafia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub.h"
-
-// void	fill_data(t_mlx *mlx, int fd)
-// {
-// 	int i;
-
-// 	i = mlx->img.width * mlx->img.height - 1;
-// 	while (i >= 0)
-// 	{
-// 		write(fd, &mlx->img.data[i * mlx->img.bpp / 8], 4);
-// 		i--;
-// 	}
-// }
-
-// void	vertical_pix(t_mlx *mlx, int line, int *i, int j)
-// {
-// 	char	save;
-// 	int		k;
-
-// 	k = 3;
-// 	while (k >= 0)
-// 	{
-// 		save = mlx->img.data[*i + (line * mlx->img.size_l)];
-// 		mlx->img.data[*i + (line * mlx->img.size_l)] =
-// 			mlx->img.data[j - k + (line * mlx->img.size_l - 1)];
-// 		mlx->img.data[j - k + (line * mlx->img.size_l - 1)] =
-// 			save;
-// 		k--;
-// 		*i = *i + 1;
-// 	}
-// }
 
 void	vertical(int fd, t_mlx *mlx)
 {
