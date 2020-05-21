@@ -5,10 +5,12 @@
 #include "parsing_rgb.c"
 #include "parsing_texture.c"
 #include "parse_info.c"
+#include "raycasting2.c"
 #include "raycasting.c"
 #include "bitmap.c"
 #include "sprite.c"
 #include "utils.c"
+#include "keypress.c"
 
 void	want_save(t_cub *cub, int ac, char *av2)
 {
@@ -20,7 +22,9 @@ void	want_save(t_cub *cub, int ac, char *av2)
 			ft_error("second argument is not --save");
 	}
 	else
+	{
 		cub->parse.save = 0;
+	}
 }
 
 void	get_lines(t_cub *cub, t_info *infos, char *av1)
@@ -70,7 +74,7 @@ void	ft_start(t_cub *cub)
 	cub->parse.flag = 0;
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	char	*line;
 	void	*params[3];
