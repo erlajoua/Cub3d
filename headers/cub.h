@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:59:08 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 00:41:59 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/22 11:21:36 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ struct s_info
 	int drawend_x;
 	int drawend_y;
 	int spr_w;
-
 	double posx;
 	double posy;
 	double mvspeed;
@@ -108,6 +107,9 @@ struct s_info
 	int infotxtr;
 	int RESX;
 	int RESY;
+	int *datatest;
+	int res;
+	int txt;
 };
 typedef struct s_info t_info;
 
@@ -163,6 +165,16 @@ struct s_mlx
 };
 typedef struct s_mlx t_mlx;
 
+/*void	ft_error(char *str);
+void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
+void	bitmap(t_mlx *mlx);
+void	chose_color(t_info *infos);
+void first_line_check(t_cub *cub);
+void last_line_check(t_cub *cub);
+void line_check(t_cub *cub, int j);
+void	setdrawp(t_info *infos, t_cub *cub);
+int check_around(t_cub *cub, int j, int i, char *s);
+void	all(t_info *infos, t_mlx *mlx, t_cub *cub);*/
 
 //bitmap
 void	bitmap(t_mlx *mlx);
@@ -189,7 +201,7 @@ void	want_save(t_cub *cub, int ac, char *av2);
 //parsing_res.c
 void	parsing_res_x(t_cub *cub, char *line);
 void	parsing_res_y(t_cub *cub, char *line);
-int		parsing_res(t_cub *cub, t_info *infos, char *line);
+int	parsing_res(t_cub *cub, t_info *infos, char *line);
 
 //raycasting.c
 void	setdrawp(t_info *infos, t_cub *cub);

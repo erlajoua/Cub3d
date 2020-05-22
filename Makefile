@@ -19,13 +19,13 @@ SRCS =	srcs/bitmap.c 			\
 
 OBJS = $(SRCS:.c=.o)
 
-HEAD = cub.h
+HEAD = headers/cub.h
 
 AR = ar rc
 
 LIB = ranlib
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra
 
 all		: $(NAME)
 

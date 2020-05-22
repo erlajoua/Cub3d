@@ -6,13 +6,13 @@
 /*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 01:20:05 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 01:21:07 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/22 11:02:02 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub.h"
 
-int	parsing_north(t_cub *cub, char *line)
+int		parsing_north(t_cub *cub, char *line)
 {
 	while (*line != '.')
 		line++;
@@ -20,7 +20,8 @@ int	parsing_north(t_cub *cub, char *line)
 		ft_error("parsing fail");
 	return (1);
 }
-int	parsing_west(t_cub *cub, char *line)
+
+int		parsing_west(t_cub *cub, char *line)
 {
 	while (*line != '.')
 		line++;
@@ -29,7 +30,7 @@ int	parsing_west(t_cub *cub, char *line)
 	return (1);
 }
 
-int	parsing_east(t_cub *cub, char *line)
+int		parsing_east(t_cub *cub, char *line)
 {
 	while (*line != '.')
 		line++;
@@ -38,7 +39,7 @@ int	parsing_east(t_cub *cub, char *line)
 	return (1);
 }
 
-int	parsing_south(t_cub *cub, char *line)
+int		parsing_south(t_cub *cub, char *line)
 {
 	while (*line != '.')
 		line++;
@@ -47,7 +48,7 @@ int	parsing_south(t_cub *cub, char *line)
 	return (1);
 }
 
-int	parsing_sprite(t_cub *cub, char *line)
+int		parsing_sprite(t_cub *cub, char *line)
 {
 	while (*line != '.')
 		line++;
