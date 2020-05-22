@@ -6,7 +6,7 @@
 /*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 01:28:44 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 11:21:52 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/22 11:33:36 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "sprite2.c"
 #include "sprite.c"
 #include "keypress.c"
+#include "utils.c"
 
 void	want_save(t_cub *cub, int ac, char *av2)
 {
