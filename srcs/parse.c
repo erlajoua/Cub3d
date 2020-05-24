@@ -6,25 +6,25 @@
 /*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 01:28:44 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 11:33:36 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/23 12:16:59 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub.h"
-#include "parsing_map1.c"
-#include "parsing_map2.c"
-#include "parsing_res.c"
-#include "parsing_rgb.c"
-#include "parsing_texture.c"
-#include "parse_info.c"
-#include "raycasting3.c"
-#include "raycasting2.c"
-#include "raycasting.c"
-#include "bitmap.c"
-#include "sprite2.c"
-#include "sprite.c"
-#include "keypress.c"
-#include "utils.c"
+//  #include "parsing_map1.c"
+//  #include "parsing_map2.c"
+//  #include "parsing_res.c"
+//  #include "parsing_rgb.c"
+//  #include "parsing_texture.c"
+//  #include "parse_info.c"
+//  #include "raycasting3.c"
+//  #include "raycasting2.c"
+//  #include "raycasting.c"
+//  #include "bitmap.c"
+//  #include "sprite2.c"
+//  #include "sprite.c"
+//  #include "keypress.c"
+//  #include "utils.c"
 
 void	want_save(t_cub *cub, int ac, char *av2)
 {

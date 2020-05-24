@@ -64,11 +64,9 @@ void	disp_spr2(t_info *infos, t_mlx *mlx, int txtr_y, int i)
 void	disp_spr(t_info *infos, t_mlx *mlx)
 {
 	int i;
-	int j;
 	int txtr_y;
 
 	i = 0;
-	j = 0;
 	txtr_y = 0;
 	i = infos->drawstart_x;
 	while (i < infos->drawend_x)

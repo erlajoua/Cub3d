@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../headers/cub.h"
-
+// #include <math.h>
 void	updown(t_info *infos, t_cub *cub, int key)
 {
 	char dirside;
