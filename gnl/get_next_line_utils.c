@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+//#include "../libft/libft.h"
 
 /*int		ft_strlen(char *str)
 {

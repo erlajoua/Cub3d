@@ -11,18 +11,20 @@
 /* ************************************************************************** */
 
 #ifndef CUB_H
-#define CUB_H
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
- #include "../libft/libft.h"
- #include "../gnl/get_next_line.h"
-#include "../minilibx-linux/mlx.h"
-#include <math.h>
-#define BUFFER_SIZE 2048
-#define WIN_W 400
-#define WIN_H 400
-#define D_PI 3.14159265358979323846
+# define CUB_H
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <math.h>
+# include <fcntl.h>
+
+// #include "../libft/libft.h"
+// #include "../gnl/get_next_line.h"
+# include "../minilibx-linux/mlx.h"
+// #define BUFFER_SIZE 2048
+# define WIN_W 400
+# define WIN_H 400
+# define D_PI 3.14159265358979323846
 
 struct s_sprite
 {
@@ -268,5 +270,19 @@ void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
 // void	ft_error(char *str);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_error(char *str);
+
+void	init_nw(t_info *infos, t_cub *cub);
+void	init_se(t_info *infos, t_cub *cub);
+
+//libft
+int	ft_strlen(char *str);
+char	*ft_strdup(const char *s1);
+int	ft_isdigit(int c);
+int	ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
+
+
+//get_next_line
+int			get_next_line(int fd, char **line);
 
 #endif

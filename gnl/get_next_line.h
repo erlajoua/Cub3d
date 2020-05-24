@@ -12,7 +12,8 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# include "../headers/cub.h"
+# define BUFFER_SIZE 2048
+// # include "../headers/cub.h"
 //# include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,8 +22,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-//char			*ft_strjoin(char const *s1, char const *s2);
-//int				ft_strlen(char *s);
+char			*ft_strjoin(char const *s1, char const *s2);
+int				ft_strlen(char *s);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_getline(char *str);
 char			*ft_getrest(char *str, int *empty_rest);

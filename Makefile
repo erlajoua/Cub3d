@@ -1,7 +1,5 @@
 NAME = Cub3D
 
-SRCS = srcs
-
 SRCS =	srcs/bitmap.c 			\
 		srcs/keypress.c 		\
 		srcs/parse_info.c 		\
@@ -15,7 +13,18 @@ SRCS =	srcs/bitmap.c 			\
 		srcs/raycasting2.c 		\
 		srcs/raycasting3.c 		\
 		srcs/sprite.c			\
-		srcs/sprite2.c
+		srcs/sprite2.c			\
+		srcs/utils.c 			\
+		libft/ft_atoi.c			\
+		libft/ft_bzero.c			\
+		libft/ft_isalnum.c		\
+		libft/ft_isalpha.c		\
+		libft/ft_isascii.c		\
+		libft/ft_isdigit.c		\
+		libft/ft_strdup.c			\
+		libft/ft_strlen.c		\
+		gnl/get_next_line.c		\
+		gnl/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -25,16 +34,13 @@ AR = ar rc
 
 LIB = ranlib
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -Werror
+LIBX = -L ./minilibx-linux/ -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd 
 
 all		: $(NAME)
 
-.c.o	:
-			gcc $(FLAGS) -c $< -o $(<:.c=.o)
-
 $(NAME)	:	$(OBJS)
-			$(AR) $(NAME) $(OBJS)
-			$(LIB) $(NAME)
+			gcc $(FLAGS) -o $(NAME) $(OBJS) $(LIBX)
 
 clean	:
 			rm -rf $(OBJS)

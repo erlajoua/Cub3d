@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../libft/libft.h"
-/*static void	ft_bzero(void *s, size_t n)
+// #include "../libft/libft.h"
+static void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
 
@@ -23,7 +23,7 @@
 		n--;
 	}
 }
-*/
+
 static int	ft_manage_rest(t_gnl *p, char **line, char **buffer)
 {
 	char	*rest;
