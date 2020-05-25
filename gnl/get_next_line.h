@@ -22,12 +22,13 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjjoin(char *s1, char *s2);
 int				ft_strlen(char *s);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_getline(char *str);
 char			*ft_getrest(char *str, int *empty_rest);
 int				get_next_line(int fd, char **line);
+void			ft_bzero(void *s, size_t n);
 
 struct			s_gnl
 {
