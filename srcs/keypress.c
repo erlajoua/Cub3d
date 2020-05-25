@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../headers/cub.h"
-// #include <math.h>
+
 void	updown(t_info *infos, t_cub *cub, int key)
 {
 	char dirside;
@@ -74,7 +74,14 @@ int		keypressed(int key, void *p)
 	infos = recup[0];
 	cub = recup[2];
 	if (key == 65307)
+	{
+		// for(int i = 0; i < cub->parse.nbline; i++)
+			// free(cub->parse.map[0]);
+			// free(cub->parse.map[1]);
+			// free(cub->parse.map[2]);
+
 		exit(0);
+	}
 	infos->mvspeed = 0.4;
 	if (key == 122 || key == 115)
 		updown(infos, cub, key);

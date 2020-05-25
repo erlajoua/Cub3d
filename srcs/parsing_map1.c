@@ -72,7 +72,8 @@ void	parsing_map(t_cub *cub, char *line)
 			ft_error("Map invalid : Invalid character in map content...\n");
 		i++;
 	}
-	cub->parse.map[cub->parse.i++] = ft_strdup(line);
+	cub->parse.map[cub->parse.i++] = ft_strdup(line); //ICI
+	free(line); //A VOIR SI ON GARDE OU PAS
 }
 
 int		check_map(t_cub *cub)

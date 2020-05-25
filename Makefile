@@ -16,12 +16,12 @@ SRCS =	srcs/bitmap.c 			\
 		srcs/sprite2.c			\
 		srcs/utils.c 			\
 		libft/ft_atoi.c			\
-		libft/ft_bzero.c			\
+		libft/ft_bzero.c		\
 		libft/ft_isalnum.c		\
 		libft/ft_isalpha.c		\
 		libft/ft_isascii.c		\
 		libft/ft_isdigit.c		\
-		libft/ft_strdup.c			\
+		libft/ft_strdup.c		\
 		libft/ft_strlen.c		\
 		gnl/get_next_line.c		\
 		gnl/get_next_line_utils.c
