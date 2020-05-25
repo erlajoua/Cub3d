@@ -75,7 +75,7 @@ void	parsing_map(t_cub *cub, char *line)
 		i++;
 	}
 	cub->parse.map[cub->parse.i++] = ft_strdup(line); //ICI
-	free(line); //A VOIR SI ON GARDE OU PAS
+	//free(line); //A VOIR SI ON GARDE OU PAS
 }
 
 int		check_map(t_cub *cub)

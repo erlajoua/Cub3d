@@ -53,14 +53,23 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 	ret = 0;
 	i = 0;
 	while ((ret = get_next_line(fd, &str)) > 0)
+	{
 		parsing_informations(cub, infos, str);
+		free(str);
+	}
 	close(fd);
 	ret = 0;
 	fd = open(av1, O_RDONLY);
 	while ((ret = get_next_line(fd, &str)) > 0 && cub->parse.flag != 2)
+	{
 		parsing_line(cub, str);
+		free(str);
+	}
 	while ((ret = get_next_line(fd, &str)) > 0)
+	{
 		parsing_line(cub, str);
+		free(str);
+	}
 	close(fd);
 	ret = 0;
 	fd = open(av1, O_RDONLY);
@@ -71,8 +80,11 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 		cub->parse.map[x] = 0;
 	}
 	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
+	{
 		if (find_in(str[0], " 012") && ++i)
 			parsing_map(cub, str);
+		free(str);
+	}
 }
 
 void	init_window(t_mlx *mlx, t_info *infos)
@@ -111,7 +123,7 @@ int		main(int ac, char **av)
 	params[1] = (void *)&mlx;
 	params[2] = (void *)&cub;
 	raycasting(&mlx, &infos, &cub);
-	
+
 	free(cub.parse.north);
 	free(cub.parse.south);
 	free(cub.parse.east);
