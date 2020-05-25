@@ -22,7 +22,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-char			*ft_strjjoin(char *s1, char *s2);
+char			*ft_strjjoin(char const *s1, char const *s2);
 int				ft_strlen(char *s);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_getline(char *str);

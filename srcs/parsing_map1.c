@@ -26,6 +26,7 @@ void	fill_sp(t_cub *cub)
 		i = -1;
 		len = ft_strlen(cub->parse.map[j]);
 		s = ft_strdup(cub->parse.map[j]);
+		free(cub->parse.map[j]);
 		if (!(cub->parse.map[j] = (char *)malloc(sizeof(char) *
 						cub->parse.strlen + 1)))
 			return ((void)NULL);
@@ -35,6 +36,7 @@ void	fill_sp(t_cub *cub)
 		i = -1;
 		while (++i < len)
 			cub->parse.map[j][i] = s[i];
+		free(s);
 	}
 }
 
