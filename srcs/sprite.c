@@ -41,7 +41,7 @@ void	start_spr(t_info *infos)
 	}
 }
 
-void	get_nb_spr(t_info *infos, t_cub *cub) //leaks
+void	get_nb_spr(t_info *infos, t_cub *cub)
 {
 	int x;
 	int y;
@@ -49,17 +49,6 @@ void	get_nb_spr(t_info *infos, t_cub *cub) //leaks
 	x = 0;
 	y = 0;
 	infos->spr_nb = 0;
-	// printf("%d\n", cub->parse.nbline);
-	cub->parse.nbline = 11;
-	// for(int i = 0; i <= cub->parse.nbline - 1; i++)
-	// {
-	// 	for(int j = 0; j < cub->parse.strlen; j++)
-	// 	{
-	// 		printf("%c", cub->parse.map[i][j]);
-	// 	}
-	// 	printf("\n");
-	// }
-	// printf("%d\n", cub->parse.strlen);
 	while (cub->parse.map[x] && x <= cub->parse.nbline - 1)
 	{
 		y = 0;
@@ -121,6 +110,5 @@ void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx) //leaks
 	init_spr(infos, cub);
 	start_spr(infos);
 	calc_spr(infos, mlx);
-	for (int i = 0; i < infos->spr_nb; i++)
-		free(infos->sprite);
+	free(infos->sprite);
 }

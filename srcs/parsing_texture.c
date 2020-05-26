@@ -18,7 +18,6 @@ int		parsing_north(t_cub *cub, char *line)
 		line++;
 	if (!(cub->parse.north = ft_strdup(line)))
 		ft_error("parsing fail");
-	printf("VOICI LA REPONSE !!!!\n");
 	return (1);
 }
 

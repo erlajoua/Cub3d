@@ -17,13 +17,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
-
-// #include "../libft/libft.h"
-// #include "../gnl/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
-//#define BUFFER 2048
-// # define WIN_W 400
-// # define WIN_H 400
 # define D_PI 3.14159265358979323846
 
 struct s_sprite
@@ -192,20 +186,21 @@ void	mv_lr(t_info *infos, t_cub *cub, int key);
 void	updown(t_info *infos, t_cub *cub, int key);
 
 //parse_info.c
-int parsing_informations(t_cub *cub, t_info *infos, char *line);
-void show_parsed(t_cub *cub);
-int parsing_line(t_cub *cub, char *str);
+int 	parsing_informations(t_cub *cub, t_info *infos, char *line);
+void 	show_parsed(t_cub *cub);
+int 	parsing_line(t_cub *cub, char *str);
 
 //parse.c
-void ft_start(t_cub *cub);
+void 	ft_start(t_cub *cub);
 void	init_window(t_mlx *mlx, t_info *infos);
 void	get_lines(t_cub *cub, t_info *infos, char *av1);
+void	get_lines2(t_cub *cub, t_info *infos, char *av1);
 void	want_save(t_cub *cub, int ac, char *av2);
 
 //parsing_res.c
 void	parsing_res_x(t_cub *cub, char *line);
 void	parsing_res_y(t_cub *cub, char *line);
-int	parsing_res(t_cub *cub, t_info *infos, char *line);
+int		parsing_res(t_cub *cub, t_info *infos, char *line);
 
 //raycasting.c
 void	setdrawp(t_info *infos, t_cub *cub);
@@ -215,37 +210,37 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
 int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
 
 //parsing_map1.c
-void fill_sp(t_cub *cub);
-int find_in(char c, char *str);
-void show_map(t_cub *cub);
-void parsing_map(t_cub *cub, char *line);
-int check_map(t_cub *cub);
+void 	fill_sp(t_cub *cub);
+int 	find_in(char c, char *str);
+void 	show_map(t_cub *cub);
+void 	parsing_map(t_cub *cub, char *line);
+int 	check_map(t_cub *cub);
 
 //parsing_map2.c
-int check_around(t_cub *cub, int j, int i, char *s);
-void line_check(t_cub *cub, int j);
-void first_line_check(t_cub *cub);
-void last_line_check(t_cub *cub);
+int 	check_around(t_cub *cub, int j, int i, char *s);
+void 	line_check(t_cub *cub, int j);
+void 	first_line_check(t_cub *cub);
+void 	last_line_check(t_cub *cub);
 
 //parsing_res.c
-void parsing_res_x(t_cub *cub, char *line);
-void parsing_res_y(t_cub *cub, char *line);
-int parsing_res(t_cub *cub, t_info *infos, char *line);
+void 	parsing_res_x(t_cub *cub, char *line);
+void 	parsing_res_y(t_cub *cub, char *line);
+int 	parsing_res(t_cub *cub, t_info *infos, char *line);
 
 
 //parsing_rgb.c
-int parsing_floor(t_cub *cub, char *line);
-int parsing_ceiling(t_cub *cub, char *line);
+int 	parsing_floor(t_cub *cub, char *line);
+int 	parsing_ceiling(t_cub *cub, char *line);
 
 //parsing_texture.c
-int parsing_north(t_cub *cub, char *line);
-int parsing_west(t_cub *cub, char *line);
-int parsing_east(t_cub *cub, char *line);
-int parsing_south(t_cub *cub, char *line);
-int	parsing_sprite(t_cub *cub, char *line);
+int 	parsing_north(t_cub *cub, char *line);
+int 	parsing_west(t_cub *cub, char *line);
+int 	parsing_east(t_cub *cub, char *line);
+int 	parsing_south(t_cub *cub, char *line);
+int		parsing_sprite(t_cub *cub, char *line);
 
 //raycasting
-int	raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
+int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
 void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
 void	dda(t_info *infos, t_cub *cub);
 void	sidedistxy(t_info *infos);
@@ -269,18 +264,20 @@ void    disp_spr(t_info *infos, t_mlx *mlx);
 void    calc_spr(t_info *infos, t_mlx *mlx);
 void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
 
-// void	ft_error(char *str);
+//utils.c
 int		ft_strcmp(char *s1, char *s2);
 void	ft_error(char *str);
+char 	*rgb_parser(t_cub *cub, char *line);
+
 
 void	init_nw(t_info *infos, t_cub *cub);
 void	init_se(t_info *infos, t_cub *cub);
 
 //libft
-int	ft_strlen(char *str);
+int		ft_strlen(char *str);
 char	*ft_strdup(const char *s1);
-int	ft_isdigit(int c);
-int	ft_atoi(const char *str);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 
 

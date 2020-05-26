@@ -30,3 +30,30 @@ int		ft_strcmp(char *s1, char *s2)
 	}
 	return (s1[i] - s2[i]);
 }
+
+char	*rgb_parser(t_cub *cub, char *line)
+{
+	while (!ft_isdigit(*line))
+		line++;
+	while (ft_isdigit(*line))
+		line++;
+	while (!ft_isdigit(*line))
+		line++;
+	return (line);
+}
+
+void	init_val_spr(t_info *infos, t_cub *cub)
+{
+	int i;
+
+	i = 0;
+	while (i < infos->spr_nb)
+	{
+		infos->sprite[i].first = 0;
+		infos->sprite[i].second = 0;
+		infos->sprite[i].x = 0;
+		infos->sprite[i].y = 0;
+		infos->sprite[i].txt = 0;
+		i++;
+	}
+}
