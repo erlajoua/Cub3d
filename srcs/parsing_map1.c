@@ -6,7 +6,7 @@
 /*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 00:37:37 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 01:15:38 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/26 11:42:52 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void	parsing_map(t_cub *cub, char *line)
 			ft_error("Map invalid : Invalid character in map content...\n");
 		i++;
 	}
-	cub->parse.map[cub->parse.i++] = ft_strdup(line); //ICI
-	//free(line); //A VOIR SI ON GARDE OU PAS
+	cub->parse.map[cub->parse.i++] = ft_strdup(line);
 }
 
 int		check_map(t_cub *cub)

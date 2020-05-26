@@ -40,8 +40,10 @@ void	line_check(t_cub *cub, int j)
 		if ((cub->parse.map[j][i] == '0') || (cub->parse.map[j][i] == '2')
 				|| ((cub->parse.map[j][i] == 'N' || cub->parse.map[j][i] == 'S'
 				|| cub->parse.map[j][i] == 'E' || cub->parse.map[j][i] == 'W')))
+		{
 			if (!check_around(cub, j, i, "012NSEW"))
 				ft_error("Map invalid : 0,2,N,S,E,W, or other\n");
+		}
 		i++;
 	}
 }
@@ -98,7 +100,8 @@ int		check_around(t_cub *cub, int j, int i, char *s)
 	}
 	else
 	{
-		last_checkaround(cub, i, j, s);
+		if (last_checkaround(cub, i, j, s) == 1)
+			return (1);
 	}
-	return (1);
+	return (0);
 }

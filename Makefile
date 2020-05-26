@@ -4,6 +4,7 @@ SRCS =	srcs/bitmap.c 			\
 		srcs/keypress.c 		\
 		srcs/parse_info.c 		\
 		srcs/parse.c 			\
+		srcs/parse2.c			\
 		srcs/parsing_map1.c 	\
 		srcs/parsing_map2.c 	\
 		srcs/parsing_res.c 		\

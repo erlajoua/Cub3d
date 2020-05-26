@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_res.c                                        :+:      :+:    :+:   */
+/*   parsing_res.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -73,10 +73,8 @@ int		parsing_res(t_cub *cub, t_info *infos, char *line)
 	parsing_res_y(cub, line);
 	infos->RESX = ft_atoi(cub->parse.res_x);
 	infos->RESY = ft_atoi(cub->parse.res_y);
-	
 	free(cub->parse.res_x);
 	free(cub->parse.res_y);
-
 	if (infos->RESX > 2560 || infos->RESX <= 0)
 		infos->RESX = 2560;
 	if (infos->RESY > 1440 || infos->RESY <= 0)

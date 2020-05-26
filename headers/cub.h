@@ -197,6 +197,11 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1);
 void	get_lines2(t_cub *cub, t_info *infos, char *av1);
 void	want_save(t_cub *cub, int ac, char *av2);
 
+//parse2.c
+void	get_lines3(t_cub *cub, t_info *infos, char *av1);
+void	get_lines2(t_cub *cub, t_info *infos, char *av1);
+void	get_lines(t_cub *cub, t_info *infos, char *av1);
+
 //parsing_res.c
 void	parsing_res_x(t_cub *cub, char *line);
 void	parsing_res_y(t_cub *cub, char *line);

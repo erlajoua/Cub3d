@@ -75,10 +75,6 @@ int		keypressed(int key, void *p)
 	cub = recup[2];
 	if (key == 65307)
 	{
-		free(cub->parse.map[0]);
-		free(cub->parse.map[1]);
-		free(cub->parse.map[2]);
-		free(cub->parse.map[3]);
 		exit(0);
 	}
 	infos->mvspeed = 0.4;

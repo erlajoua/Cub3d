@@ -104,7 +104,7 @@ void	calc_spr(t_info *infos, t_mlx *mlx)
 	}
 }
 
-void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx) //leaks
+void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx)
 {
 	get_nb_spr(infos, cub);
 	init_spr(infos, cub);

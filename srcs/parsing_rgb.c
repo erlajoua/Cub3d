@@ -16,7 +16,7 @@ int	parsing_floor(t_cub *cub, char *line)
 {
 	line++;
 	cub->parse.floor_rgb[0] = ft_atoi(line);
-	line = rgb_parser(cub, line);	
+	line = rgb_parser(cub, line);
 	cub->parse.floor_rgb[1] = ft_atoi(line);
 	line = rgb_parser(cub, line);
 	cub->parse.floor_rgb[2] = ft_atoi(line);
