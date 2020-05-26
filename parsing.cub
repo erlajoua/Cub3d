@@ -5,8 +5,8 @@ SO              ./textures/west.xpm
 WE                                         ./textures/south.xpm
 EA     ./textures/east.xpm
 S      ./textures/sprite.xpm
-F              99   ,  34    ,  93
-C    20  ,        74   ,     4
+F 130,135,                                    41
+C    12  ,        12,     12
 
 
 111111
