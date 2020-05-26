@@ -6,7 +6,7 @@
 /*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 01:28:44 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/26 12:25:09 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/26 13:36:56 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		main(int ac, char **av)
 	free(cub.parse.west);
 	free(cub.parse.sprite);
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
+	mlx_hook(mlx.win, 17, (1L << 17), cross_destroy, (void *)(&params));
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

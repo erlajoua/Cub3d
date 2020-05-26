@@ -6,7 +6,7 @@
 /*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 00:37:37 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 01:01:38 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/26 13:39:23 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ void	cam_lr(t_info *infos, int key)
 	infos->diry = olddirx * sin(angle) + infos->diry * cos(angle);
 	infos->planex = infos->planex * cos(angle) - infos->planey * sin(angle);
 	infos->planey = oldplanex * sin(angle) + infos->planey * cos(angle);
+}
+
+int		cross_destroy(void *p)
+{
+	exit(0);
+	return (0);
 }
 
 int		keypressed(int key, void *p)
