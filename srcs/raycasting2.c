@@ -79,15 +79,15 @@ void	chose_color(t_info *infos)
 	if (infos->side == 0)
 	{
 		if (infos->raydirx > 0)
-			infos->infotxtr = 0;
+			infos->infotxtr = 3;
 		else
 			infos->infotxtr = 1;
 	}
 	else if (infos->side == 1)
 	{
 		if (infos->raydiry < 0)
-			infos->infotxtr = 2;
+			infos->infotxtr = 0;
 		else
-			infos->infotxtr = 3;
+			infos->infotxtr = 2;
 	}
 }

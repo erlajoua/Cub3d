@@ -114,16 +114,16 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub)
 }
 
 int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
-{
-	infos->txtr[1].img = mlx_xpm_file_to_image(mlx->mlx_ptr,
+{//12304 //1 bon
+	infos->txtr[0].img = mlx_xpm_file_to_image(mlx->mlx_ptr, //Sud bon
+	cub->parse.south, &infos->txtr[0].width, &infos->txtr[0].height);
+	infos->txtr[1].img = mlx_xpm_file_to_image(mlx->mlx_ptr, //North bon
 	cub->parse.north, &infos->txtr[1].width, &infos->txtr[1].height);
-	infos->txtr[2].img = mlx_xpm_file_to_image(mlx->mlx_ptr,
-	cub->parse.south, &infos->txtr[2].width, &infos->txtr[2].height);
-	infos->txtr[3].img = mlx_xpm_file_to_image(mlx->mlx_ptr,
+	infos->txtr[2].img = mlx_xpm_file_to_image(mlx->mlx_ptr, //west rouge // rouge //carré
+	cub->parse.east, &infos->txtr[2].width, &infos->txtr[2].height);
+	infos->txtr[3].img = mlx_xpm_file_to_image(mlx->mlx_ptr,  //east brick // grisV
 	cub->parse.west, &infos->txtr[3].width, &infos->txtr[3].height);
-	infos->txtr[0].img = mlx_xpm_file_to_image(mlx->mlx_ptr,
-	cub->parse.east, &infos->txtr[0].width, &infos->txtr[0].height);
-	infos->txtr[4].img = mlx_xpm_file_to_image(mlx->mlx_ptr,
+	infos->txtr[4].img = mlx_xpm_file_to_image(mlx->mlx_ptr, //sprite // sprite //
 	cub->parse.sprite, &infos->txtr[4].width, &infos->txtr[4].height);
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, infos->RESX, infos->RESY);
 	mlx->img.data = (int *)mlx_get_data_addr(mlx->img.img_ptr,
