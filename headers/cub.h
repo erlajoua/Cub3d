@@ -184,6 +184,7 @@ int		keypressed(int key, void *p);
 void	cam_lr(t_info *infos, int key);
 void	mv_lr(t_info *infos, t_cub *cub, int key);
 void	updown(t_info *infos, t_cub *cub, int key);
+int		cross_destroy(void *p);
 
 //parse_info.c
 int 	parsing_informations(t_cub *cub, t_info *infos, char *line);
