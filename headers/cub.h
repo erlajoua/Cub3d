@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:59:08 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 11:21:36 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/26 18:50:12 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,121 +162,80 @@ struct s_mlx
 };
 typedef struct s_mlx t_mlx;
 
-//bitmap
 void	bitmap(t_mlx *mlx);
 void	header_bmp(t_mlx *mlx, int fd);
 void	vertical(int fd, t_mlx *mlx);
-
-//keypressed 
 int		keypressed(int key, void *p);
 void	cam_lr(t_info *infos, int key);
 void	mv_lr(t_info *infos, t_cub *cub, int key);
 void	updown(t_info *infos, t_cub *cub, int key);
 int		cross_destroy(void *p);
-
-//parse_info.c
 int 	parsing_informations(t_cub *cub, t_info *infos, char *line);
 void 	show_parsed(t_cub *cub);
 int 	parsing_line(t_cub *cub, char *str);
-
-//parse.c
 void 	ft_start(t_cub *cub);
 void	init_window(t_mlx *mlx, t_info *infos);
 void	get_lines(t_cub *cub, t_info *infos, char *av1);
 void	get_lines2(t_cub *cub, t_info *infos, char *av1);
 void	want_save(t_cub *cub, int ac, char *av2);
-
-//parse2.c
 void	get_lines3(t_cub *cub, t_info *infos, char *av1);
 void	get_lines2(t_cub *cub, t_info *infos, char *av1);
 void	get_lines(t_cub *cub, t_info *infos, char *av1);
-
-//parsing_res.c
 void	parsing_res_x(t_cub *cub, char *line);
 void	parsing_res_y(t_cub *cub, char *line);
 int		parsing_res(t_cub *cub, t_info *infos, char *line);
-
-//raycasting.c
 void	setdrawp(t_info *infos, t_cub *cub);
 void	sidedistxy(t_info *infos);
 void	dda(t_info *infos, t_cub *cub);
 void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
 int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
-
-//parsing_map1.c
 void 	fill_sp(t_cub *cub);
 int 	find_in(char c, char *str);
 void 	show_map(t_cub *cub);
 void 	parsing_map(t_cub *cub, char *line);
 int 	check_map(t_cub *cub);
-
-//parsing_map2.c
 int 	check_around(t_cub *cub, int j, int i, char *s);
 void 	line_check(t_cub *cub, int j);
 void 	first_line_check(t_cub *cub);
 void 	last_line_check(t_cub *cub);
-
-//parsing_res.c
 void 	parsing_res_x(t_cub *cub, char *line);
 void 	parsing_res_y(t_cub *cub, char *line);
 int 	parsing_res(t_cub *cub, t_info *infos, char *line);
-
-
-//parsing_rgb.c
 int 	parsing_floor(t_cub *cub, char *line);
 int 	parsing_ceiling(t_cub *cub, char *line);
-
-//parsing_texture.c
 int 	parsing_north(t_cub *cub, char *line);
 int 	parsing_west(t_cub *cub, char *line);
 int 	parsing_east(t_cub *cub, char *line);
 int 	parsing_south(t_cub *cub, char *line);
 int		parsing_sprite(t_cub *cub, char *line);
-
-//raycasting
 int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
 void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
 void	dda(t_info *infos, t_cub *cub);
 void	sidedistxy(t_info *infos);
 void	setdrawp(t_info *infos, t_cub *cub);
-
-//raycasting2
 void	chose_color(t_info *infos);
 void	initvalue(t_info *infos, t_cub *cub);
 void	draw(t_mlx *mlx, t_info *infos, t_cub *cub);
 void	drawwall(t_mlx *mlx, t_info *infos);
 void	drawsky(t_mlx *mlx, t_info *infos, t_cub *cub);
-
-//raycasting3
 void	raydirxy(t_info *infos);
-
-//sprite.c
 void    start_spr(t_info *infos);
 void    init_spr(t_info *infos, t_cub *cub);
 void    get_nb_spr(t_info *infos, t_cub *cub);
 void    disp_spr(t_info *infos, t_mlx *mlx);
 void    calc_spr(t_info *infos, t_mlx *mlx);
 void    draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
-
-//utils.c
 int		ft_strcmp(char *s1, char *s2);
 void	ft_error(char *str);
 char 	*rgb_parser(t_cub *cub, char *line);
 void	init_val_spr(t_info *infos, t_cub *cub);
-
-
 void	init_nw(t_info *infos, t_cub *cub);
 void	init_se(t_info *infos, t_cub *cub);
-
-//libft
 int		ft_strlen(char *str);
 char	*ft_strdup(const char *s1);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
-
-
-//get_next_line
 int			get_next_line(int fd, char **line);
 
 #endif
