@@ -87,7 +87,6 @@ struct s_info
 	int x;
 	double olddirx;
 	double oldplanex;
-	double savedir;
 	int *dataimg;
 	void *tximg;
 	int color;

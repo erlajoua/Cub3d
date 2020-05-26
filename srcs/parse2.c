@@ -29,7 +29,6 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 		ft_error("Allocated map fail");
 	while (++x < cub->parse.nbline + 1)
 		cub->parse.map[x] = 0;
-	
 	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
 	{
 		if (find_in(str[0], " 012") && ++i)

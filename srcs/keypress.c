@@ -35,7 +35,7 @@ void	mv_lr(t_info *infos, t_cub *cub, int key)
 	char dirside;
 
 	dirside = cub->parse.side;
-	infos->mvspeed *= (key == 100) ? -1 : 1;
+	infos->mvspeed *= (key == 100) ? 1 : -1;
 	if (cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx *
 	infos->mvspeed)] == '0'
 	|| cub->parse.map[(int)(infos->posx)][(int)(infos->posy - infos->dirx *
@@ -55,7 +55,7 @@ void	cam_lr(t_info *infos, int key)
 	double angle;
 
 	angle = (D_PI / 30) * -1;
-	angle *= (key == 65363) ? -1 : 1;
+	angle *= (key == 65363) ? 1 : -1;
 	olddirx = infos->dirx;
 	oldplanex = infos->planex;
 	infos->dirx = infos->dirx * cos(angle) - infos->diry * sin(angle);

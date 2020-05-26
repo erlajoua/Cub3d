@@ -26,7 +26,7 @@ int		main(int ac, char **av)
 	free(cub.parse.sprite);
 
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
-//	mlx_hook(mlx.win, 17, (1L << 17), cross_destroy, (void *)(&params));
+	mlx_hook(mlx.win, 17, (1L << 17), cross_destroy, (void *)(&params));
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

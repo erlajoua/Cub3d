@@ -19,16 +19,14 @@ void	init_nw(t_info *infos, t_cub *cub)
 		infos->dirx = -1;
 		infos->diry = 0;
 		infos->planex = 0;
-		infos->planey = -0.66;
-		infos->savedir = -1;
+		infos->planey = 0.66;
 	}
 	if (cub->parse.side == 'W')
 	{
 		infos->dirx = 0;
-		infos->diry = 1;
+		infos->diry = -1;
 		infos->planex = -0.66;
 		infos->planey = 0;
-		infos->savedir = -1;
 	}
 }
 
@@ -39,16 +37,14 @@ void	init_se(t_info *infos, t_cub *cub)
 		infos->dirx = 1;
 		infos->diry = 0;
 		infos->planex = 0;
-		infos->planey = 0.66;
-		infos->savedir = 1;
+		infos->planey = -0.66;
 	}
 	if (cub->parse.side == 'E')
 	{
 		infos->dirx = 0;
-		infos->diry = -1;
+		infos->diry = 1;
 		infos->planex = 0.66;
 		infos->planey = 0;
-		infos->savedir = 1;
 	}
 }
 
