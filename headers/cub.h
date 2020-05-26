@@ -163,17 +163,6 @@ struct s_mlx
 };
 typedef struct s_mlx t_mlx;
 
-/*void	ft_error(char *str);
-void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
-void	bitmap(t_mlx *mlx);
-void	chose_color(t_info *infos);
-void first_line_check(t_cub *cub);
-void last_line_check(t_cub *cub);
-void line_check(t_cub *cub, int j);
-void	setdrawp(t_info *infos, t_cub *cub);
-int check_around(t_cub *cub, int j, int i, char *s);
-void	all(t_info *infos, t_mlx *mlx, t_cub *cub);*/
-
 //bitmap
 void	bitmap(t_mlx *mlx);
 void	header_bmp(t_mlx *mlx, int fd);

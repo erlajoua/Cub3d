@@ -41,7 +41,7 @@ LIBX = -L ./minilibx-linux/ -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 all		: $(NAME)
 
 $(NAME)	:	$(OBJS)
-			gcc $(FLAGS) -o $(NAME) $(OBJS) $(LIBX)
+			clang $(FLAGS) -o $(NAME) $(OBJS) $(LIBX)
 
 clean	:
 			rm -rf $(OBJS)

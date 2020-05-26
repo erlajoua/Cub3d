@@ -25,16 +25,18 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	ret = 0;
 	fd = open(av1, O_RDONLY);
 	cub->parse.map = (char **)malloc(sizeof(char *) * (cub->parse.nbline + 1));
-	if (cub->parse.map == NULL)
+	if (!cub->parse.map)
 		ft_error("Allocated map fail");
 	while (++x < cub->parse.nbline + 1)
 		cub->parse.map[x] = 0;
+	
 	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
 	{
 		if (find_in(str[0], " 012") && ++i)
 			parsing_map(cub, str);
 		free(str);
 	}
+	free(str);
 }
 
 void	get_lines2(t_cub *cub, t_info *infos, char *av1)
@@ -54,6 +56,7 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 		parsing_line(cub, str);
 		free(str);
 	}
+	free(str);
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
 		parsing_line(cub, str);
