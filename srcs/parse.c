@@ -14,7 +14,7 @@
 
 void	want_save(t_cub *cub, int ac, char *av2)
 {
-	if (ac == 3)
+	if (ac >= 3)
 	{
 		if (ft_strcmp(av2, "--save") == 0)
 			cub->parse.save = 1;
