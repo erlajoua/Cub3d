@@ -11,20 +11,20 @@
 /* ************************************************************************** */
 
 #include "../headers/cub.h"
-#include "bitmap.c"
-#include "keypress.c"
-#include "parse_info.c"
-#include "parsing_map1.c"
-#include "parsing_map2.c"
-#include "parsing_res.c"
-#include "parsing_rgb.c"
-#include "parsing_texture.c"
-#include "raycasting.c"
-#include "raycasting2.c"
-#include "raycasting3.c"
-#include "sprite.c"
-#include "sprite2.c"
-#include "utils.c"
+// #include "bitmap.c"
+// #include "keypress.c"
+// #include "parse_info.c"
+// #include "parsing_map1.c"
+// #include "parsing_map2.c"
+// #include "parsing_res.c"
+// #include "parsing_rgb.c"
+// #include "parsing_texture.c"
+// #include "raycasting.c"
+// #include "raycasting2.c"
+// #include "raycasting3.c"
+// #include "sprite.c"
+// #include "sprite2.c"
+// #include "utils.c"
 
 
 void	want_save(t_cub *cub, int ac, char *av2)
@@ -42,16 +42,43 @@ void	want_save(t_cub *cub, int ac, char *av2)
 	}
 }
 
+void	get_lines2(t_cub *cub, t_info *infos, char *av1)
+{
+	int fd;
+	int ret;
+	int x;
+	int i;
+	char *str;
+
+	i = 0;
+	x = 0;
+	ret = 0;
+	fd = open(av1, O_RDONLY);
+	if (!(cub->parse.map = (char **)malloc(sizeof(char *) * (cub->parse.nbline + 1))))
+		ft_error("Allocated map fail");
+	while (++x < cub->parse.nbline + 1)
+		cub->parse.map[x] = 0;
+	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
+	{
+		if (find_in(str[0], " 012") && ++i)
+			parsing_map(cub, str);
+		free(str);
+	}
+}
+
+
 void	get_lines(t_cub *cub, t_info *infos, char *av1)
 {
 	int		ret;
 	int		i;
+	int		x;
 	int		fd;
 	char	*str;
 
 	fd = open(av1, O_RDONLY);
 	ret = 0;
 	i = 0;
+	x = 0;
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
 		parsing_informations(cub, infos, str);
@@ -71,20 +98,7 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 		free(str);
 	}
 	close(fd);
-	ret = 0;
-	fd = open(av1, O_RDONLY);
-	if (!(cub->parse.map = (char **)malloc(sizeof(char *) * (cub->parse.nbline + 1))))
-		ft_error("Allocated map fail");
-	for(int x = 0; x < cub->parse.nbline + 1; x++)
-	{
-		cub->parse.map[x] = 0;
-	}
-	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
-	{
-		if (find_in(str[0], " 012") && ++i)
-			parsing_map(cub, str);
-		free(str);
-	}
+	get_lines2(cub, infos, av1);
 }
 
 void	init_window(t_mlx *mlx, t_info *infos)
@@ -129,11 +143,8 @@ int		main(int ac, char **av)
 	free(cub.parse.east);
 	free(cub.parse.west);
 	free(cub.parse.sprite);
-	// free()
+
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
-	
-	// free(infos.zbuffer);
-	// exit(0);
 	return (0);
 }

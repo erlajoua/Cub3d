@@ -30,3 +30,14 @@ int		ft_strcmp(char *s1, char *s2)
 	}
 	return (s1[i] - s2[i]);
 }
+
+char	*rgb_parser(t_cub *cub, char *line)
+{
+	while (!ft_isdigit(*line))
+		line++;
+	while (ft_isdigit(*line))
+		line++;
+	while (!ft_isdigit(*line))
+		line++;
+	return (line);
+}

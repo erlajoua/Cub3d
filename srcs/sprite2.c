@@ -20,9 +20,9 @@ void	init_spr(t_info *infos, t_cub *cub) //leaks
 
 	y = 0;
 	nb = 0;
-	if (!(infos->sprite = (t_sprite *)malloc(sizeof(t_sprite) * infos->spr_nb)))
-		ft_error("error malloc number sprite");
-
+	if  (infos->spr_nb >= 1)
+		if (!(infos->sprite = (t_sprite *)malloc(sizeof(t_sprite) * infos->spr_nb)))
+			ft_error("error malloc number sprite");
 	for (int j = 0; j < infos->spr_nb; j++)
 	{
 		infos->sprite[j].first = 0;
@@ -30,9 +30,7 @@ void	init_spr(t_info *infos, t_cub *cub) //leaks
 		infos->sprite[j].x = 0;
 		infos->sprite[j].y = 0;
 		infos->sprite[j].txt = 0;
-		// printf("J : %d\n", j);
 	}
-
 	while (cub->parse.map[y] && y <= cub->parse.nbline - 1)
 	{
 		x = 0;

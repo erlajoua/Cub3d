@@ -1,14 +1,23 @@
-R            50         50
+R            200         200
 
 NO           ./textures/north.xpm
 SO              ./textures/west.xpm
 WE                                         ./textures/south.xpm
 EA     ./textures/east.xpm
 S      ./textures/sprite.xpm
-F   99   ,  34    ,  93
+F              99   ,  34    ,  93
 C    20  ,        74   ,     4
 
 
 111111
-100N01
+10S001
+100001
+102021
+102021
+102021
+102021
+102021
+102021
+102021
+102001
 111111
