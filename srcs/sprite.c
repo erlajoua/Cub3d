@@ -110,5 +110,6 @@ void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx) //leaks
 	init_spr(infos, cub);
 	start_spr(infos);
 	calc_spr(infos, mlx);
-	free(infos->sprite);
+	if (infos->spr_nb >= 1)
+		free(infos->sprite);
 }
