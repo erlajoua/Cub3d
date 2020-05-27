@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 16:26:46 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/03/12 16:26:50 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/27 13:30:06 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,5 @@ int		parsing_res(t_cub *cub, t_info *infos, char *line)
 	infos->resy = ft_atoi(cub->parse.res_y);
 	free(cub->parse.res_x);
 	free(cub->parse.res_y);
-	
-	// int size = mlx_get_screen_size(mlx_ptr, &infos->resx, &infos->resy);
-	
-	// if (infos->resx > 2560 || infos->resx <= 0)
-	// 	infos->resx = 2560;
-	// if (infos->resy > 1440 || infos->resy <= 0)
-	// 	infos->resy = 1440;
 	return (1);
 }

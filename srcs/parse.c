@@ -6,7 +6,7 @@
 /*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 01:28:44 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/26 13:36:56 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/05/27 13:29:49 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	init_window(t_mlx *mlx, t_info *infos)
 	y = 0;
 	mlx->mlx_ptr = mlx_init();
 	mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
-	// printf("max x: %d - max y :  %d\n", x, y);
 	if (infos->resx > x || infos->resx <= 0)
 		infos->resx = x;
 	if (infos->resy > y || infos->resy <= 0)
