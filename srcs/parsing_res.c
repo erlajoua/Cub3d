@@ -71,13 +71,16 @@ int		parsing_res(t_cub *cub, t_info *infos, char *line)
 {
 	parsing_res_x(cub, line);
 	parsing_res_y(cub, line);
-	infos->RESX = ft_atoi(cub->parse.res_x);
-	infos->RESY = ft_atoi(cub->parse.res_y);
+	infos->resx = ft_atoi(cub->parse.res_x);
+	infos->resy = ft_atoi(cub->parse.res_y);
 	free(cub->parse.res_x);
 	free(cub->parse.res_y);
-	if (infos->RESX > 2560 || infos->RESX <= 0)
-		infos->RESX = 2560;
-	if (infos->RESY > 1440 || infos->RESY <= 0)
-		infos->RESY = 1440;
+	
+	// int size = mlx_get_screen_size(mlx_ptr, &infos->resx, &infos->resy);
+	
+	// if (infos->resx > 2560 || infos->resx <= 0)
+	// 	infos->resx = 2560;
+	// if (infos->resy > 1440 || infos->resy <= 0)
+	// 	infos->resy = 1440;
 	return (1);
 }

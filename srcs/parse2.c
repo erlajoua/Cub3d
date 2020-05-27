@@ -73,13 +73,15 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 	int		fd;
 	char	*str;
 
-	fd = open(av1, O_RDONLY);
 	ret = 0;
 	i = 0;
 	x = 0;
+	fd = open(av1, O_RDONLY);
+	if (fd < 0)
+		ft_error("file not exist");
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
-		parsing_informations(cub, infos, str);
+		parse_info(cub, infos, str);
 		free(str);
 	}
 	close(fd);

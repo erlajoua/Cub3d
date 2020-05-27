@@ -12,11 +12,11 @@
 
 #include "../headers/cub.h"
 
-void	want_save(t_cub *cub, int ac, char *av2)
+void	want_save(t_cub *cub, int ac, char **av)
 {
 	if (ac >= 3)
 	{
-		if (ft_strcmp(av2, "--save") == 0)
+		if (ft_strcmp(av[2], "--save") == 0)
 			cub->parse.save = 1;
 		else
 			ft_error("second argument is not --save");
@@ -29,10 +29,21 @@ void	want_save(t_cub *cub, int ac, char *av2)
 
 void	init_window(t_mlx *mlx, t_info *infos)
 {
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
 	mlx->mlx_ptr = mlx_init();
-	mlx->img.width = infos->RESX;
-	mlx->img.height = infos->RESY;
-	mlx->win = mlx_new_window(mlx->mlx_ptr, infos->RESX, infos->RESY, "Cub3d");
+	mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
+	// printf("max x: %d - max y :  %d\n", x, y);
+	if (infos->resx > x || infos->resx <= 0)
+		infos->resx = x;
+	if (infos->resy > y || infos->resy <= 0)
+		infos->resy = y;
+	mlx->img.width = infos->resx;
+	mlx->img.height = infos->resy;
+	mlx->win = mlx_new_window(mlx->mlx_ptr, infos->resx, infos->resy, "Cub3d");
 }
 
 void	ft_start(t_cub *cub)

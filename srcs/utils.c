@@ -12,6 +12,24 @@
 
 #include "../headers/cub.h"
 
+int		check_av(char *s)
+{
+	int i;
+	int l;
+
+	i = 0;
+	l = ft_strlen(s);
+	if (l >= 5)
+	{
+		if (s[l - 1] == 'b' && s[l - 2] == 'u' && s[l - 3] == 'c'
+			&& s[l - 4] == '.')
+			return (1);
+		else
+			ft_error("Name map invalid");
+	}
+	ft_error("Name map invalid");
+}
+
 void	ft_error(char *str)
 {
 	write(1, "Error\n", 6);

@@ -72,10 +72,10 @@ void	calc_spr2(t_info *infos, int i)
 		(infos->diry * infos->spr_x - infos->dirx * infos->spr_y);
 	infos->transy = infos->invdet *
 		(-infos->planey * infos->spr_x + infos->planex * infos->spr_y);
-	infos->sprscreen_x = (int)((infos->RESX / 2) *
+	infos->sprscreen_x = (int)((infos->resx / 2) *
 			(1 + infos->transx / infos->transy));
-	infos->spr_h = abs((int)(infos->RESY / infos->transy));
-	infos->drawstart_y = -infos->spr_h / 2 + infos->RESY / 2;
+	infos->spr_h = abs((int)(infos->resy / infos->transy));
+	infos->drawstart_y = -infos->spr_h / 2 + infos->resy / 2;
 }
 
 void	calc_spr(t_info *infos, t_mlx *mlx)
@@ -88,16 +88,16 @@ void	calc_spr(t_info *infos, t_mlx *mlx)
 		calc_spr2(infos, i);
 		if (infos->drawstart_y < 0)
 			infos->drawstart_y = 0;
-		infos->drawend_y = infos->spr_h / 2 + infos->RESY / 2;
-		if (infos->drawend_y >= infos->RESY)
-			infos->drawend_y = infos->RESY - 1;
-		infos->spr_w = abs((int)(infos->RESX / infos->transy));
+		infos->drawend_y = infos->spr_h / 2 + infos->resy / 2;
+		if (infos->drawend_y >= infos->resy)
+			infos->drawend_y = infos->resy - 1;
+		infos->spr_w = abs((int)(infos->resx / infos->transy));
 		infos->drawstart_x = -infos->spr_w / 2 + infos->sprscreen_x;
 		if (infos->drawstart_x < 0)
 			infos->drawstart_x = 0;
 		infos->drawend_x = infos->spr_w / 2 + infos->sprscreen_x;
-		if (infos->drawend_x >= infos->RESX)
-			infos->drawend_x = infos->RESX - 1;
+		if (infos->drawend_x >= infos->resx)
+			infos->drawend_x = infos->resx - 1;
 		infos->sprite[0].txt = infos->txtr[4].img;
 		disp_spr(infos, mlx);
 		i++;

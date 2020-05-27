@@ -12,7 +12,7 @@
 
 #include "../headers/cub.h"
 
-int	parsing_informations(t_cub *cub, t_info *infos, char *line)
+int	parse_info(t_cub *cub, t_info *infos, char *line)
 {
 	if (line[0] == 'R')
 		return (parsing_res(cub, infos, line));

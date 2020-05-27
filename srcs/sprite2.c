@@ -58,7 +58,7 @@ void	disp_spr2(t_info *infos, t_mlx *mlx, int txtr_y, int i)
 	while (j < infos->drawend_y)
 	{
 		infos->drawstart = j *
-		256 - infos->RESY * 128 + infos->spr_h * 128;
+		256 - infos->resy * 128 + infos->spr_h * 128;
 		txtr_y = ((infos->drawstart *
 		infos->txtr[4].height) / infos->spr_h) / 256;
 		if (!(infos->datatest = (int *)mlx_get_data_addr(infos->sprite[0].txt,
@@ -66,7 +66,7 @@ void	disp_spr2(t_info *infos, t_mlx *mlx, int txtr_y, int i)
 			ft_error("datatest get data address");
 		infos->res = infos->datatest[txtr_y * 64 + infos->txt];
 		if (infos->res && 0x00FFFFFF != 0)
-			mlx->img.data[j * infos->RESX + i] = infos->res;
+			mlx->img.data[j * infos->resx + i] = infos->res;
 		j++;
 	}
 }
@@ -83,7 +83,7 @@ void	disp_spr(t_info *infos, t_mlx *mlx)
 	{
 		infos->txt = (int)(256 * (i - (-infos->spr_w / 2 + infos->sprscreen_x))
 		* infos->txtr[4].width / infos->spr_w) / 256;
-		if (infos->transy > 0 && i > 0 && i < infos->RESX
+		if (infos->transy > 0 && i > 0 && i < infos->resx
 		&& infos->transy < infos->zbuffer[i])
 		{
 			disp_spr2(infos, mlx, txtr_y, i);

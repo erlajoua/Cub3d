@@ -19,7 +19,7 @@ void	drawsky(t_mlx *mlx, t_info *infos, t_cub *cub)
 	j = 0;
 	while (j < infos->drawstart)
 	{
-		mlx->img.data[infos->x + j * infos->RESX] = 256 * 256 *
+		mlx->img.data[infos->x + j * infos->resx] = 256 * 256 *
 		cub->parse.ceiling_rgb[0] + 256 * cub->parse.ceiling_rgb[1] +
 		cub->parse.ceiling_rgb[2];
 		j++;
@@ -39,7 +39,7 @@ void	drawwall(t_mlx *mlx, t_info *infos)
 		infos->hex = infos->dataimg[infos->tex_y *
 		infos->txtr[infos->infotxtr].width + infos->tex_x];
 		mlx->img.data[infos->x + (infos->drawend *
-		infos->RESX)] = infos->hex;
+		infos->resx)] = infos->hex;
 		infos->drawend--;
 	}
 }
@@ -53,9 +53,9 @@ void	draw(t_mlx *mlx, t_info *infos, t_cub *cub)
 	drawsky(mlx, infos, cub);
 	k = infos->drawend;
 	drawwall(mlx, infos);
-	while (k < infos->RESY)
+	while (k < infos->resy)
 	{
-		mlx->img.data[infos->x + k * infos->RESX] = 256 * 256 *
+		mlx->img.data[infos->x + k * infos->resx] = 256 * 256 *
 		cub->parse.floor_rgb[0] + 256 * cub->parse.floor_rgb[1] +
 		cub->parse.floor_rgb[2];
 		k++;

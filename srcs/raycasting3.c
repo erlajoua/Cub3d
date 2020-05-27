@@ -52,7 +52,7 @@ void	raydirxy(t_info *infos)
 {
 	infos->mapx = (int)infos->posx;
 	infos->mapy = (int)infos->posy;
-	infos->camerax = 2 * infos->x / (double)infos->RESX - 1;
+	infos->camerax = 2 * infos->x / (double)infos->resx - 1;
 	infos->raydirx = infos->dirx + infos->planex * infos->camerax;
 	infos->raydiry = infos->diry + infos->planey * infos->camerax;
 	if (infos->raydiry == 0)
