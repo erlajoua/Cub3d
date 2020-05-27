@@ -108,7 +108,7 @@ struct					s_info
 };
 typedef struct s_info		t_info;
 
-struct						s_parse
+struct					s_parse
 {
 	char	*res_x;
 	char	*res_y;
@@ -130,17 +130,17 @@ struct						s_parse
 	int		flag;
 	int		save;
 };
-typedef struct s_parse		t_parse;
+typedef	struct s_parse		t_parse;
 
-struct						s_cub
+struct					s_cub
 {
 	t_parse	parse;
 	int		start_y;
 	int		ind_y;
 };
-typedef struct s_cub		t_cub;
+typedef	struct s_cub		t_cub;
 
-struct						s_img
+struct					s_img
 {
 	void	*img_ptr;
 	int		bpp;
@@ -153,7 +153,7 @@ struct						s_img
 };
 typedef struct s_img		t_img;
 
-struct						s_mlx
+struct					s_mlx
 {
 	void	*mlx_ptr;
 	void	*win;
@@ -162,81 +162,81 @@ struct						s_mlx
 };
 typedef struct s_mlx		t_mlx;
 
-void	bitmap(t_mlx *mlx);
-void	header_bmp(t_mlx *mlx, int fd);
-void	vertical(int fd, t_mlx *mlx);
-int		keypressed(int key, void *p);
-void	cam_lr(t_info *infos, int key);
-void	mv_lr(t_info *infos, t_cub *cub, int key);
-void	updown(t_info *infos, t_cub *cub, int key);
-int		cross_destroy(void *p);
-int		parsing_informations(t_cub *cub, t_info *infos, char *line);
-void	show_parsed(t_cub *cub);
-int		parsing_line(t_cub *cub, char *str);
-void	ft_start(t_cub *cub);
-void	init_window(t_mlx *mlx, t_info *infos);
-void	get_lines(t_cub *cub, t_info *infos, char *av1);
-void	get_lines2(t_cub *cub, t_info *infos, char *av1);
-void	want_save(t_cub *cub, int ac, char **av);
-void	get_lines3(t_cub *cub, t_info *infos, char *av1);
-void	get_lines2(t_cub *cub, t_info *infos, char *av1);
-void	get_lines(t_cub *cub, t_info *infos, char *av1);
-void	parsing_res_x(t_cub *cub, char *line);
-void	parsing_res_y(t_cub *cub, char *line);
-int		parsing_res(t_cub *cub, t_info *infos, char *line);
-void	setdrawp(t_info *infos, t_cub *cub);
-void	sidedistxy(t_info *infos);
-void	dda(t_info *infos, t_cub *cub);
-void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
-int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
-void	fill_sp(t_cub *cub);
-int		find_in(char c, char *str);
-void	show_map(t_cub *cub);
-void	parsing_map(t_cub *cub, char *line);
-int		check_map(t_cub *cub);
-int		check_around(t_cub *cub, int j, int i, char *s);
-void	line_check(t_cub *cub, int j);
-void	first_line_check(t_cub *cub);
-void	last_line_check(t_cub *cub);
-void	parsing_res_x(t_cub *cub, char *line);
-void	parsing_res_y(t_cub *cub, char *line);
-int		parsing_res(t_cub *cub, t_info *infos, char *line);
-int		parsing_floor(t_cub *cub, char *line);
-int		parsing_ceiling(t_cub *cub, char *line);
-int		parsing_north(t_cub *cub, char *line);
-int		parsing_west(t_cub *cub, char *line);
-int		parsing_east(t_cub *cub, char *line);
-int		parsing_south(t_cub *cub, char *line);
-int		parsing_sprite(t_cub *cub, char *line);
-int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
-void	all(t_info *infos, t_mlx *mlx, t_cub *cub);
-void	dda(t_info *infos, t_cub *cub);
-void	sidedistxy(t_info *infos);
-void	setdrawp(t_info *infos, t_cub *cub);
-void	chose_color(t_info *infos);
-void	initvalue(t_info *infos, t_cub *cub);
-void	draw(t_mlx *mlx, t_info *infos, t_cub *cub);
-void	drawwall(t_mlx *mlx, t_info *infos);
-void	drawsky(t_mlx *mlx, t_info *infos, t_cub *cub);
-void	raydirxy(t_info *infos);
-void	start_spr(t_info *infos);
-void	init_spr(t_info *infos, t_cub *cub);
-void	get_nb_spr(t_info *infos, t_cub *cub);
-void	disp_spr(t_info *infos, t_mlx *mlx);
-void	calc_spr(t_info *infos, t_mlx *mlx);
-void	draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
-int		ft_strcmp(char *s1, char *s2);
-int		check_av(char *s);
-void	ft_error(char *str);
-char	*rgb_parser(t_cub *cub, char *line);
-void	init_val_spr(t_info *infos, t_cub *cub);
-void	init_nw(t_info *infos, t_cub *cub);
-void	init_se(t_info *infos, t_cub *cub);
-int		ft_strlen(char *str);
-char	*ft_strdup(const char *s1);
-int		ft_isdigit(int c);
-int		ft_atoi(const char *str);
-void	ft_bzero(void *s, size_t n);
-int		get_next_line(int fd, char **line);
+void					bitmap(t_mlx *mlx);
+void					header_bmp(t_mlx *mlx, int fd);
+void					vertical(int fd, t_mlx *mlx);
+int						keypressed(int key, void *p);
+void					cam_lr(t_info *infos, int key);
+void					mv_lr(t_info *infos, t_cub *cub, int key);
+void					updown(t_info *infos, t_cub *cub, int key);
+int						cross_destroy(void *p);
+int						parse_info(t_cub *cub, t_info *infos, char *line);
+void					show_parsed(t_cub *cub);
+int						parsing_line(t_cub *cub, char *str);
+void					ft_start(t_cub *cub);
+void					init_window(t_mlx *mlx, t_info *infos);
+void					get_lines(t_cub *cub, t_info *infos, char *av1);
+void					get_lines2(t_cub *cub, t_info *infos, char *av1);
+void					want_save(t_cub *cub, int ac, char **av);
+void					get_lines3(t_cub *cub, t_info *infos, char *av1);
+void					get_lines2(t_cub *cub, t_info *infos, char *av1);
+void					get_lines(t_cub *cub, t_info *infos, char *av1);
+void					parsing_res_x(t_cub *cub, char *line);
+void					parsing_res_y(t_cub *cub, char *line);
+int						parsing_res(t_cub *cub, t_info *infos, char *line);
+void					setdrawp(t_info *infos, t_cub *cub);
+void					sidedistxy(t_info *infos);
+void					dda(t_info *infos, t_cub *cub);
+void					all(t_info *infos, t_mlx *mlx, t_cub *cub);
+int						raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
+void					fill_sp(t_cub *cub);
+int						find_in(char c, char *str);
+void					show_map(t_cub *cub);
+void					parsing_map(t_cub *cub, char *line);
+int						check_map(t_cub *cub);
+int						check_around(t_cub *cub, int j, int i, char *s);
+void					line_check(t_cub *cub, int j);
+void					first_line_check(t_cub *cub);
+void					last_line_check(t_cub *cub);
+void					parsing_res_x(t_cub *cub, char *line);
+void					parsing_res_y(t_cub *cub, char *line);
+int						parsing_res(t_cub *cub, t_info *infos, char *line);
+int						parsing_floor(t_cub *cub, char *line);
+int						parsing_ceiling(t_cub *cub, char *line);
+int						parsing_north(t_cub *cub, char *line);
+int						parsing_west(t_cub *cub, char *line);
+int						parsing_east(t_cub *cub, char *line);
+int						parsing_south(t_cub *cub, char *line);
+int						parsing_sprite(t_cub *cub, char *line);
+int						raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
+void					all(t_info *infos, t_mlx *mlx, t_cub *cub);
+void					dda(t_info *infos, t_cub *cub);
+void					sidedistxy(t_info *infos);
+void					setdrawp(t_info *infos, t_cub *cub);
+void					chose_color(t_info *infos);
+void					initvalue(t_info *infos, t_cub *cub);
+void					draw(t_mlx *mlx, t_info *infos, t_cub *cub);
+void					drawwall(t_mlx *mlx, t_info *infos);
+void					drawsky(t_mlx *mlx, t_info *infos, t_cub *cub);
+void					raydirxy(t_info *infos);
+void					start_spr(t_info *infos);
+void					init_spr(t_info *infos, t_cub *cub);
+void					get_nb_spr(t_info *infos, t_cub *cub);
+void					disp_spr(t_info *infos, t_mlx *mlx);
+void					calc_spr(t_info *infos, t_mlx *mlx);
+void					draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
+int						ft_strcmp(char *s1, char *s2);
+int						check_av(char *s);
+void					ft_error(char *str);
+char					*rgb_parser(t_cub *cub, char *line);
+void					init_val_spr(t_info *infos, t_cub *cub);
+void					init_nw(t_info *infos, t_cub *cub);
+void					init_se(t_info *infos, t_cub *cub);
+int						ft_strlen(char *str);
+char					*ft_strdup(const char *s1);
+int						ft_isdigit(int c);
+int						ft_atoi(const char *str);
+void					ft_bzero(void *s, size_t n);
+int						get_next_line(int fd, char **line);
 
 #endif
