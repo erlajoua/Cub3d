@@ -1,27 +1,27 @@
-R            600          600
-
-NO           ./textures/north.xpm
-SO              ./textures/west.xpm
-WE                                         ./textures/south.xpm
-EA     ./textures/east.xpm
-S      ./textures/sprite.xpm
-F 94,135,                                    41
-C    0  ,        125,     125
+R 500 500
+NO ./textures/north.xpm
+WE ./textures/west.xpm
+SO ./textures/south.xpm
+EA ./textures/east.xpm
+S  ./textures/sprite.xpm
+F 94, 0, 41
+C 0, 125, 125
 
 
 11111111111
 10001110001  111
 10000000001  101
 10000000001  101
-1000000000111101
+100000000011110111111 
 12000N0000000001
 100000000011111
-10000000001
-10000000001
+1000000000001
+100000000011
 10002220001
 11111111111
 
 111
 101
 111
+
 

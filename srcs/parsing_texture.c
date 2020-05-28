@@ -14,10 +14,22 @@
 
 int		parsing_north(t_cub *cub, char *line)
 {
+	int fd;
+	printf("line debut : %s\n", line);
 	while (*line != '.')
 		line++;
 	if (!(cub->parse.north = ft_strdup(line)))
 		ft_error("parsing fail");
+	printf("voila : |%s|\n", cub->parse.north);
+	if (cub->parse.north[0] == '\0')
+		ft_error("No north texture");	
+	fd = open(line, O_RDONLY);
+	printf("fd : %d\n", fd);
+	if (fd < 0)
+	{
+		ft_error("No north texture");
+	}
+
 	return (1);
 }
 
