@@ -6,9 +6,9 @@ void     delete_sp(char *str)
     int j;
 
     i = 0;
-    while (str[i] != ' ')
+    while (str[i] != ' ' && str[i])
         i++;
-    if (str[i+1] != '\0')
+    if (str[i] != '\0')
     {
         j = i;
         while (str[j] == ' ')
