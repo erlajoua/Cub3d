@@ -105,11 +105,11 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub)
 		infos->x++;
 	}
 	draw_sprite(infos, cub, mlx);
-	// if (cub->parse.save == 1)
-	// {
-	// 	cub->parse.save = 0;
-	// 	bitmap(mlx);
-	// }
+	if (cub->parse.save == 1)
+	{
+		cub->parse.save = 0;
+		bitmap(mlx);
+	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
 }
 

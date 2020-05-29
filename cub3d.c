@@ -32,18 +32,12 @@ int		main(int ac, char **av)
 		check_ext(av[1], ".cub");
 	else
 		ft_error("No map");
-
 	ft_start(&cub);
 	get_lines(&cub, &infos, av[1]);
 	fill_sp(&cub);
 	check_map(&cub);
 	want_save(&cub, ac, av);
-	// if (cub.parse.save == 1)
-	// {
-	// 	cub.parse.save = 0;
-	// 	bitmap(&mlx);
-	// }
-	init_window(&mlx, &infos);
+	init_window(&cub, &mlx, &infos);
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
 	params[2] = (void *)&cub;

@@ -27,7 +27,7 @@ void	want_save(t_cub *cub, int ac, char **av)
 	}
 }
 
-void	init_window(t_mlx *mlx, t_info *infos)
+void	init_window(t_cub *cub, t_mlx *mlx, t_info *infos)
 {
 	int x;
 	int y;
@@ -42,7 +42,8 @@ void	init_window(t_mlx *mlx, t_info *infos)
 		infos->resy = y;
 	mlx->img.width = infos->resx;
 	mlx->img.height = infos->resy;
-	mlx->win = mlx_new_window(mlx->mlx_ptr, infos->resx, infos->resy, "Cub3d");
+	if (cub->parse.save == 0)
+		mlx->win = mlx_new_window(mlx->mlx_ptr, infos->resx, infos->resy, "Cub3d");
 }
 
 void	ft_start(t_cub *cub)

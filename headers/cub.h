@@ -174,7 +174,7 @@ int						parse_info(t_cub *cub, t_info *infos, char *line);
 void					show_parsed(t_cub *cub);
 int						parsing_line(t_cub *cub, char *str);
 void					ft_start(t_cub *cub);
-void					init_window(t_mlx *mlx, t_info *infos);
+void					init_window(t_cub *cub, t_mlx *mlx, t_info *infos);
 void					get_lines(t_cub *cub, t_info *infos, char *av1);
 void					get_lines2(t_cub *cub, t_info *infos, char *av1);
 void					want_save(t_cub *cub, int ac, char **av);
