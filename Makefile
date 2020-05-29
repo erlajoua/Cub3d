@@ -30,6 +30,7 @@ SRCS =	cub3d.c 						\
 		srcs/sprite.c						\
 		srcs/sprite2.c					\
 		srcs/utils.c 						\
+		srcs/utils2.c 						\
 		libft/ft_atoi.c					\
 		libft/ft_bzero.c				\
 		libft/ft_isalnum.c			\
