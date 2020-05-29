@@ -72,4 +72,5 @@ void	bitmap(t_mlx *mlx)
 	vertical(fd, mlx);
 	close(fd);
 	free(filename);
+	exit(0);
 }

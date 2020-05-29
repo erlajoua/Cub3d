@@ -38,6 +38,11 @@ int		main(int ac, char **av)
 	fill_sp(&cub);
 	check_map(&cub);
 	want_save(&cub, ac, av);
+	// if (cub.parse.save == 1)
+	// {
+	// 	cub.parse.save = 0;
+	// 	bitmap(&mlx);
+	// }
 	init_window(&mlx, &infos);
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
