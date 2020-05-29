@@ -226,7 +226,7 @@ void					disp_spr(t_info *infos, t_mlx *mlx);
 void					calc_spr(t_info *infos, t_mlx *mlx);
 void					draw_sprite(t_info *infos, t_cub *cub, t_mlx *mlx);
 int						ft_strcmp(char *s1, char *s2);
-int						check_av(char *s);
+int						check_ext(char *s, char *ext);
 void					ft_error(char *str);
 char					*rgb_parser(t_cub *cub, char *line);
 void					init_val_spr(t_info *infos, t_cub *cub);

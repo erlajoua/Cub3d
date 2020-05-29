@@ -12,7 +12,7 @@
 
 #include "../headers/cub.h"
 
-int		check_av(char *s)
+int		check_ext(char *s, char *ext)
 {
 	int i;
 	int l;
@@ -21,11 +21,11 @@ int		check_av(char *s)
 	l = ft_strlen(s);
 	if (l >= 5)
 	{
-		if (s[l - 1] == 'b' && s[l - 2] == 'u' && s[l - 3] == 'c'
-			&& s[l - 4] == '.')
+		if (s[l - 1] == ext[3] && s[l - 2] == ext[2] && s[l - 3] == ext[1]
+			&& s[l - 4] == ext[0])
 			return (1);
 		else
-			ft_error("Name map invalid");
+			ft_error("Extension not working");
 	}
 	ft_error("Name map invalid");
 }

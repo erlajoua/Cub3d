@@ -16,10 +16,11 @@ int		parsing_north(t_cub *cub, char *line)
 {
 	int fd;
 
-	while (*line != '.')
+	while (*line != '.' && *line)
 		line++;
 	if (!(cub->parse.north = ft_strdup(line)))
 		ft_error("parsing fail");
+	check_ext(cub->parse.north, ".xpm");
 	if (cub->parse.north[0] == '\0')
 		ft_error("No north texture");	
 	fd = open(line, O_RDONLY);
@@ -35,10 +36,11 @@ int		parsing_west(t_cub *cub, char *line)
 {
 	int fd;
 
-	while (*line != '.')
+	while (*line != '.' && *line)
 		line++;
 	if (!(cub->parse.west = ft_strdup(line)))
 		ft_error("parsing fail");
+	check_ext(cub->parse.north, ".xpm");
 	if (cub->parse.west[0] == '\0')
 		ft_error("No west texture");	
 	fd = open(line, O_RDONLY);
@@ -54,10 +56,11 @@ int		parsing_east(t_cub *cub, char *line)
 {
 	int fd;
 
-	while (*line != '.')
+	while (*line != '.' && *line)
 		line++;
 	if (!(cub->parse.east = ft_strdup(line)))
 		ft_error("parsing fail");
+	check_ext(cub->parse.north, ".xpm");
 	if (cub->parse.east[0] == '\0')
 		ft_error("No east texture");	
 	fd = open(line, O_RDONLY);
@@ -73,10 +76,11 @@ int		parsing_south(t_cub *cub, char *line)
 {
 	int fd;
 
-	while (*line != '.')
+	while (*line != '.' && *line)
 		line++;
 	if (!(cub->parse.south = ft_strdup(line)))
 		ft_error("parsing fail");
+	check_ext(cub->parse.north, ".xpm");
 	if (cub->parse.south[0] == '\0')
 		ft_error("No south texture");	
 	fd = open(line, O_RDONLY);
@@ -90,9 +94,20 @@ int		parsing_south(t_cub *cub, char *line)
 
 int		parsing_sprite(t_cub *cub, char *line)
 {
-	while (*line != '.')
+	int fd;
+
+	while (*line != '.' && *line)
 		line++;
 	if (!(cub->parse.sprite = ft_strdup(line)))
 		ft_error("parsing fail");
+	check_ext(cub->parse.north, ".xpm");
+	if (cub->parse.sprite[0] == '\0')
+		ft_error("No sprite texture");	
+	fd = open(line, O_RDONLY);
+	if (fd < 0)
+	{
+		close(fd);
+		ft_error("No sprite texture");
+	}
 	return (1);
 }

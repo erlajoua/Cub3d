@@ -29,7 +29,7 @@ int		main(int ac, char **av)
 	t_cub	cub;
 
 	if (ac >= 2)
-		check_av(av[1]);
+		check_ext(av[1], ".cub");
 	else
 		ft_error("No map");
 
