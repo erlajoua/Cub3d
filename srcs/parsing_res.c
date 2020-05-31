@@ -12,6 +12,31 @@
 
 #include "../headers/cub.h"
 
+void	secure_res(char *line)
+{
+	int i;
+	int nb;
+
+	i = 1;
+	nb = 0;
+	while (line[i])
+	{
+		if (line[i] && line[i] != ' ' && !ft_isdigit(line[i]))
+			ft_error("Invalid character for resolution");
+		if (line[i] && ft_isdigit(line[i]))
+		{
+			nb++;
+			while (line[i] && ft_isdigit(line[i]))
+				i++;
+			i--;
+		}
+		i++;
+	}
+	if (nb != 2)
+		ft_error("Missing Value for resolution");
+}
+
+
 void	parsing_res_x(t_cub *cub, char *line)
 {
 	int start;
@@ -69,7 +94,9 @@ void	parsing_res_y(t_cub *cub, char *line)
 
 int		parsing_res(t_cub *cub, t_info *infos, char *line)
 {
+	secure_res(line);
 	parsing_res_x(cub, line);
+		// ft_error("Invalid Resolution X");
 	parsing_res_y(cub, line);
 	infos->resx = ft_atoi(cub->parse.res_x);
 	infos->resy = ft_atoi(cub->parse.res_y);

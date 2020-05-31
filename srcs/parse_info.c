@@ -12,26 +12,32 @@
 
 #include "../headers/cub.h"
 
-int	parse_info(t_cub *cub, t_info *infos, char *line)
+void	parse_info(t_cub *cub, t_info *infos, char *line)
 {
 	if (line[0] == 'R')
-		return (parsing_res(cub, infos, line));
+		parsing_res(cub, infos, line);
 	else if (line[0] == 'N' && line[1] == 'O')
-		return (parsing_north(cub, line));
+		parsing_north(cub, line);
 	else if (line[0] == 'S' && line[1] == 'O')
-		return (parsing_south(cub, line));
+		parsing_south(cub, line);
 	else if (line[0] == 'W' && line[1] == 'E')
-		return (parsing_west(cub, line));
+		parsing_west(cub, line);
 	else if (line[0] == 'E' && line[1] == 'A')
-		return (parsing_east(cub, line));
+		parsing_east(cub, line);
 	else if (line[0] == 'S')
-		return (parsing_sprite(cub, line));
+		parsing_sprite(cub, line);
 	else if (line[0] == 'F')
-		return (parsing_floor(cub, line));
+		parsing_floor(cub, line);
 	else if (line[0] == 'C')
-		return (parsing_ceiling(cub, line));
-	else
-		return (1);
+		parsing_ceiling(cub, line);
+	else if (line[0] && line[0] != 'R' && line[0] != 'N' && line[0] != 'S'
+	&& line[0] != 'W' && line[0] != 'E' && line[0] != 'F' && line[0] != 'C'
+	&& line[0] != '\n' && line[0] != '1' && line[0] != '0' && line[0] != '2'
+	&& line[0] != ' ')
+	{
+		printf("||%s||\n",line);
+		ft_error("Character invalid");
+	}
 }
 
 int	parsing_line(t_cub *cub, char *str)

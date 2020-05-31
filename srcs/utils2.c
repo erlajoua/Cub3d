@@ -16,7 +16,8 @@ void check_rgb_char(t_cub *cub, char *line)
         }
         if (line[cub->rgb_i] && line[cub->rgb_i] == ',')
             cub->sep++;
-        if (line[cub->rgb_i] && !ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i] != ' ' && line[cub->rgb_i] != ',')
+        if (line[cub->rgb_i] && !ft_isdigit(line[cub->rgb_i])
+            && line[cub->rgb_i] != ' ' && line[cub->rgb_i] != ',')
             ft_error("Invalid character in rgb");
         cub->rgb_i++;
     }
