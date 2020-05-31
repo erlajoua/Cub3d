@@ -31,7 +31,7 @@ int	parsing_floor(t_cub *cub, char *line)
 int	parsing_ceiling(t_cub *cub, char *line)
 {
 	line++;
-	// secure_rgb(cub, line);
+	secure_rgb(cub, line);
 	cub->parse.ceiling_rgb[0] = ft_atoi(line);
 	line = rgb_parser(cub, line);
 	cub->parse.ceiling_rgb[1] = ft_atoi(line);
