@@ -7,23 +7,18 @@ void check_rgb_char(t_cub *cub, char *line)
     cub->nb = 0;
     while (line[cub->rgb_i])
     {
-        if (!ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i] != ' ' && line[cub->rgb_i] != ',')
-            ft_error("Invalid character in rgb");
-        if (line[cub->rgb_i] == ',' && line[cub->rgb_i])
-            cub->sep++;
-        cub->rgb_i++;
-    }
-    cub->rgb_i = 0;
-    while (line[cub->rgb_i])
-    {
         if (ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i])
         {
             cub->nb++;
             while (ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i])
                 cub->rgb_i++;
         }
-        else
-            cub->rgb_i++;
+        if (line[cub->rgb_i] == ',' && line[cub->rgb_i])
+            cub->sep++;
+        if (!ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i] != ' '
+            && line[cub->rgb_i] != ',' && line[cub->rgb_i])
+            ft_error("Invalid character in rgb");
+        cub->rgb_i++;
     }
     if (cub->sep != 2 || cub->nb != 3)
         ft_error("Invalid rgb format");
@@ -36,7 +31,7 @@ void    secure_rgb(t_cub *cub, char *line)
     j = 0;
     check_rgb_char(cub, line);
     cub->rgb_i = 0;
-    while (line[cub->rgb_i])
+    while (line[cub->rgb_i] && j < 3)
     {
         if (line[cub->rgb_i] && line[cub->rgb_i] == ' ' && j < 3)
             while (line[cub->rgb_i] && line[cub->rgb_i] == ' ')
