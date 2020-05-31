@@ -137,6 +137,9 @@ struct					s_cub
 	t_parse	parse;
 	int		start_y;
 	int		ind_y;
+	int 	sep;
+	int 	nb;
+	int		rgb_i;
 };
 typedef	struct s_cub		t_cub;
 
@@ -230,6 +233,7 @@ int						check_ext(char *s, char *ext);
 void					delete_sp(char *str);
 void					ft_error(char *str);
 char					*rgb_parser(t_cub *cub, char *line);
+void					secure_rgb(t_cub *cub, char *line);
 void					init_val_spr(t_info *infos, t_cub *cub);
 void					init_nw(t_info *infos, t_cub *cub);
 void					init_se(t_info *infos, t_cub *cub);
