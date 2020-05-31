@@ -2,30 +2,30 @@
 
 void check_rgb_char(t_cub *cub, char *line)
 {
-    int i;
-
-    i = 0;
-    while (line[i])
+    cub->rgb_i = 0;
+    cub->sep = 0;
+    cub->nb = 0;
+    while (line[cub->rgb_i])
     {
-        if (!ft_isdigit(line[i]) && line[i] != ' ' && line[i] != ',')
+        if (!ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i] != ' ' && line[cub->rgb_i] != ',')
             ft_error("Invalid character in rgb");
-        if (line[i] == ',' && line[i])
+        if (line[cub->rgb_i] == ',' && line[cub->rgb_i])
             cub->sep++;
-        i++;
+        cub->rgb_i++;
     }
-    i = 0;
-    while (line[i])
+    cub->rgb_i = 0;
+    while (line[cub->rgb_i])
     {
-        if (ft_isdigit(line[i]) && line[i])
+        if (ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i])
         {
             cub->nb++;
-            while (ft_isdigit(line[i]) && line[i])
-                i++;
+            while (ft_isdigit(line[cub->rgb_i]) && line[cub->rgb_i])
+                cub->rgb_i++;
         }
         else
-            i++;
+            cub->rgb_i++;
     }
-    if (cub->sep > 2 || cub->nb > 3)
+    if (cub->sep != 2 || cub->nb != 3)
         ft_error("Invalid rgb format");
 }
 
@@ -34,8 +34,8 @@ void    secure_rgb(t_cub *cub, char *line)
     int j;
 
     j = 0;
-    cub->rgb_i = 0;
     check_rgb_char(cub, line);
+    cub->rgb_i = 0;
     while (line[cub->rgb_i])
     {
         if (line[cub->rgb_i] && line[cub->rgb_i] == ' ' && j < 3)
