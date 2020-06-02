@@ -246,7 +246,8 @@ void					secure_info(t_cub *cub);
 void					init_val_spr(t_info *infos, t_cub *cub);
 void					init_nw(t_info *infos, t_cub *cub);
 void					init_se(t_info *infos, t_cub *cub);
-int						form_parse(char *av1);
+void						form_parse(char *av1);
+
 int						ft_strlen(char *str);
 char					*ft_strdup(const char *s1);
 int						ft_isdigit(int c);
