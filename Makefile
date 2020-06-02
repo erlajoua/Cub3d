@@ -15,6 +15,7 @@ NAME = Cub3D
 
 SRCS =	cub3d.c 						\
 		srcs/bitmap.c 					\
+		srcs/form_parse.c				\
 		srcs/keypress.c 				\
 		srcs/parse_info.c 			\
 		srcs/parse.c 						\

@@ -32,6 +32,7 @@ int		main(int ac, char **av)
 		check_ext(av[1], ".cub");
 	else
 		ft_error("No map");
+	form_parse(av[1]);
 	ft_start(&cub);
 	get_lines(&cub, &infos, av[1]);
 	fill_sp(&cub);
