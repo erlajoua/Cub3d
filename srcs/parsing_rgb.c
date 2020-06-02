@@ -26,7 +26,7 @@ int	parsing_floor(t_cub *cub, char *line)
 		|| (cub->parse.floor_rgb[1] < 0 || cub->parse.floor_rgb[1] > 255)
 		|| (cub->parse.floor_rgb[2] < 0 || cub->parse.floor_rgb[2] > 255))
 		ft_error("Floor value rgb invalid");
-	cub->floor = 1;
+	cub->floor++;
 	return (1);
 }
 
@@ -44,6 +44,6 @@ int	parsing_ceiling(t_cub *cub, char *line)
 		|| (cub->parse.floor_rgb[1] < 0 || cub->parse.floor_rgb[1] > 255)
 		|| (cub->parse.floor_rgb[2] < 0 || cub->parse.floor_rgb[2] > 255))
 		ft_error("Floor value rgb invalid");
-	cub->ceil = 1;
+	cub->ceil++;
 	return (1);
 }

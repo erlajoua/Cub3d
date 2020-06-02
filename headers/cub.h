@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:59:08 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/27 11:53:39 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/06/02 12:12:14 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ struct					s_cub
 	t_parse	parse;
 	int		start_y;
 	int		ind_y;
-	int 	sep;
-	int 	nb;
+	int		sep;
+	int		nb;
 	int		rgb_i;
 	int		res;
 	int		no;

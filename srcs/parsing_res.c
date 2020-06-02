@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 16:26:46 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/27 13:30:06 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/06/02 12:08:27 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	secure_res(char *line)
 	if (nb != 2)
 		ft_error("Missing Value for resolution");
 }
-
 
 void	parsing_res_x(t_cub *cub, char *line)
 {
@@ -101,6 +100,6 @@ int		parsing_res(t_cub *cub, t_info *infos, char *line)
 	infos->resy = ft_atoi(cub->parse.res_y);
 	free(cub->parse.res_x);
 	free(cub->parse.res_y);
-	cub->res = 1;
+	cub->res++;
 	return (1);
 }

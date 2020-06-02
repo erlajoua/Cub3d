@@ -6,7 +6,7 @@
 /*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 00:37:37 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 01:14:39 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/06/02 12:11:40 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parse_info(t_cub *cub, t_info *infos, char *line)
 		ft_error("Character invalid");
 }
 
-int	parsing_line(t_cub *cub, char *str)
+int		parsing_line(t_cub *cub, char *str)
 {
 	int k;
 	int j;

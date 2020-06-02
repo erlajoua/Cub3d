@@ -6,7 +6,7 @@
 /*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 01:28:44 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/27 13:29:49 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/06/02 12:09:32 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	init_window(t_cub *cub, t_mlx *mlx, t_info *infos)
 	mlx->img.width = infos->resx;
 	mlx->img.height = infos->resy;
 	if (cub->parse.save == 0)
-		mlx->win = mlx_new_window(mlx->mlx_ptr, infos->resx, infos->resy, "Cub3d");
+		mlx->win = mlx_new_window(mlx->mlx_ptr, infos->resx,
+						infos->resy, "Cub3d");
 }
 
 void	ft_start(t_cub *cub)
