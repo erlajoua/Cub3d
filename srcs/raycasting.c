@@ -70,14 +70,12 @@ void	dda(t_info *infos, t_cub *cub)
 	{
 		if (infos->sidedistx < infos->sidedisty)
 		{
-			// printf("Passage 0\n");
 			infos->sidedistx += infos->deltadistx;
 			infos->mapx += infos->stepx;
 			infos->side = 0;
 		}
 		else
 		{
-			// printf("Passage 1 \n");
 			infos->sidedisty += infos->deltadisty;
 			infos->mapy += infos->stepy;
 			infos->side = 1;

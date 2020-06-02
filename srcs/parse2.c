@@ -35,6 +35,7 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 			parsing_map(cub, str);
 		free(str);
 	}
+	parsing_map(cub, str);
 	free(str);
 }
 
@@ -55,12 +56,14 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 		parsing_line(cub, str);
 		free(str);
 	}
+	parsing_line(cub, str);
 	free(str);
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
 		parsing_line(cub, str);
 		free(str);
 	}
+	free(str);
 	close(fd);
 	get_lines3(cub, infos, av1);
 }
@@ -84,6 +87,7 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 		parse_info(cub, infos, str);
 		free(str);
 	}
+	free(str);
 	secure_info(cub);
 	close(fd);
 	get_lines2(cub, infos, av1);

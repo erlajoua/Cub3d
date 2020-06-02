@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:59:08 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/06/02 12:12:14 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/06/02 19:15:33 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,8 +246,6 @@ void					secure_info(t_cub *cub);
 void					init_val_spr(t_info *infos, t_cub *cub);
 void					init_nw(t_info *infos, t_cub *cub);
 void					init_se(t_info *infos, t_cub *cub);
-void						form_parse(char *av1);
-
 int						ft_strlen(char *str);
 char					*ft_strdup(const char *s1);
 int						ft_isdigit(int c);

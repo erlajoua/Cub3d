@@ -13,8 +13,6 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # define BUFFER_SIZE 2048
-// # include "../headers/cub.h"
-//# include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>

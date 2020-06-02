@@ -69,34 +69,29 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
- char	*ft_strjjoin(char const *s1, char const *s2)
- {
- 	char	*str1;
- 	char	*str2;
- 	char	*dest;
- 	int		i;
- 	int		j;
+char	*ft_strjjoin(char const *s1, char const *s2)
+{
+	char	*str1;
+	char	*str2;
+	char	*dest;
+	int		i;
+	int		j;
 
- 	if (!s1 || !s2)
- 		return (NULL);
- 	str1 = (char*)s1;
- 	str2 = (char*)s2;
- 	i = -1;
- 	j = -1;
- 	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1))))
- 		return (NULL);
- 	 ft_bzero(dest, ft_strlen(str1) + ft_strlen(str2) + 1);
- 		 //printf("s1 : %s -- len : %d\n", s1, ft_strlen(str1));
- 		 //printf("s2 : %s -- len : %d\n", s2, ft_strlen(str2));
- 		 //printf("len s1 :%d -- len s2 : %d\n", ft_strlen(str1), ft_strlen(str2));
- 	while (str1[++i])
- 	{
- 		dest[i] = str1[i];
- 	}
- 	while (str2[++j])
- 		dest[i + j] = str2[j];
- 	dest[i + j] = '\0';
- 	 //printf("i : %d -- j : %d\n", i,j);
- 	free(str1);
- 	return (dest);
- }
+	if (!s1 || !s2)
+		return (NULL);
+	str1 = (char*)s1;
+	str2 = (char*)s2;
+	i = -1;
+	j = -1;
+	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen(str1)
+		+ ft_strlen(str2) + 1))))
+		return (NULL);
+	ft_bzero(dest, ft_strlen(str1) + ft_strlen(str2) + 1);
+	while (str1[++i])
+		dest[i] = str1[i];
+	while (str2[++j])
+		dest[i + j] = str2[j];
+	dest[i + j] = '\0';
+	free(str1);
+	return (dest);
+}

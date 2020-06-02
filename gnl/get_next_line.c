@@ -12,18 +12,6 @@
 
 #include "get_next_line.h"
 
-// void	ft_bzero(void *s, size_t n)
-// {
-// 	unsigned char	*ptr;
-
-// 	ptr = (unsigned char*)s;
-// 	while (n > 0)
-// 	{
-// 		*(ptr++) = 0;
-// 		n--;
-// 	}
-// }
-
 static int	ft_manage_rest(t_gnl *p, char **line, char **buffer)
 {
 	char	*rest;
@@ -96,7 +84,6 @@ static int	ft_read(int fd, t_gnl *p, char **line)
 		if (ret <= 0)
 		{
 			free(buffer);
-			free(*line); // ca en enleve un peu
 			return (ret);
 		}
 	}
@@ -108,12 +95,9 @@ int			get_next_line(int fd, char **line)
 {
 	static t_gnl	p;
 	int				ret;
-	
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL || read(fd, 0, 0) < 0)
 		return (-1);
 	ret = ft_read(fd, &p, line);
-	// free(buffer);
-	// if (line != NULL)
-	// 	free(line[0]);
 	return (ret);
 }

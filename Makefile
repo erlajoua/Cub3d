@@ -6,7 +6,7 @@
 #    By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/28 12:05:16 by tsarafia          #+#    #+#              #
-#    Updated: 2020/05/28 12:07:45 by tsarafia         ###   ########.fr        #
+#    Updated: 2020/06/02 19:23:12 by tsarafia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME = Cub3D
 
 SRCS =	cub3d.c 						\
 		srcs/bitmap.c 					\
-		srcs/form_parse.c				\
 		srcs/keypress.c 				\
 		srcs/parse_info.c 			\
 		srcs/parse.c 						\

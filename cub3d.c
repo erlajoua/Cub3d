@@ -32,7 +32,7 @@ int		main(int ac, char **av)
 		check_ext(av[1], ".cub");
 	else
 		ft_error("No map");
-	form_parse(av[1]);
+	// form_parse(av[1]);
 	ft_start(&cub);
 	get_lines(&cub, &infos, av[1]);
 	fill_sp(&cub);
@@ -44,7 +44,7 @@ int		main(int ac, char **av)
 	params[2] = (void *)&cub;
 	raycasting(&mlx, &infos, &cub);
 	free_stuff(&cub);
-	form_parse2(&cub, av[1]);
+	// form_parse2(&cub, av[1]);
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
 	mlx_hook(mlx.win, 17, (1L << 17), cross_destroy, (void *)(&params));
 	mlx_loop(mlx.mlx_ptr);

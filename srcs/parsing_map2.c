@@ -36,7 +36,9 @@ void	line_check(t_cub *cub, int j)
 				ft_error("Map invalid : Character Space\n");
 		if (cub->parse.map[j][i] == '1')
 			if (!check_around(cub, j, i, " 012NSEW"))
+			{
 				ft_error("Map invalid : Character One\n");
+			}
 		if ((cub->parse.map[j][i] == '0') || (cub->parse.map[j][i] == '2')
 				|| ((cub->parse.map[j][i] == 'N' || cub->parse.map[j][i] == 'S'
 				|| cub->parse.map[j][i] == 'E' || cub->parse.map[j][i] == 'W')))
