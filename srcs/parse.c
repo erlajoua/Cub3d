@@ -55,4 +55,12 @@ void	ft_start(t_cub *cub)
 	cub->parse.pos[0] = 0;
 	cub->parse.pos[1] = 0;
 	cub->parse.flag = 0;
+	cub->res = 0;
+	cub->no = 0;
+	cub->so = 0;
+	cub->ea = 0;
+	cub->we = 0;
+	cub->spr = 0;
+	cub->floor = 0;
+	cub->ceil = 0;
 }

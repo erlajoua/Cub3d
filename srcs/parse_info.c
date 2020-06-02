@@ -34,10 +34,7 @@ void	parse_info(t_cub *cub, t_info *infos, char *line)
 	&& line[0] != 'W' && line[0] != 'E' && line[0] != 'F' && line[0] != 'C'
 	&& line[0] != '\n' && line[0] != '1' && line[0] != '0' && line[0] != '2'
 	&& line[0] != ' ')
-	{
-		printf("||%s||\n",line);
 		ft_error("Character invalid");
-	}
 }
 
 int	parsing_line(t_cub *cub, char *str)

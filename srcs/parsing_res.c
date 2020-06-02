@@ -96,11 +96,11 @@ int		parsing_res(t_cub *cub, t_info *infos, char *line)
 {
 	secure_res(line);
 	parsing_res_x(cub, line);
-		// ft_error("Invalid Resolution X");
 	parsing_res_y(cub, line);
 	infos->resx = ft_atoi(cub->parse.res_x);
 	infos->resy = ft_atoi(cub->parse.res_y);
 	free(cub->parse.res_x);
 	free(cub->parse.res_y);
+	cub->res = 1;
 	return (1);
 }

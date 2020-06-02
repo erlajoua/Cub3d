@@ -1,28 +1,35 @@
 #include "../headers/cub.h"
 
-void check_rgb_char(t_cub *cub, char *line)
+void	secure_info(t_cub *cub)
 {
-    cub->rgb_i = 0;
-    cub->sep = 0;
-    cub->nb = 0;
-    while (line[cub->rgb_i])
+	if (cub->res == 0 || cub->no == 0 || cub->so == 0 || cub->ea == 0
+	|| cub->we == 0 || cub->spr == 0 || cub->ceil == 0 || cub->floor == 0)
+		ft_error("Missing character");
+}
+
+void	check_rgb_char(t_cub *cub, char *line)
+{
+	cub->rgb_i = 0;
+	cub->sep = 0;
+	cub->nb = 0;
+	while (line[cub->rgb_i])
     {
-        if (line[cub->rgb_i] && ft_isdigit(line[cub->rgb_i]))
-        {
-            cub->nb++;
-            while (line[cub->rgb_i] && ft_isdigit(line[cub->rgb_i]))
-                cub->rgb_i++;
-            cub->rgb_i--;
-        }
-        if (line[cub->rgb_i] && line[cub->rgb_i] == ',')
-            cub->sep++;
-        if (line[cub->rgb_i] && !ft_isdigit(line[cub->rgb_i])
-            && line[cub->rgb_i] != ' ' && line[cub->rgb_i] != ',')
-            ft_error("Invalid character in rgb");
-        cub->rgb_i++;
-    }
-    if (cub->sep != 2 || cub->nb != 3)
-        ft_error("Invalid rgb format");
+		if (line[cub->rgb_i] && ft_isdigit(line[cub->rgb_i]))
+		{
+			cub->nb++;
+			while (line[cub->rgb_i] && ft_isdigit(line[cub->rgb_i]))
+				cub->rgb_i++;
+			cub->rgb_i--;
+		}
+		if (line[cub->rgb_i] && line[cub->rgb_i] == ',')
+			cub->sep++;
+		if (line[cub->rgb_i] && !ft_isdigit(line[cub->rgb_i])
+			&& line[cub->rgb_i] != ' ' && line[cub->rgb_i] != ',')
+			ft_error("Invalid character in rgb");
+			cub->rgb_i++;
+	}
+	if (cub->sep != 2 || cub->nb != 3)
+		ft_error("Invalid rgb format");
 }
 
 void    secure_rgb(t_cub *cub, char *line)

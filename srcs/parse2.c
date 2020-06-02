@@ -84,6 +84,7 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 		parse_info(cub, infos, str);
 		free(str);
 	}
+	secure_info(cub);
 	close(fd);
 	get_lines2(cub, infos, av1);
 }

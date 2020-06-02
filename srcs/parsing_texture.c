@@ -12,10 +12,26 @@
 
 #include "../headers/cub.h"
 
+void	secure_textures(char *line)
+{
+	int i;
+
+	i = 0;
+	printf("%s\n", line);
+	printf("0 -> %c | 1 -> %c\n", line[0], line[1]);
+	if (line == NULL)
+		ft_error("Missing character for textures");
+
+	// if (line[0] == '\0' )//||// (line[0] != 'N' && line[1] != 'O'))
+	// 	ft_error("Missing character for textures");
+
+}
+
 int		parsing_north(t_cub *cub, char *line)
 {
 	int fd;
 
+	// secure_textures(line);
 	while (*line != '.' && *line)
 		line++;
 	delete_sp(line);
@@ -30,6 +46,7 @@ int		parsing_north(t_cub *cub, char *line)
 		close(fd);
 		ft_error("No north texture");
 	}
+	cub->no = 1;
 	return (1);
 }
 
@@ -37,6 +54,7 @@ int		parsing_west(t_cub *cub, char *line)
 {
 	int fd;
 
+	// secure_textures(line);
 	while (*line != '.' && *line)
 		line++;
 	delete_sp(line);
@@ -51,6 +69,7 @@ int		parsing_west(t_cub *cub, char *line)
 		close(fd);
 		ft_error("No west texture");
 	}
+	cub->we = 1;
 	return (1);
 }
 
@@ -58,6 +77,7 @@ int		parsing_east(t_cub *cub, char *line)
 {
 	int fd;
 
+	// secure_textures(line);
 	while (*line != '.' && *line)
 		line++;
 	delete_sp(line);
@@ -72,6 +92,7 @@ int		parsing_east(t_cub *cub, char *line)
 		close(fd);
 		ft_error("No east texture");
 	}
+	cub->ea = 1;
 	return (1);
 }
 
@@ -79,6 +100,7 @@ int		parsing_south(t_cub *cub, char *line)
 {
 	int fd;
 
+	// secure_textures(line);
 	while (*line != '.' && *line)
 		line++;
 	delete_sp(line);
@@ -93,6 +115,7 @@ int		parsing_south(t_cub *cub, char *line)
 		close(fd);
 		ft_error("No south texture");
 	}
+	cub->so = 1;
 	return (1);
 }
 
@@ -100,6 +123,7 @@ int		parsing_sprite(t_cub *cub, char *line)
 {
 	int fd;
 
+	// secure_textures(line);
 	while (*line != '.' && *line)
 		line++;
 	delete_sp(line);
@@ -114,5 +138,6 @@ int		parsing_sprite(t_cub *cub, char *line)
 		close(fd);
 		ft_error("No sprite texture");
 	}
+	cub->spr = 1;
 	return (1);
 }
