@@ -7,7 +7,7 @@ Ce projet est issu de l'école 42
 
 ## Sommaire
 
-  - [Bibliothèques utilisées](#bibliothèqes-utilisées)
+  - [Bibliothèques utilisées](#bibliothèques-utilisées)
   - [Deployment](#deployment)
   - [Built With](#built-with)
   - [Contributing](#contributing)
