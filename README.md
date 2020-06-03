@@ -15,6 +15,8 @@ Ce projet est issu de l'école
   - [Sources](#sources)
   - [Auteurs](#auteurs)
 
+## Bibliothèques utilisées
+
 <unistd.h>
 <stdlib.h>
 <math.h>
