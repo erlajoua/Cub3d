@@ -1,16 +1,13 @@
-# Project Title
+# Cub3d
 
-One Paragraph of project description goes here
+J'ai recodé le jeu Cub3d en C.
 
-This initially appeared on
-[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2), but as
-I can no longer open that page as there are too many comments, I have
-moved it here.
+Ce projet est issu de l'école 42
+[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) et utilise la minilibx.
 
-## Summary
+## Sommaire
 
-  - [Getting Started](#getting-started)
-  - [Runing the tests](#running-the-tests)
+  - [Bibliothèques utilisées](#bibliothèqes-utilisées)
   - [Deployment](#deployment)
   - [Built With](#built-with)
   - [Contributing](#contributing)
@@ -19,89 +16,65 @@ moved it here.
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
 
-## Getting Started
+## Bibliothèques utilisées
 
-These instructions will get you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on how to deploy the project on a live system.
+<unistd.h>
+<stdlib.h>
+<math.h>
+<fcntl.h>
+<mlx.h> (installée localement)
 
-### Prerequisites
+### Prérequis
 
-What things you need to install the software and how to install them
+Si vous ne disposez pas de la minilibx, vous devez l'installer afin de compiler le projet.
+Vous devez remplir le fichier parsing.cub des informations ci dessous :
 
-    Give examples
+R     "X, Y résolution" 
 
-### Installing
+NO   "texture north path"
+SO   "texture south path"
+WE   "texture west path"
+EA   "texture east path"
+S    "texture sprite path"
 
-A step by step series of examples that tell you how to get a development
-env running
+F    "R, G, B color of the floor"
+C    "R, G, B color of the ceiling"
 
-Say what the step will be
+1111111111111111111111
+1100000000000000000111
+11111000000000N1111
+110000000000001
+111200200100111
+110000000000111111111
+1111110000000000000001
+111111111111111111111
 
-    Give the example
+(The map, with N,W,E or S spawn direction)
 
-And repeat
+0      sont le floor,
+1      sont les walls,
+2      sont les sprites,
+spaces ne sont rien mais sont valides
 
-    until finished
+### Compilation
 
-End with an example of getting some data out of the system or using it
-for a little demo
+Une fois la minilibx installée localement, ou sur votre pc.
+Lancez la commande make.
 
-## Running the tests
+## Lancement
 
-Explain how to run the automated tests for this system
+Pour lancer le projet lancez la commande : ./Cub3D parsing.cub
 
-### Break down into end to end tests
+### Alternative de lancement
 
-Explain what these tests test and why
-
-    Give an example
-
-### And coding style tests
-
-Explain what these tests test and why
-
-    Give an example
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
-of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions
-available, see the [tags on this
-repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
+En lançant la commande : ./Cub3D --save
+Le jeu ne se lance pas, mais effectue un screen de la première image du jeu en lancement et est stockée dans le fichier screen du repos.
 
 ## Authors
 
-  - **Billie Thompson** - *Provided README Template* -
-    [PurpleBooth](https://github.com/PurpleBooth)
+  - **Tsarafian** - *42 school's student* -
+  - **Elajouan** -
 
-See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
-who participated in this project.
+## Sources
 
-## License
-
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
-
-## Acknowledgments
-
-  - Hat tip to anyone whose code was used
-  - Inspiration
-  - etc
+- [https://lodev.org/cgtutor/raycasting.html]
