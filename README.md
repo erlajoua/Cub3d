@@ -75,5 +75,5 @@ Le jeu ne se lance pas, mais effectue un screen de la première image du jeu en 
 
 ## Auteurs
 
-  - **Tsarafian** - *42 school's student* -
+  - **Tsarafia** - *42 school's student* -
   - **Elajouan** -
