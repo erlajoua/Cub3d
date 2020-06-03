@@ -28,32 +28,32 @@ Ce projet est issu de l'école
 Si vous ne disposez pas de la minilibx, vous devez l'installer afin de compiler le projet.
 Vous devez remplir le fichier parsing.cub des informations ci dessous :
 
-R     "X, Y résolution" 
-
-NO   "texture north path"
-SO   "texture south path"
-WE   "texture west path"
-EA   "texture east path"
-S    "texture sprite path"
-
-F    "R, G, B color of the floor"
-C    "R, G, B color of the ceiling"
-
-1111111111111111111111
-1100000000000000000111
-11111000000000N1111
-110000000000001
-111200200100111
-110000000000111111111
-1111110000000000000001
-111111111111111111111
-
-(The map, with N,W,E or S spawn direction)
-
-0      sont le floor,
-1      sont les walls,
-2      sont les sprites,
-spaces ne sont rien mais sont valides
+R     "X, Y résolution"   
+  
+NO   "texture north path"  
+SO   "texture south path"  
+WE   "texture west path"  
+EA   "texture east path"  
+S    "texture sprite path"  
+  
+F    "R, G, B color of the floor"  
+C    "R, G, B color of the ceiling"  
+  
+1111111111111111111111  
+1100000000000000000111  
+11111000000000N1111  
+110000000000001  
+111200200100111  
+110000000000111111111  
+1111110000000000000001  
+111111111111111111111  
+  
+(The map, with N,W,E or S spawn direction)  
+  
+0      sont le floor,  
+1      sont les walls,  
+2      sont les sprites,  
+spaces ne sont rien mais sont valides  
 
 ### Compilation
 
@@ -62,11 +62,11 @@ Lancez la commande make.
 
 ## Lancement
 
-Pour lancer le projet lancez la commande : ./Cub3D parsing.cub
+Pour lancer le projet lancez la commande : ./Cub3D parsing.cub  
 
 ### Alternative de lancement
 
-En lançant la commande : ./Cub3D --save
+En lançant la commande : ./Cub3D --save  
 Le jeu ne se lance pas, mais effectue un screen de la première image du jeu en lancement et est stockée dans le fichier screen du repos.
 
 ## Sources
@@ -75,5 +75,5 @@ Le jeu ne se lance pas, mais effectue un screen de la première image du jeu en 
 
 ## Auteurs
 
-  - **Tsarafia** - *42 school's student* -
+  - **Tsarafia** - *42 school's student* -  
   - **Elajouan** -
