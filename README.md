@@ -2,21 +2,18 @@
 
 J'ai recodé le jeu Cub3d en C.
 
-Ce projet est issu de l'école 42
-[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) et utilise la minilibx.
+Ce projet est issu de l'école 
+[42](https://www.42.fr/) et utilise la minilibx.
 
 ## Sommaire
 
   - [Bibliothèques utilisées](#bibliothèques-utilisées)
-  - [Deployment](#deployment)
-  - [Built With](#built-with)
-  - [Contributing](#contributing)
-  - [Versioning](#versioning)
-  - [Authors](#authors)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
-
-## Bibliothèques utilisées
+  - [Prérequis](#prérequis)
+  - [Compilation](#compilation)
+  - [Lancement](#lancement)
+  - [Alternative de lancement](#alternative-de-lancement)
+  - [Sources](#sources)
+  - [Auteurs](#auteurs)
 
 <unistd.h>
 <stdlib.h>
@@ -70,11 +67,11 @@ Pour lancer le projet lancez la commande : ./Cub3D parsing.cub
 En lançant la commande : ./Cub3D --save
 Le jeu ne se lance pas, mais effectue un screen de la première image du jeu en lancement et est stockée dans le fichier screen du repos.
 
-## Authors
-
-  - **Tsarafian** - *42 school's student* -
-  - **Elajouan** -
-
 ## Sources
 
 - [https://lodev.org/cgtutor/raycasting.html]
+
+## Auteurs
+
+  - **Tsarafian** - *42 school's student* -
+  - **Elajouan** -
