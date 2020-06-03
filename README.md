@@ -1,6 +1,6 @@
 # Cub3d
 
-J'ai recodé le jeu Cub3d en C.
+Le jeu Cub3d recodé en C
 
 Ce projet est issu de l'école 
 [42](https://www.42.fr/) et utilise la minilibx.
@@ -17,10 +17,10 @@ Ce projet est issu de l'école
 
 ## Bibliothèques utilisées
 
-<unistd.h>
-<stdlib.h>
-<math.h>
-<fcntl.h>
+<unistd.h>  
+<stdlib.h>  
+<math.h>  
+<fcntl.h>  
 <mlx.h> (installée localement)
 
 ### Prérequis
