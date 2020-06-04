@@ -12,6 +12,32 @@
 
 #include "../headers/cub.h"
 
+void	check_end(char *str)
+{
+	int i;
+
+	i = 0;
+	printf("je recois ca : %s\n",str);
+	while(str[i])
+	{
+		if(!find_in(str[i], " 012NSWE\n"))
+			ft_error("bad content below the map\n");
+		i++;
+	}
+}
+
+int		onlyspace(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i] == ' ')
+		i++;
+	if(str[i] == '\0')
+		return (1);
+	return (0);	
+}
+
 void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 {
 	int		ret;
@@ -29,13 +55,35 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 		ft_error("Allocated map fail");
 	while (++x < cub->parse.nbline + 1)
 		cub->parse.map[x] = 0;
-	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
+	while ((ret = get_next_line(fd, &str)) > 0)
 	{
+		//printf("recup : %s\n",str);
 		if (find_in(str[0], " 012") && ++i)
-			parsing_map(cub, str);
+		{
+			if(onlyspace(str))
+				ft_error("line contains only spaces\n");
+			int k = 0;
+			while(str[k] == ' ')
+				k++;
+			if(!find_in(str[k], "RNSEWFC"))
+			{
+				// printf("PASSAGE \n");
+				parsing_map(cub, str);
+			}
+		}
 		free(str);
 	}
-	parsing_map(cub, str);
+	if (find_in(str[0], " 012") && ++i)
+	{
+		int k = 0;
+		while(str[k] == ' ')
+			k++;
+		if(!find_in(str[k], "RNSEWFC"))
+		{
+			// printf("Chaine(out) : %s\n",str);
+			parsing_map(cub, str);
+		}
+	}
 	free(str);
 }
 
@@ -53,6 +101,7 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 	fd = open(av1, O_RDONLY);
 	while ((ret = get_next_line(fd, &str)) > 0 && cub->parse.flag != 2)
 	{
+		printf("str recup : %s\n",str);
 		parsing_line(cub, str);
 		free(str);
 	}
@@ -60,9 +109,12 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 	free(str);
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
+		//printf("str recup : %s\n",str);
+		check_end(str);
 		parsing_line(cub, str);
 		free(str);
 	}
+	check_end(str);
 	free(str);
 	close(fd);
 	get_lines3(cub, infos, av1);

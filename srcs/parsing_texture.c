@@ -16,8 +16,13 @@ int		parsing_north(t_cub *cub, char *line)
 {
 	int fd;
 
+	line += 2;
 	while (*line != '.' && *line)
+	{
+		if (*line != ' ')
+			ft_error("Invalid character texture");
 		line++;
+	}
 	delete_sp(line);
 	if (!(cub->parse.north = ft_strdup(line)))
 		ft_error("parsing fail");
@@ -38,8 +43,13 @@ int		parsing_west(t_cub *cub, char *line)
 {
 	int fd;
 
+	line += 2;
 	while (*line != '.' && *line)
+	{
+		if (*line != ' ')
+			ft_error("Invalid character texture");
 		line++;
+	}
 	delete_sp(line);
 	if (!(cub->parse.west = ft_strdup(line)))
 		ft_error("parsing fail");
@@ -60,8 +70,13 @@ int		parsing_east(t_cub *cub, char *line)
 {
 	int fd;
 
+	line += 2;
 	while (*line != '.' && *line)
+	{
+		if (*line != ' ')
+			ft_error("Invalid character texture");
 		line++;
+	}
 	delete_sp(line);
 	if (!(cub->parse.east = ft_strdup(line)))
 		ft_error("parsing fail");
@@ -82,8 +97,13 @@ int		parsing_south(t_cub *cub, char *line)
 {
 	int fd;
 
+	line += 2;
 	while (*line != '.' && *line)
+	{
+		if (*line != ' ')
+			ft_error("Invalid character texture");
 		line++;
+	}
 	delete_sp(line);
 	if (!(cub->parse.south = ft_strdup(line)))
 		ft_error("parsing fail");
@@ -104,8 +124,13 @@ int		parsing_sprite(t_cub *cub, char *line)
 {
 	int fd;
 
+	line += 1;
 	while (*line != '.' && *line)
+	{
+		if (*line != ' ')
+			ft_error("Invalid character texture");
 		line++;
+	}
 	delete_sp(line);
 	if (!(cub->parse.sprite = ft_strdup(line)))
 		ft_error("parsing fail");
