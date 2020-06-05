@@ -52,6 +52,7 @@ void	ft_start(t_cub *cub)
 	cub->parse.i = 0;
 	cub->parse.strlen = 0;
 	cub->parse.nbline = 0;
+	// cub->parse.len = 0;
 	cub->parse.side = '0';
 	cub->parse.pos[0] = 0;
 	cub->parse.pos[1] = 0;

@@ -12,29 +12,51 @@
 
 #include "../headers/cub.h"
 
+char 	*get_lines3bis(t_cub *cub, t_info *infos, char *av1)
+{
+	char *str;
+	int x;
+	int fd;
+	int ret;
+	// int	lenght;
+
+	// lenght = &len;
+	ret = 0;
+	fd = open(av1, O_RDONLY);
+	x = 0;
+	while (++x < cub->parse.nbline + 1)
+		cub->parse.map[x] = 0;
+	while ((ret = get_next_line(fd, &str)) > 0)
+	{
+		if (find_in(str[0], " 012"))
+		{
+			if (onlyspace(str))
+				ft_error("line contains only spaces\n");
+			x = 0;
+			while (str[x] == ' ')
+				x++;
+			if (!(find_in(str[x], "RNSEWFC")) && cub->parse.len > 0)
+			{
+				parsing_map(cub, str);
+				cub->parse.len--;
+			}
+		}
+		free(str);
+	}
+	return (str);
+}
+
 void	check_end(char *str)
 {
 	int i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(!find_in(str[i], " 012NSWE\n"))
+		if (!find_in(str[i], " 012NSWE\n"))
 			ft_error("bad content below the map\n");
 		i++;
 	}
-}
-
-int		onlyspace(char *str)
-{
-	int i;
-
-	i = 0;
-	while(str[i] == ' ' && str[i])
-		i++;
-	if(str[i] == '\0')
-		return (1);
-	return (0);	
 }
 
 void	get_lines3(t_cub *cub, t_info *infos, char *av1)
@@ -43,47 +65,23 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	int		fd;
 	char	*str;
 	int		x;
-	int		i;
 
-	i = 0;
 	x = 0;
+	cub->parse.len = cub->parse.nbline;
 	ret = 0;
 	fd = open(av1, O_RDONLY);
-	int put = 0;
-	printf("->> %d\n", cub->parse.nbline);
 	cub->parse.map = (char **)malloc(sizeof(char *) * (cub->parse.nbline + 1));
 	if (!cub->parse.map)
 		ft_error("Allocated map fail");
-	while (++x < cub->parse.nbline + 1)
-		cub->parse.map[x] = 0;
-	while ((ret = get_next_line(fd, &str)) > 0)
+	str = get_lines3bis(cub, infos, av1);
+	if (find_in(str[0], " 012"))
 	{
-			// printf("%s\n", str);
-		// if (str[0] == '\n')
-		if (find_in(str[0], " 012") && ++i)
-		{
-			// printf("[%d] - |%c| - |%s|\n", put++, str[0], str);
-			if (onlyspace(str))
-				ft_error("line contains only spaces\n");
-			int k = 0;
-			while(str[k] == ' ')
-				k++;
-			if (!find_in(str[k], "RNSEWFC"))
-			{
-				// printf("%s\n", str);
-				parsing_map(cub, str);
-			}
-		}
-		free(str);
-	}
-	if (find_in(str[0], " 012") && ++i)
-	{
-		int k = 0;
-		while(str[k] == ' ' && str[k])
-			k++;
-		if(!find_in(str[k], "RNSEWFC"))
+		while (str[x] == ' ' && str[x])
+			x++;
+		if (!(find_in(str[x], "RNSEWFC")) && cub->parse.len > 0)
 		{
 			parsing_map(cub, str);
+			cub->parse.len--;
 		}
 	}
 	free(str);
@@ -93,12 +91,8 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 {
 	int		fd;
 	int		ret;
-	int		x;
-	int		i;
 	char	*str;
 
-	i = 0;
-	x = 0;
 	ret = 0;
 	fd = open(av1, O_RDONLY);
 	while ((ret = get_next_line(fd, &str)) > 0 && cub->parse.flag != 2)
@@ -111,13 +105,11 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
 		check_end(str);
-		parsing_line(cub, str);
 		free(str);
 	}
 	check_end(str);
 	free(str);
 	close(fd);
-	cub->parse.flag = 0;
 	get_lines3(cub, infos, av1);
 }
 

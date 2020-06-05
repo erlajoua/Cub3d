@@ -125,6 +125,7 @@ struct					s_parse
 	int		i;
 	int		strlen;
 	int		nbline;
+	int		len;
 	int		pos[2];
 	char	side;
 	int		flag;
@@ -253,5 +254,7 @@ int						ft_isdigit(int c);
 int						ft_atoi(const char *str);
 void					ft_bzero(void *s, size_t n);
 int						get_next_line(int fd, char **line);
+int						onlyspace(char *str);
+char *					get_lines3bis(t_cub *cub, t_info *infos, char *av1);
 
 #endif

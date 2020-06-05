@@ -12,6 +12,18 @@
 
 #include "../headers/cub.h"
 
+int		onlyspace(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] == ' ' && str[i])
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	return (0);
+}
+
 void	secure_info(t_cub *cub)
 {
 	if (cub->res != 1 || cub->no != 1 || cub->so != 1 || cub->ea != 1
