@@ -255,6 +255,7 @@ int						ft_atoi(const char *str);
 void					ft_bzero(void *s, size_t n);
 int						get_next_line(int fd, char **line);
 int						onlyspace(char *str);
-char *					get_lines3bis(t_cub *cub, t_info *infos, char *av1);
+char					*get_lines3bis(t_cub *cub, t_info *infos,
+						char *av1, int fd);
 
 #endif

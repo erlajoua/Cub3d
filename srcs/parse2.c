@@ -12,17 +12,12 @@
 
 #include "../headers/cub.h"
 
-char 	*get_lines3bis(t_cub *cub, t_info *infos, char *av1)
+char	*get_lines3bis(t_cub *cub, t_info *infos, char *av1, int fd)
 {
-	char *str;
-	int x;
-	int fd;
-	int ret;
-	// int	lenght;
+	char	*str;
+	int		x;
+	int		ret;
 
-	// lenght = &len;
-	ret = 0;
-	fd = open(av1, O_RDONLY);
 	x = 0;
 	while (++x < cub->parse.nbline + 1)
 		cub->parse.map[x] = 0;
@@ -73,7 +68,7 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	cub->parse.map = (char **)malloc(sizeof(char *) * (cub->parse.nbline + 1));
 	if (!cub->parse.map)
 		ft_error("Allocated map fail");
-	str = get_lines3bis(cub, infos, av1);
+	str = get_lines3bis(cub, infos, av1, fd);
 	if (find_in(str[0], " 012"))
 	{
 		while (str[x] == ' ' && str[x])
