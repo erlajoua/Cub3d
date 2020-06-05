@@ -18,8 +18,6 @@ void	want_save(t_cub *cub, int ac, char **av)
 	{
 		if (ft_strcmp(av[2], "--save") == 0)
 			cub->parse.save = 1;
-		else
-			ft_error("second argument is not --save");
 	}
 	else
 	{
@@ -52,6 +50,7 @@ void	ft_start(t_cub *cub)
 	cub->parse.i = 0;
 	cub->parse.strlen = 0;
 	cub->parse.nbline = 0;
+	cub->parse.save = 0;
 	// cub->parse.len = 0;
 	cub->parse.side = '0';
 	cub->parse.pos[0] = 0;
