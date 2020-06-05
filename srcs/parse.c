@@ -18,8 +18,6 @@ void	want_save(t_cub *cub, int ac, char **av)
 	{
 		if (ft_strcmp(av[2], "--save") == 0)
 			cub->parse.save = 1;
-		else
-			ft_error("second argument is not --save");
 	}
 	else
 	{
