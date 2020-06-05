@@ -49,9 +49,7 @@ int		main(int ac, char **av)
 		ft_error("No map");
 	ft_start(&cub);
 	get_lines(&cub, &infos, av[1]);
-	// printf("test seg BEFORE FILL SP? \n");
 	fill_sp(&cub);
-	// printf("test seg AFTER FILL SP? \n");
 	check_map(&cub);
 	want_save(&cub, ac, av);
 	init_window(&cub, &mlx, &infos);

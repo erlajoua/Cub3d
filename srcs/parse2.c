@@ -17,7 +17,6 @@ void	check_end(char *str)
 	int i;
 
 	i = 0;
-	printf("je recois ca : %s\n",str);
 	while(str[i])
 	{
 		if(!find_in(str[i], " 012NSWE\n"))
@@ -31,7 +30,7 @@ int		onlyspace(char *str)
 	int i;
 
 	i = 0;
-	while(str[i] == ' ')
+	while(str[i] == ' ' && str[i])
 		i++;
 	if(str[i] == '\0')
 		return (1);
@@ -50,6 +49,8 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	x = 0;
 	ret = 0;
 	fd = open(av1, O_RDONLY);
+	int put = 0;
+	printf("->> %d\n", cub->parse.nbline);
 	cub->parse.map = (char **)malloc(sizeof(char *) * (cub->parse.nbline + 1));
 	if (!cub->parse.map)
 		ft_error("Allocated map fail");
@@ -57,17 +58,19 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 		cub->parse.map[x] = 0;
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
-		//printf("recup : %s\n",str);
+			// printf("%s\n", str);
+		// if (str[0] == '\n')
 		if (find_in(str[0], " 012") && ++i)
 		{
-			if(onlyspace(str))
+			// printf("[%d] - |%c| - |%s|\n", put++, str[0], str);
+			if (onlyspace(str))
 				ft_error("line contains only spaces\n");
 			int k = 0;
 			while(str[k] == ' ')
 				k++;
-			if(!find_in(str[k], "RNSEWFC"))
+			if (!find_in(str[k], "RNSEWFC"))
 			{
-				// printf("PASSAGE \n");
+				// printf("%s\n", str);
 				parsing_map(cub, str);
 			}
 		}
@@ -76,11 +79,10 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	if (find_in(str[0], " 012") && ++i)
 	{
 		int k = 0;
-		while(str[k] == ' ')
+		while(str[k] == ' ' && str[k])
 			k++;
 		if(!find_in(str[k], "RNSEWFC"))
 		{
-			// printf("Chaine(out) : %s\n",str);
 			parsing_map(cub, str);
 		}
 	}
@@ -101,7 +103,6 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 	fd = open(av1, O_RDONLY);
 	while ((ret = get_next_line(fd, &str)) > 0 && cub->parse.flag != 2)
 	{
-		printf("str recup : %s\n",str);
 		parsing_line(cub, str);
 		free(str);
 	}
@@ -109,7 +110,6 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 	free(str);
 	while ((ret = get_next_line(fd, &str)) > 0)
 	{
-		//printf("str recup : %s\n",str);
 		check_end(str);
 		parsing_line(cub, str);
 		free(str);
@@ -117,6 +117,7 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 	check_end(str);
 	free(str);
 	close(fd);
+	cub->parse.flag = 0;
 	get_lines3(cub, infos, av1);
 }
 

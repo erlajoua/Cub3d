@@ -80,9 +80,6 @@ void	delete_sp(char *str)
 	i = 0;
 	while (str[i] != ' ' && str[i])
 		i++;
-	// printf("--> %c\n", str[i]);
-	// if (str[i] != ' ')
-	// 	ft_error("Invalid format");
 	if (str[i] != '\0')
 	{
 		j = i;

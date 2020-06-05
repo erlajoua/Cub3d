@@ -65,7 +65,7 @@ int		parsing_line(t_cub *cub, char *str)
 	if (((str[0] == ' ' || str[0] == '1' || str[0] == '0' || str[0] == '2') && onlygood(str))
 	&& cub->parse.flag != 2)
 	{
-		// printf("Passage pour line : %s\n", str);
+		printf("Passage pour line : %s\n", str);
 		cub->parse.flag = 1;
 		cub->parse.nbline++;
 		while (str[k])

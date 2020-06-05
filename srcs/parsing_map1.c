@@ -26,7 +26,6 @@ void	fill_sp(t_cub *cub)
 		i = -1;
 		len = ft_strlen(cub->parse.map[j]);
 		s = ft_strdup(cub->parse.map[j]);
-		//printf("s dupped : %s\n",s);
 		free(cub->parse.map[j]);
 		if (!(cub->parse.map[j] = (char *)malloc(sizeof(char) *
 						cub->parse.strlen + 1)))
@@ -60,6 +59,7 @@ void	parsing_map(t_cub *cub, char *line)
 	int i;
 
 	i = 0;
+	
 	while (line[i])
 	{
 		if (cub->parse.side == '0')
@@ -72,12 +72,17 @@ void	parsing_map(t_cub *cub, char *line)
 		}
 		else if (line[i] == 'N' || line[i] == 'S'
 				|| line[i] == 'E' || line[i] == 'W')
-				ft_error("1 Map invalid\n");
+				ft_error("1 Map invalid");
 		if (!find_in(line[i], " 012NSEW"))
-			ft_error("2 Map invalid\n");
+			ft_error("2 Map invalid");
 		i++;
 	}
-	cub->parse.map[cub->parse.i++] = ft_strdup(line);
+
+	if (line[0] != 0)
+	{
+		printf("[%d] - |%s|\n", cub->parse.flag, line);
+		cub->parse.map[cub->parse.i++] = ft_strdup(line);
+	}
 }
 
 int		check_map(t_cub *cub)
