@@ -6,7 +6,7 @@
 /*   By: tsarafia <thomassarafian@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 01:28:44 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/06/02 12:09:32 by tsarafia         ###   ########.fr       */
+/*   Updated: 2020/06/05 13:18:38 by tsarafia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_start(t_cub *cub)
 	cub->parse.strlen = 0;
 	cub->parse.nbline = 0;
 	cub->parse.save = 0;
-	// cub->parse.len = 0;
 	cub->parse.side = '0';
 	cub->parse.pos[0] = 0;
 	cub->parse.pos[1] = 0;
