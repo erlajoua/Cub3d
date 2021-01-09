@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:01 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 12:08:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/09 12:17:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		cross_destroy(void *p)
 	exit(0);
 	return (0);
 }
-
 
 int		keypressed(int key, void *p)
 {
