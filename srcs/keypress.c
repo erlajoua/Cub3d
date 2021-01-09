@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:01 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:31:04 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 12:08:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		cross_destroy(void *p)
 	return (0);
 }
 
+
 int		keypressed(int key, void *p)
 {
 	void		**recup;
@@ -81,6 +82,8 @@ int		keypressed(int key, void *p)
 	cub = recup[2];
 	if (key == 65307)
 	{
+		free_map(cub);
+		free(infos->zbuffer);
 		exit(0);
 	}
 	infos->mvspeed = 0.4;

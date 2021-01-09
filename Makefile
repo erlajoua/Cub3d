@@ -6,7 +6,7 @@
 #    By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/28 12:05:16 by tsarafia          #+#    #+#              #
-#    Updated: 2020/06/04 10:23:24 by tsarafia         ###   ########.fr        #
+#    Updated: 2021/01/09 12:09:33 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS =	cub3d.c 						\
 		srcs/sprite2.c					\
 		srcs/utils.c 						\
 		srcs/utils2.c 						\
+		srcs/free.c						\
 		libft/ft_atoi.c					\
 		libft/ft_bzero.c				\
 		libft/ft_isalnum.c			\

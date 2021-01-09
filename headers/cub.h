@@ -6,7 +6,7 @@
 /*   By: tsarafia <tsarafia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:59:08 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/06/02 19:15:33 by tsarafia         ###   ########.fr       */
+/*   Updated: 2021/01/09 12:15:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,5 +254,7 @@ int						ft_isdigit(int c);
 int						ft_atoi(const char *str);
 void					ft_bzero(void *s, size_t n);
 int						get_next_line(int fd, char **line);
+void					free_map(t_cub *cub);
+void					free_stuff(t_cub *cub);
 
 #endif

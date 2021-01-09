@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:10 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:32:11 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 12:15:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub)
 	if (cub->parse.save == 1)
 	{
 		cub->parse.save = 0;
+		free_map(cub);
+		free(infos->zbuffer);
+		free_stuff(cub);
 		bitmap(mlx);
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);

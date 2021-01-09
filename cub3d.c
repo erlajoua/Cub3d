@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:30:41 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:30:42 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 11:11:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int		main(int ac, char **av)
 	else
 		ft_error("No map");
 	ft_start(&cub);
+	want_save(&cub, ac, av);
 	get_lines(&cub, &infos, av[1]);
 	fill_sp(&cub);
 	check_map(&cub);
-	want_save(&cub, ac, av);
 	init_window(&cub, &mlx, &infos);
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;
