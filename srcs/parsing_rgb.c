@@ -42,9 +42,9 @@ int	parsing_ceiling(t_cub *cub, char *line)
 	cub->parse.ceiling_rgb[1] = ft_atoi(line);
 	line = rgb_parser(cub, line);
 	cub->parse.ceiling_rgb[2] = ft_atoi(line);
-	if ((cub->parse.ceiling_rgb[0] < 0 || cub->parse.ceiling_rgb[0] > 255)
-		|| (cub->parse.ceiling_rgb[1] < 0 || cub->parse.ceiling_rgb[1] > 255)
-		|| (cub->parse.ceiling_rgb[2] < 0 || cub->parse.ceiling_rgb[2] > 255))
+	if ((cub->parse.floor_rgb[0] < 0 || cub->parse.floor_rgb[0] > 255)
+		|| (cub->parse.floor_rgb[1] < 0 || cub->parse.floor_rgb[1] > 255)
+		|| (cub->parse.floor_rgb[2] < 0 || cub->parse.floor_rgb[2] > 255))
 		ft_error("Floor value rgb invalid");
 	cub->ceil++;
 	return (1);

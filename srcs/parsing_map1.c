@@ -65,15 +65,13 @@ void	parsing_map(t_cub *cub, char *line)
 		{
 			if (line[i] == 'N' || line[i] == 'S'
 					|| line[i] == 'E' || line[i] == 'W')
-			{
 				cub->parse.side = line[i];
-			}
 		}
 		else if (line[i] == 'N' || line[i] == 'S'
-		|| line[i] == 'E' || line[i] == 'W')
-			ft_error("1 Map invalid");
+				|| line[i] == 'E' || line[i] == 'W')
+			ft_error("Map invalid\n");
 		if (!find_in(line[i], " 012NSEW"))
-			ft_error("2 Map invalid");
+			ft_error("Map invalid\n");
 		i++;
 	}
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
@@ -85,7 +83,7 @@ int		check_map(t_cub *cub)
 
 	y = 1;
 	if (cub->parse.side == '0')
-		ft_error("3 Map invalid\n");
+		ft_error("Map invalid\n");
 	first_line_check(cub);
 	while (y < cub->parse.nbline - 1)
 	{

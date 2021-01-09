@@ -12,24 +12,8 @@
 
 #include "../headers/cub.h"
 
-int		onlygood(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!find_in(str[i], " 012NSWE\n"))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	parse_info(t_cub *cub, t_info *infos, char *line)
 {
-	while (*line == ' ')
-		line++;
 	if (line[0] == 'R')
 		parsing_res(cub, infos, line);
 	else if (line[0] == 'N' && line[1] == 'O')
@@ -62,8 +46,7 @@ int		parsing_line(t_cub *cub, char *str)
 	j = 0;
 	if (str[0] == 0 && cub->parse.flag != 0)
 		cub->parse.flag = 2;
-	if (((str[0] == ' ' || str[0] == '1' || str[0] == '0'
-	|| str[0] == '2') && onlygood(str))
+	if ((str[0] == ' ' || str[0] == '1' || str[0] == '0')
 	&& cub->parse.flag != 2)
 	{
 		cub->parse.flag = 1;

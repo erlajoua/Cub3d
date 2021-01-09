@@ -30,21 +30,21 @@ void	line_check(t_cub *cub, int j)
 	while (cub->parse.map[j][i])
 	{
 		if (i == 0 && find_in(cub->parse.map[j][0], " 1") == 0)
-			ft_error("4 Map invalid\n");
+			ft_error("Map invalid\n");
 		if (cub->parse.map[j][i] == ' ')
 			if (!check_around(cub, j, i, " 1"))
-				ft_error("5 Map invalid\n");
+				ft_error("Map invalid\n");
 		if (cub->parse.map[j][i] == '1')
 			if (!check_around(cub, j, i, " 012NSEW"))
 			{
-				ft_error("6 Map invalid\n");
+				ft_error("Map invalid\n");
 			}
 		if ((cub->parse.map[j][i] == '0') || (cub->parse.map[j][i] == '2')
 				|| ((cub->parse.map[j][i] == 'N' || cub->parse.map[j][i] == 'S'
 				|| cub->parse.map[j][i] == 'E' || cub->parse.map[j][i] == 'W')))
 		{
 			if (!check_around(cub, j, i, "012NSEW"))
-				ft_error("7 Map invalid\n");
+				ft_error("Map invalid\n");
 		}
 		i++;
 	}
@@ -60,7 +60,7 @@ void	first_line_check(t_cub *cub)
 		if (cub->parse.map[0][i] == '1' || cub->parse.map[0][i] == ' ')
 			i++;
 		else
-			ft_error("8 Map invalid\n");
+			ft_error("Map invalid\n");
 	}
 }
 
@@ -75,7 +75,7 @@ void	last_line_check(t_cub *cub)
 				|| cub->parse.map[cub->parse.nbline - 1][i] == ' ')
 			i++;
 		else
-			ft_error("9 Map invalid\n");
+			ft_error("Map invalid\n");
 	}
 }
 

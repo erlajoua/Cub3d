@@ -12,18 +12,6 @@
 
 #include "../headers/cub.h"
 
-int		onlyspace(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] == ' ' && str[i])
-		i++;
-	if (str[i] == '\0')
-		return (1);
-	return (0);
-}
-
 void	secure_info(t_cub *cub)
 {
 	if (cub->res != 1 || cub->no != 1 || cub->so != 1 || cub->ea != 1
@@ -92,6 +80,9 @@ void	delete_sp(char *str)
 	i = 0;
 	while (str[i] != ' ' && str[i])
 		i++;
+	// printf("--> %c\n", str[i]);
+	// if (str[i] != ' ')
+	// 	ft_error("Invalid format");
 	if (str[i] != '\0')
 	{
 		j = i;
