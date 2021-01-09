@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 12:57:03 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 12:57:03 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 17:08:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				ft_strlen(char *s);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_getline(char *str);
 char			*ft_getrest(char *str, int *empty_rest);
-int				get_next_line(int fd, char **line);
+int				get_next_line(int fd, char **line, int option);
 void			ft_bzero(void *s, size_t n);
 
 struct			s_gnl

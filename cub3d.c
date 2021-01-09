@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:30:41 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 11:11:41 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/09 17:52:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	free_stuff(t_cub *cub)
 {
-	free(cub->parse.south);
-	free(cub->parse.east);
-	free(cub->parse.north);
-	free(cub->parse.west);
-	free(cub->parse.sprite);
+	if (cub->parse.south)
+		free(cub->parse.south);
+	if (cub->parse.east)
+		free(cub->parse.east);
+	if (cub->parse.north)
+		free(cub->parse.north);
+	if (cub->parse.west)
+		free(cub->parse.west);
+	if (cub->parse.sprite)
+		free(cub->parse.sprite);
 }
 
 int		expose_hook(void *params)

@@ -6,13 +6,13 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:47 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:31:48 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 18:17:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub.h"
 
-void	secure_res(char *line)
+int		secure_res(char *line)
 {
 	int i;
 	int nb;
@@ -33,7 +33,8 @@ void	secure_res(char *line)
 		i++;
 	}
 	if (nb != 2)
-		ft_error("Missing Value for resolution");
+		return (0);
+	return (1);
 }
 
 void	parsing_res_x(t_cub *cub, char *line)
@@ -93,13 +94,15 @@ void	parsing_res_y(t_cub *cub, char *line)
 
 int		parsing_res(t_cub *cub, t_info *infos, char *line)
 {
-	secure_res(line);
-	parsing_res_x(cub, line);
-	parsing_res_y(cub, line);
-	infos->resx = ft_atoi(cub->parse.res_x);
-	infos->resy = ft_atoi(cub->parse.res_y);
-	free(cub->parse.res_x);
-	free(cub->parse.res_y);
-	cub->res++;
+	cub->res = secure_res(line);
+	if (cub->res == 1)
+	{
+		parsing_res_x(cub, line);
+		parsing_res_y(cub, line);
+		infos->resx = ft_atoi(cub->parse.res_x);
+		infos->resy = ft_atoi(cub->parse.res_y);
+		free(cub->parse.res_x);
+		free(cub->parse.res_y);
+	}
 	return (1);
 }

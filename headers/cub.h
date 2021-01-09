@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 12:57:09 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 12:57:09 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 18:27:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ struct					s_cub
 	int		ceil;
 	int		floor;
 	int		index;
+	int		fdtoto;
 };
 typedef	struct s_cub		t_cub;
 
@@ -182,7 +183,7 @@ void					cam_lr(t_info *infos, int key);
 void					mv_lr(t_info *infos, t_cub *cub, int key);
 void					updown(t_info *infos, t_cub *cub, int key);
 int						cross_destroy(void *p);
-void					parse_info(t_cub *cub, t_info *infos, char *line);
+int						parse_info(t_cub *cub, t_info *infos, char *line);
 void					show_parsed(t_cub *cub);
 int						parsing_line(t_cub *cub, char *str);
 void					ft_start(t_cub *cub);
@@ -243,7 +244,7 @@ void					delete_sp(char *str);
 int						expose_hook(void *params);
 void					ft_error(char *str);
 char					*rgb_parser(t_cub *cub, char *line);
-void					secure_rgb(t_cub *cub, char *line);
+int						secure_rgb(t_cub *cub, char *line);
 void					secure_info(t_cub *cub);
 void					init_val_spr(t_info *infos, t_cub *cub);
 void					init_nw(t_info *infos, t_cub *cub);
@@ -253,8 +254,10 @@ char					*ft_strdup(const char *s1);
 int						ft_isdigit(int c);
 int						ft_atoi(const char *str);
 void					ft_bzero(void *s, size_t n);
-int						get_next_line(int fd, char **line);
+int						get_next_line(int fd, char **line, int option);
 void					free_map(t_cub *cub);
 void					free_stuff(t_cub *cub);
+int						free_direction(t_cub *cub);
+void					free_rest(char *str, t_cub *cub);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:22 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:33:57 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 18:26:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	secure_info(t_cub *cub)
 {
 	if (cub->res != 1 || cub->no != 1 || cub->so != 1 || cub->ea != 1
 	|| cub->we != 1 || cub->spr != 1 || cub->ceil != 1 || cub->floor != 1)
-		ft_error("Missing character or double character");
+		free_rest(NULL, cub);
 }
 
-void	check_rgb_char(t_cub *cub, char *line)
+int		check_rgb_char(t_cub *cub, char *line)
 {
 	cub->rgb_i = 0;
 	cub->sep = 0;
@@ -37,19 +37,21 @@ void	check_rgb_char(t_cub *cub, char *line)
 			cub->sep++;
 		if (line[cub->rgb_i] && !ft_isdigit(line[cub->rgb_i])
 			&& line[cub->rgb_i] != ' ' && line[cub->rgb_i] != ',')
-			ft_error("Invalid character in rgb");
+			return (0);
 		cub->rgb_i++;
 	}
 	if (cub->sep != 2 || cub->nb != 3)
-		ft_error("Invalid rgb format");
+		return (0);
+	return (1);
 }
 
-void	secure_rgb(t_cub *cub, char *line)
+int		secure_rgb(t_cub *cub, char *line)
 {
 	int j;
 
 	j = 0;
-	check_rgb_char(cub, line);
+	if (check_rgb_char(cub, line) == 0)
+		return (0);
 	cub->rgb_i = 0;
 	while (line[cub->rgb_i] && j < 3)
 	{
@@ -60,16 +62,17 @@ void	secure_rgb(t_cub *cub, char *line)
 			while (line[cub->rgb_i] && ft_isdigit(line[cub->rgb_i]))
 				cub->rgb_i++;
 		else
-			ft_error("Format rgb invalid");
+			return (0);
 		if (line[cub->rgb_i] && line[cub->rgb_i] == ' ' && j < 2)
 			while (line[cub->rgb_i] && line[cub->rgb_i] == ' ')
 				cub->rgb_i++;
 		if (line[cub->rgb_i] && line[cub->rgb_i] == ',' && j < 2)
 			cub->rgb_i++;
 		else if (line[cub->rgb_i] && line[cub->rgb_i] != ',' && j < 2)
-			ft_error("Format rgb invalid");
+			return (0);
 		j++;
 	}
+	return (1);
 }
 
 void	delete_sp(char *str)

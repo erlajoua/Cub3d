@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:01 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 12:53:51 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/09 16:11:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,16 @@ void	cam_lr(t_info *infos, int key)
 
 int		cross_destroy(void *p)
 {
+	void	**recup;
+	t_cub	*cub;
+	t_info	*infos;
+
+	recup = (void **)p;
+	cub = recup[2];
+	infos = recup[0];
+	free_map(cub);
+	free(infos->zbuffer);
 	exit(0);
-	return (0);
 }
 
 int		keypressed(int key, void *p)

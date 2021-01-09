@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:12 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:31:13 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 18:12:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 		ft_error("Allocated map fail");
 	while (++x < cub->parse.nbline + 1)
 		cub->parse.map[x] = 0;
-	while ((ret = get_next_line(fd, &str)) > 0 && i < cub->parse.nbline)
+	while ((ret = get_next_line(fd, &str, 1)) > 0 && i < cub->parse.nbline)
 	{
 		if (find_in(str[0], " 012") && ++i)
 			parsing_map(cub, str);
@@ -51,14 +51,14 @@ void	get_lines2(t_cub *cub, t_info *infos, char *av1)
 	x = 0;
 	ret = 0;
 	fd = open(av1, O_RDONLY);
-	while ((ret = get_next_line(fd, &str)) > 0 && cub->parse.flag != 2)
+	while ((ret = get_next_line(fd, &str, 1)) > 0 && cub->parse.flag != 2)
 	{
 		parsing_line(cub, str);
 		free(str);
 	}
 	parsing_line(cub, str);
 	free(str);
-	while ((ret = get_next_line(fd, &str)) > 0)
+	while ((ret = get_next_line(fd, &str, 1)) > 0)
 	{
 		parsing_line(cub, str);
 		free(str);
@@ -77,14 +77,16 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 	char	*str;
 
 	ret = 0;
+	str = NULL;
 	i = 0;
 	x = 0;
 	fd = open(av1, O_RDONLY);
 	if (fd < 0)
 		ft_error("file not exist");
-	while ((ret = get_next_line(fd, &str)) > 0)
+	while ((ret = get_next_line(fd, &str, 1)) > 0)
 	{
-		parse_info(cub, infos, str);
+		if (!(parse_info(cub, infos, str)))
+			free_rest(str, cub);
 		free(str);
 	}
 	free(str);

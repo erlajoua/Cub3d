@@ -6,35 +6,36 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:27 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:31:28 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 18:20:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub.h"
 
-void	parse_info(t_cub *cub, t_info *infos, char *line)
+int		parse_info(t_cub *cub, t_info *infos, char *line)
 {
 	if (line[0] == 'R')
-		parsing_res(cub, infos, line);
+		return (parsing_res(cub, infos, line));
 	else if (line[0] == 'N' && line[1] == 'O')
-		parsing_north(cub, line);
+		return (parsing_north(cub, line));
 	else if (line[0] == 'S' && line[1] == 'O')
-		parsing_south(cub, line);
+		return (parsing_south(cub, line));
 	else if (line[0] == 'W' && line[1] == 'E')
-		parsing_west(cub, line);
+		return (parsing_west(cub, line));
 	else if (line[0] == 'E' && line[1] == 'A')
-		parsing_east(cub, line);
+		return (parsing_east(cub, line));
 	else if (line[0] == 'S')
-		parsing_sprite(cub, line);
+		return (parsing_sprite(cub, line));
 	else if (line[0] == 'F')
-		parsing_floor(cub, line);
+		return (parsing_floor(cub, line));
 	else if (line[0] == 'C')
-		parsing_ceiling(cub, line);
+		return (parsing_ceiling(cub, line));
 	else if (line[0] && line[0] != 'R' && line[0] != 'N' && line[0] != 'S'
 	&& line[0] != 'W' && line[0] != 'E' && line[0] != 'F' && line[0] != 'C'
 	&& line[0] != '\n' && line[0] != '1' && line[0] != '0' && line[0] != '2'
 	&& line[0] != ' ')
 		ft_error("Character invalid");
+	return (1);
 }
 
 int		parsing_line(t_cub *cub, char *str)

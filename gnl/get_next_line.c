@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 12:56:39 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 12:56:40 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 17:41:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ static int	ft_read(int fd, t_gnl *p, char **line)
 	return (p->byte_nb > 0 || p->rest ? 1 : 0);
 }
 
-int			get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line, int option)
 {
 	static t_gnl	p;
 	int				ret;
 
+	if (option == 0)
+		free(p.rest);
 	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL || read(fd, 0, 0) < 0)
 		return (-1);
 	ret = ft_read(fd, &p, line);

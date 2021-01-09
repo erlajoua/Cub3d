@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:21 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:31:23 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/09 17:53:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	want_save(t_cub *cub, int ac, char **av)
 		if (ft_strcmp(av[2], "--save") == 0)
 			cub->parse.save = 1;
 		else
-			ft_error("second argument is not --save");
+			cub->parse.save = 0;
 	}
 	else
 	{
@@ -64,4 +64,8 @@ void	ft_start(t_cub *cub)
 	cub->spr = 0;
 	cub->floor = 0;
 	cub->ceil = 0;
+	cub->parse.north = NULL;
+	cub->parse.south = NULL;
+	cub->parse.west = NULL;
+	cub->parse.east = NULL;
 }
