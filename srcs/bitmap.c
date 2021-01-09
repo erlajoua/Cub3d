@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bitmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/22 00:36:54 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/05/22 00:38:14 by tsarafia         ###   ########.fr       */
+/*   Created: 2021/01/09 10:30:51 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/09 10:36:57 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,5 @@ void	bitmap(t_mlx *mlx)
 	vertical(fd, mlx);
 	close(fd);
 	free(filename);
-	free
 	exit(0);
 }

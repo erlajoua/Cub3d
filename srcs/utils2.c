@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsarafia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/02 12:02:48 by tsarafia          #+#    #+#             */
-/*   Updated: 2020/06/02 12:07:02 by tsarafia         ###   ########.fr       */
+/*   Created: 2021/01/09 10:32:22 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/09 10:33:57 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ void	delete_sp(char *str)
 	i = 0;
 	while (str[i] != ' ' && str[i])
 		i++;
-	// printf("--> %c\n", str[i]);
-	// if (str[i] != ' ')
-	// 	ft_error("Invalid format");
 	if (str[i] != '\0')
 	{
 		j = i;
