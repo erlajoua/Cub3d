@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:21 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 22:49:05 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 23:27:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ void	init_window(t_cub *cub, t_mlx *mlx, t_info *infos)
 	y = 0;
 	mlx->mlx_ptr = mlx_init();
 	mlx_get_screen_size(mlx->mlx_ptr, &x, &y);
+	if (infos->resx < 0)
+		infos->resx = 0;
+	if (infos->resy < 0)
+		infos->resy = 0;
 	if (infos->resx > x || infos->resx <= 0)
 		infos->resx = x;
 	if (infos->resy > y || infos->resy <= 0)
-		infos->resy = y - 2;
+		infos->resy = 1080;
 	mlx->img.width = infos->resx;
 	mlx->img.height = infos->resy;
 	if (cub->parse.save == 0)
