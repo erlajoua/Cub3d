@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:34 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 11:53:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 13:22:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		find_in(char c, char *str)
 	return (0);
 }
 
-void	parsing_map(t_cub *cub, char *line)
+int		parsing_map(t_cub *cub, char *line)
 {
 	int i;
 
@@ -69,12 +69,13 @@ void	parsing_map(t_cub *cub, char *line)
 		}
 		else if (line[i] == 'N' || line[i] == 'S'
 				|| line[i] == 'E' || line[i] == 'W')
-			ft_error("Map invalid\n");
+			return (0);
 		if (!find_in(line[i], " 012NSEW"))
-			ft_error("Map invalid\n");
+			return (0);
 		i++;
 	}
 	cub->parse.map[cub->parse.i++] = ft_strdup(line);
+	return (1);
 }
 
 int		check_map(t_cub *cub)
@@ -83,13 +84,16 @@ int		check_map(t_cub *cub)
 
 	y = 1;
 	if (cub->parse.side == '0')
-		ft_error("Map invalid\n");
-	first_line_check(cub);
+		return (0);
+	if (!(first_line_check(cub)))
+		return (0);
 	while (y < cub->parse.nbline - 1)
 	{
-		line_check(cub, y);
+		if (!(line_check(cub, y)))
+			return (0);
 		y++;
 	}
-	last_line_check(cub);
-	return (0);
+	if (!(last_line_check(cub)))
+		return (0);
+	return (1);
 }

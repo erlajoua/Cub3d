@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:40 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:31:42 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/10 13:19:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		last_checkaround(t_cub *cub, int i, int j, char *s)
 	return (0);
 }
 
-void	line_check(t_cub *cub, int j)
+int		line_check(t_cub *cub, int j)
 {
 	int i;
 
@@ -30,27 +30,28 @@ void	line_check(t_cub *cub, int j)
 	while (cub->parse.map[j][i])
 	{
 		if (i == 0 && find_in(cub->parse.map[j][0], " 1") == 0)
-			ft_error("Map invalid\n");
+			return (0);
 		if (cub->parse.map[j][i] == ' ')
 			if (!check_around(cub, j, i, " 1"))
-				ft_error("Map invalid\n");
+				return (0);
 		if (cub->parse.map[j][i] == '1')
 			if (!check_around(cub, j, i, " 012NSEW"))
 			{
-				ft_error("Map invalid\n");
+				return (0);
 			}
 		if ((cub->parse.map[j][i] == '0') || (cub->parse.map[j][i] == '2')
 				|| ((cub->parse.map[j][i] == 'N' || cub->parse.map[j][i] == 'S'
 				|| cub->parse.map[j][i] == 'E' || cub->parse.map[j][i] == 'W')))
 		{
 			if (!check_around(cub, j, i, "012NSEW"))
-				ft_error("Map invalid\n");
+				return (0);
 		}
 		i++;
 	}
+	return (1);
 }
 
-void	first_line_check(t_cub *cub)
+int		first_line_check(t_cub *cub)
 {
 	int i;
 
@@ -60,11 +61,12 @@ void	first_line_check(t_cub *cub)
 		if (cub->parse.map[0][i] == '1' || cub->parse.map[0][i] == ' ')
 			i++;
 		else
-			ft_error("Map invalid\n");
+			return (0);
 	}
+	return (1);
 }
 
-void	last_line_check(t_cub *cub)
+int		last_line_check(t_cub *cub)
 {
 	int i;
 
@@ -75,8 +77,9 @@ void	last_line_check(t_cub *cub)
 				|| cub->parse.map[cub->parse.nbline - 1][i] == ' ')
 			i++;
 		else
-			ft_error("Map invalid\n");
+			return (0);
 	}
+	return (1);
 }
 
 int		check_around(t_cub *cub, int j, int i, char *s)

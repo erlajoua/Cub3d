@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:12 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 18:12:32 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 12:37:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	while ((ret = get_next_line(fd, &str, 1)) > 0 && i < cub->parse.nbline)
 	{
 		if (find_in(str[0], " 012") && ++i)
-			parsing_map(cub, str);
+			if (!(parsing_map(cub, str)))
+				free_maperror(str, cub);
 		free(str);
 	}
 	parsing_map(cub, str);

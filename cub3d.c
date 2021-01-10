@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:30:41 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 17:52:21 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 13:21:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		main(int ac, char **av)
 	want_save(&cub, ac, av);
 	get_lines(&cub, &infos, av[1]);
 	fill_sp(&cub);
-	check_map(&cub);
+	if (!(check_map(&cub)))
+		free_maperror(NULL, &cub);
 	init_window(&cub, &mlx, &infos);
 	params[0] = (void *)&infos;
 	params[1] = (void *)&mlx;

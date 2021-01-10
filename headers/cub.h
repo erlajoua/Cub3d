@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 12:57:09 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 18:27:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 13:20:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,12 +205,12 @@ int						raycasting(t_mlx *mlx, t_info *infos, t_cub *cub);
 void					fill_sp(t_cub *cub);
 int						find_in(char c, char *str);
 void					show_map(t_cub *cub);
-void					parsing_map(t_cub *cub, char *line);
+int						parsing_map(t_cub *cub, char *line);
 int						check_map(t_cub *cub);
 int						check_around(t_cub *cub, int j, int i, char *s);
-void					line_check(t_cub *cub, int j);
-void					first_line_check(t_cub *cub);
-void					last_line_check(t_cub *cub);
+int						line_check(t_cub *cub, int j);
+int						first_line_check(t_cub *cub);
+int						last_line_check(t_cub *cub);
 void					parsing_res_x(t_cub *cub, char *line);
 void					parsing_res_y(t_cub *cub, char *line);
 int						parsing_res(t_cub *cub, t_info *infos, char *line);
@@ -259,5 +259,6 @@ void					free_map(t_cub *cub);
 void					free_stuff(t_cub *cub);
 int						free_direction(t_cub *cub);
 void					free_rest(char *str, t_cub *cub);
+void					free_maperror(char *str, t_cub *cub);
 
 #endif
