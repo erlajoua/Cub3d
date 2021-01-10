@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 12:57:09 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 13:20:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 22:03:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,5 +260,7 @@ void					free_stuff(t_cub *cub);
 int						free_direction(t_cub *cub);
 void					free_rest(char *str, t_cub *cub);
 void					free_maperror(char *str, t_cub *cub);
+void					free_mlx(t_mlx *mlx, t_info *infos);
+void					free_esc(void *p);
 
 #endif

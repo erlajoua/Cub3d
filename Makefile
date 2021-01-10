@@ -6,7 +6,7 @@
 #    By: user42 <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/09 12:54:38 by user42            #+#    #+#              #
-#    Updated: 2021/01/09 12:54:39 by user42           ###   ########.fr        #
+#    Updated: 2021/01/10 22:04:22 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS =	cub3d.c 						\
 		srcs/utils.c 						\
 		srcs/utils2.c 						\
 		srcs/free.c						\
+		srcs/mlx.c						\
 		libft/ft_atoi.c					\
 		libft/ft_bzero.c				\
 		libft/ft_isalnum.c			\
@@ -43,28 +44,25 @@ SRCS =	cub3d.c 						\
 		gnl/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
+HEAD=		-I headers -I minilibx-linux
+CC=			clang
+CFLAGS=		-Wall -Werror -Wextra
+MLX_DIR=	minilibx-linux
+LDFLAGS=	-L ${MLX_DIR}
+LIBS=		-lm -lmlx -lXext -lX11
 
-HEAD = headers/cub.h
+.c.o:
+		${CC} ${CFLAGS} ${HEAD} -c $< -o ${<:.c=.o}
+$(NAME):	${OBJS}
+		make -C ${MLX_DIR}
+		${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} -o ${NAME} ${LIBS}
 
-AR = ar rc
+all:	${NAME}
 
-LIB = ranlib
+clean:
+		rm -rf ${OBJS}
+fclean:	clean
+		rm -rf ${NAME}
+re:	fclean all
+.PHONY:	all clean fclean re
 
-FLAGS = -Wall -Wextra -Werror
-LIBX = -L ./minilibx-linux/ -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd 
-
-all		: $(NAME)
-
-$(NAME)	:	$(OBJS)
-			clang $(FLAGS) -o $(NAME) $(OBJS) $(LIBX)
-
-clean	:
-			rm -rf $(OBJS)
-
-fclean	:	clean
-			rm -rf $(NAME)
-			rm -f *.bmp
-
-re		:	fclean all
-
-.PHONY	:	all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:22 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 18:26:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 21:54:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int		secure_rgb(t_cub *cub, char *line)
 {
 	int j;
 
-	j = 0;
+	j = -1;
 	if (check_rgb_char(cub, line) == 0)
 		return (0);
 	cub->rgb_i = 0;
-	while (line[cub->rgb_i] && j < 3)
+	while (line[cub->rgb_i] && j++ < 3)
 	{
 		if (line[cub->rgb_i] && line[cub->rgb_i] == ' ' && j < 3)
 			while (line[cub->rgb_i] && line[cub->rgb_i] == ' ')
@@ -70,7 +70,6 @@ int		secure_rgb(t_cub *cub, char *line)
 			cub->rgb_i++;
 		else if (line[cub->rgb_i] && line[cub->rgb_i] != ',' && j < 2)
 			return (0);
-		j++;
 	}
 	return (1);
 }

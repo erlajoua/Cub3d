@@ -1,21 +1,11 @@
-R   2000    1000        
-
+R 45000 0800
 SO ./textures/south.xpm
-
-NO                     ./textures/north.xpm
+NO ./textures/north.xpm
 EA ./textures/east.xpm
 S ./textures/sprite.xpm
-WE ./textures/west.xpm  
+WE ./textures/west.xpm
 C 80, 112, 1
-
 F 0,0,0
-
-
-
-
-
-
-
 
 11111111111                                  1
 10001112001111111                            1

@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:30:41 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 21:10:53 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 21:51:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		main(int ac, char **av)
 	raycasting(&mlx, &infos, &cub);
 	free_stuff(&cub);
 	mlx_hook(mlx.win, 2, (1L << 0), keypressed, (void *)params);
-	mlx_hook(mlx.win, 17, (1L << 17), cross_destroy, (void *)(&params));
+	mlx_hook(mlx.win, 33, (1L << 17), cross_destroy, (void *)(&params));
 	mlx_expose_hook(mlx.win, expose_hook, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);

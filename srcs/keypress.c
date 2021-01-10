@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:01 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 19:52:51 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 22:07:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,7 @@ int		cross_destroy(void *p)
 	mlx = recup[1];
 	infos = recup[0];
 	free_map(cub);
-	free(infos->zbuffer);
-	mlx_clear_window(mlx->mlx_ptr, mlx->win);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->win);
-	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[0].img);
-	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[1].img);
-	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[2].img);
-	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[3].img);
-	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[4].img);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
-	free(mlx->mlx_ptr);
+	free_mlx(mlx, infos);
 	exit(0);
 }
 
@@ -99,11 +90,7 @@ int		keypressed(int key, void *p)
 	infos = recup[0];
 	cub = recup[2];
 	if (key == 65307)
-	{
-		free_map(cub);
-		free(infos->zbuffer);
-		exit(0);
-	}
+		free_esc(p);
 	infos->mvspeed = 0.4;
 	if (key == 122 || key == 115)
 		updown(infos, cub, key);

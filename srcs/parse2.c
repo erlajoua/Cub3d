@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:12 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 12:37:32 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 21:42:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	int		x;
 	int		i;
 
+	(void)infos;
 	i = 0;
 	x = 0;
 	ret = 0;

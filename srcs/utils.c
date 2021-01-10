@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:26 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:32:27 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:44:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		check_ext(char *s, char *ext)
 			ft_error("Extension not working");
 	}
 	ft_error("Name map invalid");
+	return (1);
 }
 
 void	ft_error(char *str)
@@ -51,6 +52,7 @@ int		ft_strcmp(char *s1, char *s2)
 
 char	*rgb_parser(t_cub *cub, char *line)
 {
+	(void)cub;
 	while (!ft_isdigit(*line))
 		line++;
 	while (ft_isdigit(*line))
@@ -64,6 +66,7 @@ void	init_val_spr(t_info *infos, t_cub *cub)
 {
 	int i;
 
+	(void)cub;
 	i = 0;
 	while (i < infos->spr_nb)
 	{
