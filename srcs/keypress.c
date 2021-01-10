@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:01 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 16:11:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 19:52:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,23 @@ int		cross_destroy(void *p)
 	void	**recup;
 	t_cub	*cub;
 	t_info	*infos;
+	t_mlx	*mlx;
 
 	recup = (void **)p;
 	cub = recup[2];
+	mlx = recup[1];
 	infos = recup[0];
 	free_map(cub);
 	free(infos->zbuffer);
+	mlx_clear_window(mlx->mlx_ptr, mlx->win);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win);
+	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[0].img);
+	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[1].img);
+	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[2].img);
+	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[3].img);
+	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[4].img);
+	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
+	free(mlx->mlx_ptr);
 	exit(0);
 }
 
