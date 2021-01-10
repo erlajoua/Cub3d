@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:21 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 21:11:02 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 22:49:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_window(t_cub *cub, t_mlx *mlx, t_info *infos)
 	if (infos->resx > x || infos->resx <= 0)
 		infos->resx = x;
 	if (infos->resy > y || infos->resy <= 0)
-		infos->resy = y;
+		infos->resy = y - 2;
 	mlx->img.width = infos->resx;
 	mlx->img.height = infos->resy;
 	if (cub->parse.save == 0)

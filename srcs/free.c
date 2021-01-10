@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 12:06:13 by user42            #+#    #+#             */
-/*   Updated: 2021/01/10 13:23:29 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 22:40:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@ void	free_rest(char *str, t_cub *cub)
 	int ret;
 
 	ret = 0;
-	if (cub->parse.north)
+	if (cub->no == 1)
 		free(cub->parse.north);
-	if (cub->parse.west)
+	if (cub->we == 1)
 		free(cub->parse.west);
-	if (cub->parse.south)
+	if (cub->so == 1)
 		free(cub->parse.south);
-	if (cub->parse.east)
+	if (cub->ea == 1)
 		free(cub->parse.east);
-	if (cub->parse.sprite)
+	if (cub->spr == 1)
 		free(cub->parse.sprite);
+	free(str);
 	ret = get_next_line(-1, NULL, 0);
-	if (str)
-		free(str);
 	write(2, "Error\nParsing infos error", 25);
 	exit(0);
 }

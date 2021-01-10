@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:01 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 22:07:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 22:11:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,3 +103,4 @@ int		keypressed(int key, void *p)
 		all(((t_info *)recup[0]), ((t_mlx *)recup[1]), ((t_cub *)recup[2]));
 	return (1);
 }
+

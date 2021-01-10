@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:26 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 21:44:05 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 22:13:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	init_val_spr(t_info *infos, t_cub *cub)
 {
 	int i;
 
-	(void)cub;
 	i = 0;
+	(void)cub;
 	while (i < infos->spr_nb)
 	{
 		infos->sprite[i].first = 0;

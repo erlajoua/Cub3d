@@ -1,4 +1,4 @@
-R  1280000 800000
+R  1280 800
 SO ./textures/south.xpm
 NO ./textures/north.xpm
 EA ./textures/east.xpm

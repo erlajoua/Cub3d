@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:30:41 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 21:51:12 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/10 22:19:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,4 @@ int		main(int ac, char **av)
 	mlx_hook(mlx.win, 33, (1L << 17), cross_destroy, (void *)(&params));
 	mlx_expose_hook(mlx.win, expose_hook, (void *)params);
 	mlx_loop(mlx.mlx_ptr);
-	return (0);
 }
