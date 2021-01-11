@@ -6,7 +6,7 @@
 #    By: user42 <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/09 12:54:38 by user42            #+#    #+#              #
-#    Updated: 2021/01/10 22:11:14 by user42           ###   ########.fr        #
+#    Updated: 2021/01/11 09:00:28 by erlajoua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ all:	${NAME}
 clean:
 		rm -rf ${OBJS}
 fclean:	clean
-		rm -rf ${NAME}
+		rm -rf ${NAME} screen.bmp
 re:	fclean all
 .PHONY:	all clean fclean re
 
