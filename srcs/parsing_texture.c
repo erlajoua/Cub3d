@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/09 10:34:17 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/11 08:57:04 by user42           ###   ########.fr       */
+/*   Created: 2021/01/11 10:57:41 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:57:42 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		parsing_north(t_cub *cub, char *line)
 			return (0);
 		line++;
 	}
-	if (!(delete_sp(line)))
+	if (!(delete_sp(line)) || cub->no >= 1)
 		return (0);
 	if (!(cub->parse.north = ft_strdup(line)))
 		ft_error("Malloc failed");
@@ -52,7 +52,7 @@ int		parsing_west(t_cub *cub, char *line)
 			return (0);
 		line++;
 	}
-	if (!(delete_sp(line)))
+	if (!(delete_sp(line)) || cub->we >= 1)
 		return (0);
 	if (!(cub->parse.west = ft_strdup(line)))
 		ft_error("Malloc failed");
@@ -81,7 +81,7 @@ int		parsing_east(t_cub *cub, char *line)
 			return (0);
 		line++;
 	}
-	if (!(delete_sp(line)))
+	if (!(delete_sp(line)) || cub->ea >= 1)
 		return (0);
 	if (!(cub->parse.east = ft_strdup(line)))
 		ft_error("Malloc failed");
@@ -110,7 +110,7 @@ int		parsing_south(t_cub *cub, char *line)
 			return (0);
 		line++;
 	}
-	if (!(delete_sp(line)))
+	if (!(delete_sp(line)) || cub->so >= 1)
 		return (0);
 	if (!(cub->parse.south = ft_strdup(line)))
 		ft_error("Malloc failed");
@@ -139,7 +139,7 @@ int		parsing_sprite(t_cub *cub, char *line)
 			return (0);
 		line++;
 	}
-	if (!(delete_sp(line)))
+	if (!(delete_sp(line)) || cub->spr >= 1)
 		return (0);
 	if (!(cub->parse.sprite = ft_strdup(line)))
 		ft_error("Malloc failed");

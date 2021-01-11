@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 22:11:29 by user42            #+#    #+#             */
-/*   Updated: 2021/01/11 08:59:45 by user42           ###   ########.fr       */
+/*   Created: 2021/01/11 10:57:08 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:57:09 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,19 @@ void	free_esc(void *p)
 	mlx = recup[1];
 	infos = recup[0];
 	free_map(cub);
-	free_mlx(mlx, infos);
+	free_mlx(mlx, infos, cub);
+	get_next_line(-1, NULL, 0);
 	exit(0);
 }
 
-void	free_mlx(t_mlx *mlx, t_info *infos)
+void	free_mlx(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
-	mlx_clear_window(mlx->mlx_ptr, mlx->win);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->win);
+	if (cub->parse.is_bitmap != 12)
+	{
+		mlx_clear_window(mlx->mlx_ptr, mlx->win);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win);
+		free(infos->zbuffer);
+	}
 	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[0].img);
 	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[1].img);
 	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[2].img);
@@ -39,6 +44,5 @@ void	free_mlx(t_mlx *mlx, t_info *infos)
 	mlx_destroy_image(mlx->mlx_ptr, infos->txtr[4].img);
 	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
-	free(infos->zbuffer);
 	free(mlx->mlx_ptr);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/09 10:31:47 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/11 08:49:21 by user42           ###   ########.fr       */
+/*   Created: 2021/01/11 10:57:32 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:57:34 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	parsing_res_y(t_cub *cub, char *line)
 
 int		parsing_res(t_cub *cub, t_info *infos, char *line)
 {
-	cub->res = secure_res(line);
+	cub->res += secure_res(line);
 	if (cub->res == 1)
 	{
 		parsing_res_x(cub, line);

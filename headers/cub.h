@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/09 12:57:09 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/11 08:57:31 by erlajoua         ###   ########.fr       */
+/*   Created: 2021/01/11 10:59:25 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:59:25 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ struct					s_parse
 	char	side;
 	int		flag;
 	int		save;
+	int		is_bitmap;
 };
 typedef	struct s_parse		t_parse;
 
@@ -175,7 +176,7 @@ struct					s_mlx
 };
 typedef struct s_mlx		t_mlx;
 
-void					bitmap(t_mlx *mlx);
+void					bitmap(t_mlx *mlx, t_info *infos, t_cub *cub);
 void					header_bmp(t_mlx *mlx, int fd);
 void					vertical(int fd, t_mlx *mlx);
 int						keypressed(int key, void *p);
@@ -260,7 +261,7 @@ void					free_stuff(t_cub *cub);
 int						free_direction(t_cub *cub);
 void					free_rest(char *str, t_cub *cub);
 void					free_maperror(char *str, t_cub *cub);
-void					free_mlx(t_mlx *mlx, t_info *infos);
+void					free_mlx(t_mlx *mlx, t_info *infos, t_cub *cub);
 void					free_esc(void *p);
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 10:57:53 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/11 10:57:54 by erlajoua         ###   ########.fr       */
+/*   Created: 2021/01/09 10:32:10 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:41:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ void	all(t_info *infos, t_mlx *mlx, t_cub *cub)
 	draw_sprite(infos, cub, mlx);
 	if (cub->parse.save == 1)
 	{
-		cub->parse.save = 0;
-		cub->parse.is_bitmap = 12;
 		free_map(cub);
 		free(infos->zbuffer);
 		free_stuff(cub);
+		cub->parse.is_bitmap = 12;
+		cub->parse.save = 0;
 		bitmap(mlx, infos, cub);
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);

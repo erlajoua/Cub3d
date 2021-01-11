@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/09 10:31:01 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/11 08:59:41 by user42           ###   ########.fr       */
+/*   Created: 2021/01/11 10:57:04 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:57:06 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int		cross_destroy(void *p)
 	mlx = recup[1];
 	infos = recup[0];
 	free_map(cub);
-	free_mlx(mlx, infos);
+	free_mlx(mlx, infos, cub);
+	get_next_line(-1, NULL, 0);
 	exit(0);
 }
 

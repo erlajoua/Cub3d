@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/09 10:30:51 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:36:57 by erlajoua         ###   ########.fr       */
+/*   Created: 2021/01/11 10:56:45 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:56:46 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	header_bmp(t_mlx *mlx, int fd)
 	}
 }
 
-void	bitmap(t_mlx *mlx)
+void	bitmap(t_mlx *mlx, t_info *infos, t_cub *cub)
 {
 	int		fd;
 	int		file_size;
@@ -72,5 +72,7 @@ void	bitmap(t_mlx *mlx)
 	vertical(fd, mlx);
 	close(fd);
 	free(filename);
+	get_next_line(-1, NULL, 0);
+	free_mlx(mlx, infos, cub);
 	exit(0);
 }

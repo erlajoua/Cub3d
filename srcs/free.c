@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/09 12:06:13 by user42            #+#    #+#             */
-/*   Updated: 2021/01/10 22:40:07 by user42           ###   ########.fr       */
+/*   Created: 2021/01/11 10:56:36 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/01/11 10:56:37 by erlajoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	free_rest(char *str, t_cub *cub)
 	int ret;
 
 	ret = 0;
-	if (cub->no == 1)
+	if (cub->no >= 1)
 		free(cub->parse.north);
-	if (cub->we == 1)
+	if (cub->we >= 1)
 		free(cub->parse.west);
-	if (cub->so == 1)
+	if (cub->so >= 1)
 		free(cub->parse.south);
-	if (cub->ea == 1)
+	if (cub->ea >= 1)
 		free(cub->parse.east);
-	if (cub->spr == 1)
+	if (cub->spr >= 1)
 		free(cub->parse.sprite);
 	free(str);
 	ret = get_next_line(-1, NULL, 0);
