@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:22 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 22:40:18 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 08:57:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		secure_rgb(t_cub *cub, char *line)
 	return (1);
 }
 
-void	delete_sp(char *str)
+int		delete_sp(char *str)
 {
 	int i;
 	int j;
@@ -88,8 +88,9 @@ void	delete_sp(char *str)
 		while (str[j] == ' ')
 			j++;
 		if (str[j] != '\0')
-			ft_error("Invalid format for texture");
+			return (0);
 		if (j > 0)
 			str[i] = '\0';
 	}
+	return (1);
 }

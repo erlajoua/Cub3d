@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:14 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 10:32:15 by erlajoua         ###   ########.fr       */
+/*   Updated: 2021/01/11 08:51:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	alloc_spr(t_info *infos)
 	{
 		infos->sprite = (t_sprite *)malloc(sizeof(t_sprite) * infos->spr_nb);
 		if (!infos->sprite)
-			ft_error("error malloc number sprite");
+			ft_error("Malloc failed");
 	}
 }
 
@@ -63,7 +63,7 @@ void	disp_spr2(t_info *infos, t_mlx *mlx, int txtr_y, int i)
 		infos->txtr[4].height) / infos->spr_h) / 256;
 		if (!(infos->datatest = (int *)mlx_get_data_addr(infos->sprite[0].txt,
 		&mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian)))
-			ft_error("datatest get data address");
+			ft_error("Pointer allocation failed in disp_spr2 (sprite2.c) line 66");
 		infos->res = infos->datatest[txtr_y * 64 + infos->txt];
 		if (infos->res && 0x00FFFFFF != 0)
 			mlx->img.data[j * infos->resx + i] = infos->res;

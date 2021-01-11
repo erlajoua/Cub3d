@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:26 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 22:13:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 08:54:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ int		check_ext(char *s, char *ext)
 			&& s[l - 4] == ext[0])
 			return (1);
 		else
-			ft_error("Extension not working");
+			return (0);
 	}
-	ft_error("Name map invalid");
-	return (1);
+	return (0);
 }
 
 void	ft_error(char *str)

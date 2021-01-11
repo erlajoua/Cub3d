@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:32:10 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 13:28:57 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 08:50:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int		raycasting(t_mlx *mlx, t_info *infos, t_cub *cub)
 	mlx->img.data = (int *)mlx_get_data_addr(mlx->img.img_ptr,
 	&mlx->img.bpp, &mlx->img.size_l, &mlx->img.endian);
 	if (!(infos->zbuffer = malloc(sizeof(double) * infos->resx)))
-		ft_error("malloc zbuffer error");
+		ft_error("Malloc failed");
 	initvalue(infos, cub);
 	infos->posx += 0.5;
 	infos->posy += 0.5;

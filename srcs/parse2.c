@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:12 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/10 22:40:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 08:49:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_lines3(t_cub *cub, t_info *infos, char *av1)
 	fd = open(av1, O_RDONLY);
 	cub->parse.map = (char **)malloc(sizeof(char *) * (cub->parse.nbline + 1));
 	if (!cub->parse.map)
-		ft_error("Allocated map fail");
+		ft_error("Malloc failed");
 	while (++x < cub->parse.nbline + 1)
 		cub->parse.map[x] = 0;
 	while ((ret = get_next_line(fd, &str, 1)) > 0 && i < cub->parse.nbline)
@@ -84,7 +84,7 @@ void	get_lines(t_cub *cub, t_info *infos, char *av1)
 	x = 0;
 	fd = open(av1, O_RDONLY);
 	if (fd < 0)
-		ft_error("file not exist");
+		ft_error("File not exist and not check in the main");
 	while ((ret = get_next_line(fd, &str, 1)) > 0)
 	{
 		if (!(parse_info(cub, infos, str)))

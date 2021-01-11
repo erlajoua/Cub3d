@@ -1,1 +1,0 @@
-valgrind --leak-check=full --show-leak-kinds=all --log-file="erlajoua.txt" ./Cub3D parsing.cub && cat erlajoua.txt | grep -E "fill_sp|get|raycasting|malloc|errors from" -A4 -B3

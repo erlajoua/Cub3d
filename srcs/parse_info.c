@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:27 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 18:20:59 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 08:38:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		parse_info(t_cub *cub, t_info *infos, char *line)
 	&& line[0] != 'W' && line[0] != 'E' && line[0] != 'F' && line[0] != 'C'
 	&& line[0] != '\n' && line[0] != '1' && line[0] != '0' && line[0] != '2'
 	&& line[0] != ' ')
-		ft_error("Character invalid");
+		return (0);
 	return (1);
 }
 

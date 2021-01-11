@@ -6,7 +6,7 @@
 /*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 10:31:47 by erlajoua          #+#    #+#             */
-/*   Updated: 2021/01/09 18:17:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 08:49:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		secure_res(char *line)
 	while (line[i])
 	{
 		if (line[i] && line[i] != ' ' && !ft_isdigit(line[i]))
-			ft_error("Invalid character for resolution");
+			return (0);
 		if (line[i] && ft_isdigit(line[i]))
 		{
 			nb++;
@@ -52,7 +52,7 @@ void	parsing_res_x(t_cub *cub, char *line)
 		start++;
 	}
 	if (!(cub->parse.res_x = malloc(sizeof(char) * start + 1)))
-		ft_error("malloc fail");
+		ft_error("Malloc failed");
 	j = j - start;
 	start = 0;
 	while (ft_isdigit(line[j]) || line[j] == '-')
@@ -80,7 +80,7 @@ void	parsing_res_y(t_cub *cub, char *line)
 		cub->ind_y++;
 	}
 	if (!(cub->parse.res_y = malloc(sizeof(char) * cub->start_y + 1)))
-		ft_error("malloc fail");
+		ft_error("Malloc failed");
 	cub->ind_y -= cub->start_y;
 	cub->start_y = 0;
 	while (ft_isdigit(line[cub->ind_y]) || line[cub->ind_y] == '-')
