@@ -1,11 +1,11 @@
-R 1000 800
-SO ./textures/south.xpm 
-NO ./textures/north.xpm
-EA ./textures/east.xpm
-WE ./textures/west.xpm
-S ./textures/sprite.xpm
-F 0, 0, 0
-C 255, 255, 255
+R 10000 8000
+SO ./textures/jungle-1.xpm 
+NO ./textures/jungle-2.xpm
+EA ./textures/jungle-3.xpm
+WE ./textures/jungle-4.xpm
+S ./textures/banana.xpm
+C 31,14,28    
+F 100, 125, 52
 
 11111111111
 10001112001111111

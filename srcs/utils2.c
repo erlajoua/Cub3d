@@ -61,8 +61,6 @@ int		secure_rgb(t_cub *cub, char *line)
 		if (line[cub->rgb_i] && ft_isdigit(line[cub->rgb_i]) && j < 3)
 			while (line[cub->rgb_i] && ft_isdigit(line[cub->rgb_i]))
 				cub->rgb_i++;
-		else
-			return (0);
 		if (line[cub->rgb_i] && line[cub->rgb_i] == ' ' && j < 2)
 			while (line[cub->rgb_i] && line[cub->rgb_i] == ' ')
 				cub->rgb_i++;
